@@ -1,0 +1,31 @@
+{
+  "businessName": "Paint A Perfect Picture LLC",
+  "phoneE164": "+16145551234",
+  "phonePretty": "(614) 555-1234",
+  "email": "paintaperfectpicture@gmail.com",
+  "serviceArea": ["Columbus","Dublin","Hilliard","Gahanna","Westerville","Reynoldsburg","Grove City"],
+  "residentialServices": [
+    { "title": "Interior Painting", "description": "Walls, ceilings, accent walls, full-room repaints." },
+    { "title": "Exterior Painting", "description": "Siding, shutters, porches, fences, garages." },
+    { "title": "Trim + Doors", "description": "Baseboards, frames, crown—crisp lines." },
+    { "title": "Cabinet Painting", "description": "Durable cabinet refinishing with proper prep." },
+    { "title": "Patch + Prep", "description": "Drywall patching, sanding, caulk, prime." },
+    { "title": "Move-In/Move-Out", "description": "Fast refresh for turns and listings." }
+  ],
+  "commercialServices": [
+    { "title": "Commercial Interiors", "description": "Offices, retail, common areas—clean jobsite habits." },
+    { "title": "Industrial / Warehouse", "description": "Maintenance painting, touch-ups, safety colors." },
+    { "title": "Turns & Maintenance", "description": "Punch-list paint, recurring refresh support." }
+  ],
+  "reviews": [
+    { "stars": 5, "text": "On time, protected everything, and the finish came out clean.", "name": "Customer", "city": "Columbus" },
+    { "stars": 5, "text": "Fast quote and the trim lines were perfect.", "name": "Customer", "city": "Hilliard" },
+    { "stars": 5, "text": "Great communication and the place looked brand new.", "name": "Customer", "city": "Dublin" }
+  ],
+  "faqs": [
+    { "question": "How fast can you start?", "answer": "Depends on schedule, but we aim for quick turnaround when possible. Photos + timeline = fastest quote." },
+    { "question": "Do you provide paint or do I?", "answer": "Either works. We can recommend paint types/finishes and purchase if you prefer." },
+    { "question": "Do you do small jobs?", "answer": "Yes — single rooms, trim, touch-ups, and move-out refreshes." },
+    { "question": "How do you price jobs?", "answer": "Pricing depends on scope, prep needed, access/height, materials, and timeline. Photos help us quote accurately." }
+  ]
+}
