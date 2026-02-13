@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Paint A Perfect Picture LLC | Columbus Painting</title>
+<meta name="description" content="Residential-first painting with commercial and industrial services available. Serving Columbus & Central Ohio." />
+
+<style>
+body{margin:0;font-family:system-ui;background:#0b0f14;color:#fff}
+a{color:inherit;text-decoration:none}
+header{padding:16px;border-bottom:1px solid #222;position:sticky;top:0;background:#0b0f14}
+nav a{margin-right:14px;color:#ccc}
+section{padding:32px 20px;border-bottom:1px solid #222}
+h1,h2{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tile{border:1px solid #222;padding:14px;border-radius:12px;background:#111}
+.faq details{margin-bottom:10px}
+footer{padding:24px;text-align:center;color:#aaa}
+.btn{display:inline-block;padding:10px 14px;border:1px solid #333;border-radius:10px;margin-right:10px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <strong id="siteName">Paint A Perfect Picture LLC</strong>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#quote">Quote</a>
+  </nav>
+</header>
+
+<section>
+  <h1>Clean Prep. Crisp Lines. Smooth Finish.</h1>
+  <p>Residential-first painting with commercial / industrial availability.</p>
+
+  <div>
+    <a class="btn" id="callBtnTop" href="#">Call <span data-phone-pretty></span></a>
+    <a class="btn" id="textBtnTop" href="#">Text</a>
+    <a class="btn" id="emailBtnTop" href="#">Email</a>
+  </div>
+
+  <p><strong>Service Area:</strong> <span id="serviceAreaInline"></span></p>
+</section>
+
+<section id="services">
+  <h2>Residential Services</h2>
+  <div class="grid" id="resServices"></div>
+
+  <h2 style="margin-top:30px">Commercial / Industrial</h2>
+  <div class="grid" id="comServices"></div>
+</section>
+
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+  <div class="grid" id="reviewsGrid"></div>
+</section>
+
+<section id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq" id="faqList"></div>
+</section>
+
+<section id="quote">
+  <h2>Request a Free Quote</h2>
+
+  <form name="quote" method="POST" data-netlify="true" action="/thanks.html">
+    <input type="hidden" name="form-name" value="quote" />
+
+    <p><input name="name" placeholder="Name" required></p>
+    <p><input name="contact" placeholder="Phone or Email" required></p>
+    <p>
+      <select name="project">
+        <option>Residential</option>
+        <option>Commercial</option>
+        <option>Industrial</option>
+      </select>
+    </p>
+    <p><textarea name="details" placeholder="Project details"></textarea></p>
+
+    <button type="submit" class="btn">Submit</button>
+  </form>
+
+  <div style="margin-top:14px">
+    <a class="btn" id="callBtnQuote" href="#">Call</a>
+    <a class="btn" id="textBtnQuote" href="#">Text</a>
+    <a class="btn" id="emailBtnQuote" href="#">Email</a>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span>
+  <span id="footerBizName">Paint A Perfect Picture LLC</span> •
+  <a id="footerPhone" href="#"><span data-phone-pretty></span></a> •
+  <a id="footerEmail" href="#"><span data-email></span></a>
+</footer>
+
+<script>
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m]))}
+
+async function loadSettings(){
+  const r=await fetch("/content/settings.json",{cache:"no-store"});
+  return await r.json();
+}
+
+function apply(S){
+  document.getElementById("year").textContent=new Date().getFullYear();
+  siteName.textContent=footerBizName.textContent=S.businessName;
+
+  document.querySelectorAll("[data-phone-pretty]").forEach(e=>e.textContent=S.phonePretty);
+  document.querySelectorAll("[data-email]").forEach(e=>e.textContent=S.email);
+
+  const tel=`tel:${S.phoneE164}`, sms=`sms:${S.phoneE164}`, mail=`mailto:${S.email}`;
+  ["callBtnTop","callBtnQuote","footerPhone"].forEach(id=>document.getElementById(id).href=tel);
+  ["textBtnTop","textBtnQuote"].forEach(id=>document.getElementById(id).href=sms);
+  ["emailBtnTop","emailBtnQuote","footerEmail"].forEach(id=>document.getElementById(id).href=mail);
+
+  serviceAreaInline.textContent=S.serviceArea.slice(0,3).join(" • ");
+
+  resServices.innerHTML=S.residentialServices.map(x=>`<div class="tile"><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p></div>`).join("");
+  comServices.innerHTML=S.commercialServices.map(x=>`<div class="tile"><h3>${esc(x.title)}</h3><p>${esc(x.description)}</p></div>`).join("");
+  reviewsGrid.innerHTML=S.reviews.map(r=>`<div class="tile"><strong>${"★".repeat(r.stars)}</strong><p>${esc(r.text)}</p><small>${esc(r.name)}, ${esc(r.city)}</small></div>`).join("");
+  faqList.innerHTML=S.faqs.map(f=>`<details><summary>${esc(f.question)}</summary><p>${esc(f.answer)}</p></details>`).join("");
+}
+
+loadSettings().then(apply);
+</script>
+
+</body>
+</html>
