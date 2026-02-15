@@ -1,34 +1,76 @@
 {
   "businessName": "Paint A Perfect Picture LLC",
   "tagline": "Residential-first • Commercial/Industrial available",
-  "phonePretty": "(614) 000-0000",
-  "phoneE164": "+16140000000",
-  "email": "info@paintaperfectpicture.com",
-  "serviceArea": ["Columbus, OH", "Westerville, OH", "Dublin, OH", "Gahanna, OH", "Hilliard, OH"],
+
+  "phonePretty": "(614) 596-4019",
+  "phoneE164": "+16145964019",
+
+  "email": "contact@paintaperfectpicture.com",
+
+  "serviceArea": [
+    "Columbus, OH",
+    "Westerville, OH",
+    "Dublin, OH",
+    "Gahanna, OH",
+    "Hilliard, OH",
+    "Reynoldsburg, OH"
+  ],
 
   "residentialServices": [
-    { "title": "Interior Painting", "description": "Walls, ceilings, trim, doors — clean prep and crisp lines." },
-    { "title": "Exterior Painting", "description": "Siding, brick, trim, garages — durable coatings for Ohio weather." },
-    { "title": "Drywall Repair", "description": "Patching, skim coating, sanding — smooth finish before paint." },
-    { "title": "Trim + Cabinets", "description": "Upgrade your look with clean trim work and cabinet finishes." }
+    {
+      "title": "Interior Painting",
+      "description": "Walls, ceilings, trim, doors, and full interior repainting."
+    },
+    {
+      "title": "Exterior Painting",
+      "description": "Exterior siding, trim, garages, and full house painting."
+    },
+    {
+      "title": "Drywall Repair",
+      "description": "Patch, sand, smooth, and prep damaged drywall surfaces."
+    },
+    {
+      "title": "Trim & Detail Work",
+      "description": "Baseboards, doors, frames, and detailed finishing."
+    }
   ],
 
   "commercialServices": [
-    { "title": "Commercial Interiors", "description": "Offices, retail, rentals — fast turnarounds with quality." },
-    { "title": "Maintenance Painting", "description": "Touch-ups, repaints, and ongoing upkeep contracts." },
-    { "title": "Industrial Coatings", "description": "Warehouses and facilities — coatings built for performance." },
-    { "title": "Move-In / Move-Out", "description": "Make-ready services for property managers and landlords." }
+    {
+      "title": "Commercial Painting",
+      "description": "Office buildings, retail spaces, and commercial properties."
+    },
+    {
+      "title": "Industrial Painting",
+      "description": "Warehouses, industrial facilities, and heavy-duty coatings."
+    },
+    {
+      "title": "Property Turnovers",
+      "description": "Apartment repainting and property management services."
+    }
   ],
 
   "reviews": [
-    { "stars": 5, "text": "Great communication and a clean finish. Fast quote and professional work.", "name": "Customer", "city": "Columbus" },
-    { "stars": 5, "text": "Respectful crew and the prep was solid. Lines came out perfect.", "name": "Client", "city": "Westerville" }
+    {
+      "stars": 5,
+      "text": "Fast response and excellent work quality.",
+      "name": "Customer",
+      "city": "Columbus"
+    }
   ],
 
   "faqs": [
-    { "question": "Do you offer free estimates?", "answer": "Yes. Send details/photos or request an onsite quote." },
-    { "question": "What areas do you serve?", "answer": "Columbus and surrounding areas. Service area is listed on the site." },
-    { "question": "Do you offer commercial and industrial painting?", "answer": "Yes. We start residential but also handle commercial and industrial work." },
-    { "question": "What paint brands do you use?", "answer": "We can use your preferred brand or recommend durable options based on the job." }
+    {
+      "question": "Do you offer free estimates?",
+      "answer": "Yes, we provide free estimates for all painting projects."
+    },
+    {
+      "question": "What areas do you serve?",
+      "answer": "We serve Columbus and surrounding Ohio areas."
+    },
+    {
+      "question": "Do you offer commercial and industrial services?",
+      "answer": "Yes, we offer residential, commercial, and industrial painting."
+    }
   ]
 }
