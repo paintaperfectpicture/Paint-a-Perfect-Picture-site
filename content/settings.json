@@ -1,0 +1,34 @@
+{
+  "businessName": "Paint A Perfect Picture LLC",
+  "tagline": "Residential-first • Commercial/Industrial available",
+  "phonePretty": "(614) 000-0000",
+  "phoneE164": "+16140000000",
+  "email": "info@paintaperfectpicture.com",
+  "serviceArea": ["Columbus, OH", "Westerville, OH", "Dublin, OH", "Gahanna, OH", "Hilliard, OH"],
+
+  "residentialServices": [
+    { "title": "Interior Painting", "description": "Walls, ceilings, trim, doors — clean prep and crisp lines." },
+    { "title": "Exterior Painting", "description": "Siding, brick, trim, garages — durable coatings for Ohio weather." },
+    { "title": "Drywall Repair", "description": "Patching, skim coating, sanding — smooth finish before paint." },
+    { "title": "Trim + Cabinets", "description": "Upgrade your look with clean trim work and cabinet finishes." }
+  ],
+
+  "commercialServices": [
+    { "title": "Commercial Interiors", "description": "Offices, retail, rentals — fast turnarounds with quality." },
+    { "title": "Maintenance Painting", "description": "Touch-ups, repaints, and ongoing upkeep contracts." },
+    { "title": "Industrial Coatings", "description": "Warehouses and facilities — coatings built for performance." },
+    { "title": "Move-In / Move-Out", "description": "Make-ready services for property managers and landlords." }
+  ],
+
+  "reviews": [
+    { "stars": 5, "text": "Great communication and a clean finish. Fast quote and professional work.", "name": "Customer", "city": "Columbus" },
+    { "stars": 5, "text": "Respectful crew and the prep was solid. Lines came out perfect.", "name": "Client", "city": "Westerville" }
+  ],
+
+  "faqs": [
+    { "question": "Do you offer free estimates?", "answer": "Yes. Send details/photos or request an onsite quote." },
+    { "question": "What areas do you serve?", "answer": "Columbus and surrounding areas. Service area is listed on the site." },
+    { "question": "Do you offer commercial and industrial painting?", "answer": "Yes. We start residential but also handle commercial and industrial work." },
+    { "question": "What paint brands do you use?", "answer": "We can use your preferred brand or recommend durable options based on the job." }
+  ]
+}
