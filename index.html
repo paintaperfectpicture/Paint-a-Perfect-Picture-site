@@ -1,219 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Paint A Perfect Picture LLC | Columbus, OH Painting</title>
+<title>Paint A Perfect Picture LLC | Columbus Ohio Painting Company</title>
 
-<meta name="description" content="Paint A Perfect Picture LLC provides residential, commercial, and industrial painting in Columbus, Ohio. Clean prep. Sharp lines. Professional results. Call or text 614-596-4019.">
+<meta name="description" content="Paint A Perfect Picture LLC provides residential, commercial, and industrial painting services in Columbus, Ohio. Free quotes. Professional results. Call 614-596-4019.">
 
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://paintaperfectpicture.com/">
+<meta name="keywords" content="
+painting company Columbus Ohio,
+house painters Columbus Ohio,
+commercial painters Columbus Ohio,
+industrial painting Columbus Ohio,
+residential painters Columbus Ohio,
+interior painting Columbus Ohio,
+exterior painting Columbus Ohio">
 
-<meta property="og:title" content="Paint A Perfect Picture LLC | Columbus, OH Painting">
-<meta property="og:description" content="Residential, commercial, and industrial painting in Columbus, Ohio.">
-<meta property="og:image" content="https://paintaperfectpicture.com/IMG_1006.png">
-<meta property="og:url" content="https://paintaperfectpicture.com/">
-<meta name="twitter:card" content="summary_large_image">
-
-<link rel="icon" href="/IMG_1006.png">
+<meta name="robots" content="index, follow">
 
 <style>
 
+:root{
+--bg-main:#071421;
+--bg-card:#0f2236;
+--bg-header:#091a2b;
+
+--accent-gold:#f4c542;
+--accent-blue:#18a0fb;
+
+--text-main:#ffffff;
+--text-secondary:#c7d4e2;
+
+--border:#1f3a55;
+}
+
 body{
 margin:0;
-font-family:system-ui;
-background:#071018;
-color:#f3f6fb;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+background:var(--bg-main);
+color:var(--text-main);
+line-height:1.6;
 }
 
-.wrap{
-max-width:1100px;
-margin:auto;
-padding:20px;
-}
+/* HEADER */
 
 header{
-background:#0b1622;
-border-bottom:1px solid rgba(255,255,255,.1);
+background:var(--bg-header);
+padding:18px;
+border-bottom:1px solid var(--border);
 }
 
-.brand{
+.header-container{
 display:flex;
 align-items:center;
-gap:12px;
+gap:15px;
 }
 
-.logo{
-width:48px;
-height:48px;
-border-radius:12px;
+.header-logo{
+width:55px;
+height:55px;
+border-radius:10px;
+object-fit:cover;
 }
+
+.header-text h1{
+margin:0;
+font-size:20px;
+}
+
+.header-text p{
+margin:0;
+color:var(--text-secondary);
+font-size:14px;
+}
+
+/* NAV */
 
 nav{
-margin-top:10px;
-display:flex;
-flex-wrap:wrap;
-gap:12px;
+background:#0b1f33;
+padding:12px;
+text-align:center;
+border-bottom:1px solid var(--border);
 }
 
 nav a{
-color:#f4c542;
-font-weight:700;
+color:var(--accent-gold);
+margin:6px 10px;
 text-decoration:none;
+font-weight:600;
+display:inline-block;
 }
+
+nav a:hover{
+color:white;
+}
+
+/* HERO */
 
 .hero{
-padding:40px 0;
+padding:40px 20px;
+max-width:800px;
+margin:auto;
 }
 
-h1{
-font-size:40px;
+.hero h2{
+font-size:36px;
 margin-bottom:10px;
 }
 
-.btn{
+.hero p{
+color:var(--text-secondary);
+font-size:18px;
+}
+
+/* BUTTONS */
+
+.button{
 display:inline-block;
-padding:12px 16px;
-border-radius:12px;
-font-weight:900;
+padding:14px 22px;
+margin-top:15px;
 margin-right:10px;
-margin-top:10px;
+border-radius:8px;
+font-weight:bold;
+text-decoration:none;
 }
 
-.btn-primary{
-background:#f4c542;
-color:#000;
+.call{
+background:var(--accent-gold);
+color:black;
 }
 
-.btn-outline{
-border:1px solid #19c6d6;
-color:#19c6d6;
+.quote{
+border:2px solid var(--accent-blue);
+color:var(--accent-blue);
 }
 
-.tabs{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:16px;
-margin-top:20px;
-}
-
-.tab{
-background:#0b1622;
-border:1px solid rgba(255,255,255,.1);
-border-radius:16px;
-padding:16px;
-}
-
-.tab-title{
-font-weight:900;
-margin-bottom:6px;
-}
+/* SECTION */
 
 section{
-margin-top:40px;
+max-width:900px;
+margin:auto;
+padding:25px;
 }
 
+.card{
+background:var(--bg-card);
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+border:1px solid var(--border);
+}
+
+.card h3{
+margin-top:0;
+color:var(--accent-gold);
+}
+
+/* FAQ */
+
+.faq-item{
+margin-bottom:15px;
+}
+
+.faq-question{
+font-weight:bold;
+color:white;
+}
+
+.faq-answer{
+color:var(--text-secondary);
+}
+
+/* FORM */
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:6px;
+border:1px solid var(--border);
+background:#0b1f33;
+color:white;
+}
+
+button{
+background:var(--accent-gold);
+border:none;
+padding:14px;
+font-weight:bold;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
 footer{
-margin-top:40px;
-border-top:1px solid rgba(255,255,255,.1);
-padding-top:20px;
-color:#aaa;
+text-align:center;
+padding:25px;
+color:var(--text-secondary);
+border-top:1px solid var(--border);
+margin-top:30px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-<div class="wrap">
 
-<div class="brand">
-<img src="/IMG_1006.png" class="logo">
-<div>
-<strong>Paint A Perfect Picture LLC</strong><br>
-Columbus, Ohio Painting Services
+<div class="header-container">
+
+<img src="IMG_1006.png" class="header-logo">
+
+<div class="header-text">
+<h1>Paint A Perfect Picture LLC</h1>
+<p>Columbus, Ohio Painting Services</p>
 </div>
+
 </div>
+
+</header>
 
 <nav>
 
-<a href="/">Home</a>
-
-<a href="/interior-painting.html">Residential</a>
-
-<a href="/exterior-painting.html">Exterior</a>
-
-<a href="/commercial-painting.html">Commercial</a>
-
-<a href="/industrial-painting.html">Industrial</a>
-
-<a href="/faq.html">FAQ</a>
-
-<a href="/contact.html">Contact</a>
-
+<a href="#">Home</a>
+<a href="#residential">Residential</a>
+<a href="#exterior">Exterior</a>
+<a href="#commercial">Commercial</a>
+<a href="#industrial">Industrial</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
 <a href="#quote">Free Quote</a>
 
 </nav>
 
-</div>
-</header>
+<div class="hero">
 
-<div class="wrap">
-
-<section class="hero">
-
-<h1>Clean Prep. Sharp Lines. Perfect Results.</h1>
+<h2>Clean Prep. Sharp Lines. Perfect Results.</h2>
 
 <p>
-Residential, commercial, and industrial painting services in Columbus, Ohio.
-Professional finishes, clean job sites, and reliable communication.
+Professional residential, commercial, and industrial painting services in Columbus, Ohio. Trusted painters delivering clean finishes and reliable service.
 </p>
 
-<a href="tel:16145964019" class="btn btn-primary">Call 614-596-4019</a>
+<a href="tel:6145964019" class="button call">Call 614-596-4019</a>
 
-<a href="sms:16145964019" class="btn btn-outline">Text for Quote</a>
+<a href="#quote" class="button quote">Request Free Quote</a>
+
+</div>
+
+<section id="residential">
+
+<div class="card">
+
+<h3>Residential Painting</h3>
+
+<p>
+Interior walls, ceilings, trim, cabinets, drywall repair, and full home repainting. Professional preparation and premium finishes for long-lasting results.
+</p>
+
+</div>
 
 </section>
 
-<section>
+<section id="exterior">
 
-<h2>Work Tabs</h2>
+<div class="card">
 
-<div class="tabs">
+<h3>Exterior Painting</h3>
 
-<a href="/interior-painting.html" class="tab">
-<div class="tab-title">Residential Painting</div>
-Interior walls, trim, drywall repair, cabinets, and full home repainting.
-</a>
+<p>
+House exteriors, siding, garages, doors, fences, and weather-resistant coatings designed for Ohio climate durability.
+</p>
 
-<a href="/exterior-painting.html" class="tab">
-<div class="tab-title">Exterior Painting</div>
-Exterior siding, trim, garages, and weather-resistant finishes.
-</a>
+</div>
 
-<a href="/commercial-painting.html" class="tab">
-<div class="tab-title">Commercial Painting</div>
-Offices, rentals, retail spaces, and multi-unit properties.
-</a>
+</section>
 
-<a href="/industrial-painting.html" class="tab">
-<div class="tab-title">Industrial Painting</div>
-Warehouses, facilities, coatings, and large-scale projects.
-</a>
+<section id="commercial">
 
-<a href="/faq.html" class="tab">
-<div class="tab-title">Frequently Asked Questions</div>
-Answers about pricing, prep, scheduling, and timelines.
-</a>
+<div class="card">
 
-<a href="/contact.html" class="tab">
-<div class="tab-title">Contact & Free Quote</div>
-Call, text, or submit a quote request.
-</a>
+<h3>Commercial Painting</h3>
+
+<p>
+Office buildings, retail stores, apartments, rental properties, and commercial facilities with flexible scheduling.
+</p>
+
+</div>
+
+</section>
+
+<section id="industrial">
+
+<div class="card">
+
+<h3>Industrial Painting</h3>
+
+<p>
+Warehouses, manufacturing facilities, coatings, structural painting, and large-scale projects.
+</p>
+
+</div>
+
+</section>
+
+<section id="faq">
+
+<div class="card">
+
+<h3>Frequently Asked Questions</h3>
+
+<div class="faq-item">
+<div class="faq-question">Do you offer free quotes?</div>
+<div class="faq-answer">Yes. All quotes are free with no obligation.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">How soon can you start?</div>
+<div class="faq-answer">Most projects begin within 3-7 days depending on schedule.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Do you serve all of Columbus?</div>
+<div class="faq-answer">Yes. We serve Columbus and surrounding areas.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">Are you insured?</div>
+<div class="faq-answer">Yes. Fully insured professional painting company.</div>
+</div>
 
 </div>
 
@@ -221,41 +338,48 @@ Call, text, or submit a quote request.
 
 <section id="quote">
 
-<h2>Request a Free Quote</h2>
+<div class="card">
+
+<h3>Request Free Quote</h3>
 
 <form name="quote" method="POST" data-netlify="true">
 
-<input type="hidden" name="form-name" value="quote">
+<input type="text" name="name" placeholder="Your Name" required>
 
-<p>
-<input name="name" placeholder="Your Name" required style="width:100%;padding:10px;border-radius:8px;border:none;">
-</p>
+<input type="text" name="contact" placeholder="Phone or Email" required>
 
-<p>
-<input name="contact" placeholder="Phone or Email" required style="width:100%;padding:10px;border-radius:8px;border:none;">
-</p>
+<textarea name="details" placeholder="Project Details" required></textarea>
 
-<p>
-<textarea name="details" placeholder="Project Details" required style="width:100%;padding:10px;border-radius:8px;border:none;"></textarea>
-</p>
-
-<p>
-<button type="submit" class="btn btn-primary">Submit Quote Request</button>
-</p>
+<button type="submit">Submit Quote Request</button>
 
 </form>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="card">
+
+<h3>Contact</h3>
+
+<p>Phone: 614-596-4019</p>
+
+<p>Email: contact@paintaperfectpicture.com</p>
+
+<p>Location: Columbus, Ohio</p>
+
+</div>
 
 </section>
 
 <footer>
 
-Paint A Perfect Picture LLC — Columbus, Ohio<br>
-
-Call or Text: 614-596-4019
+Paint A Perfect Picture LLC © 2026  
+Columbus Ohio Painting Company  
 
 </footer>
-
-</div>
 
 </body>
 </html>
