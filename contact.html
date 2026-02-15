@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact | Paint A Perfect Picture LLC (Columbus, OH)</title>
+  <meta name="description" content="Contact Paint A Perfect Picture LLC in Columbus, OH. Call/Text 614-596-4019 for a free quote.">
+  <link rel="canonical" href="https://paintaperfectpicture.com/contact.html">
+  <link rel="icon" href="/IMG_1006.png">
+  <style>
+    body{margin:0;font-family:system-ui;background:#071018;color:#f3f6fb}
+    .wrap{max-width:980px;margin:auto;padding:18px}
+    a{color:#f4c542;text-decoration:none}
+    .card{background:#0b1622;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px;margin-top:14px}
+    h1{margin:10px 0 6px;font-size:34px} p{color:#b9c3d3;line-height:1.55}
+    .btn{display:inline-block;padding:12px 14px;border-radius:12px;font-weight:800;margin-right:10px}
+    .b1{background:#f4c542;color:#0b0f14} .b2{border:1px solid #19c6d6;color:#19c6d6}
+    input,textarea,select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:#091422;color:#f3f6fb}
+    textarea{min-height:110px;resize:vertical}
+    form{display:grid;gap:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p><a href="/">← Back to Home</a></p>
+    <h1>Contact</h1>
+    <p>Fastest response: call or text photos of your project.</p>
+
+    <div class="card">
+      <p><strong>Phone:</strong> <a href="tel:+16145964019">614-596-4019</a></p>
+      <p><strong>Text:</strong> <a href="sms:+16145964019">Send photos</a></p>
+      <p><strong>Email:</strong> Coming soon</p>
+
+      <p>
+        <a class="btn b1" href="tel:+16145964019">Call Now</a>
+        <a class="btn b2" href="sms:+16145964019">Text Photos</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Request a Free Quote</h2>
+      <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+        <input style="display:none" name="bot-field">
+        <input name="name" placeholder="Your name" required>
+        <input name="contact" placeholder="Phone or email" required>
+        <select name="project" required>
+          <option value="" selected disabled>Project type</option>
+          <option>Interior Painting</option>
+          <option>Exterior Painting</option>
+          <option>Drywall Repair</option>
+          <option>Commercial Painting</option>
+          <option>Industrial Painting</option>
+        </select>
+        <input name="city" placeholder="City (ex: Columbus, OH)" required>
+        <textarea name="details" placeholder="Describe what you need + timeline."></textarea>
+        <button class="btn b1" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
