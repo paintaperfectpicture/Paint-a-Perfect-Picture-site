@@ -1,46 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Paint A Perfect Picture LLC | Residential • Commercial • Industrial Painting Columbus Ohio</title>
+<title>Paint A Perfect Picture LLC | Residential • Commercial • Industrial Painting</title>
 
-<meta name="description" content="Professional residential, commercial, and industrial painting in Columbus Ohio. Clean prep. Sharp lines. Perfect results. Call 614-596-4019">
-
-<link rel="icon" href="logo.png">
+<meta name="description" content="Professional residential, commercial, and industrial painting services in Columbus, Ohio. Clean prep. Sharp lines. Perfect results.">
 
 <style>
 
 :root{
-
 --bg:#020617;
---panel:#071224;
---panel2:#0b1a33;
-
---gold:#ffd54a;
---goldGlow:#ffdf70;
-
---blue:#00c6ff;
---blueGlow:#00e0ff;
-
+--panel:#0b1220;
+--accent:#ffd54a;
+--accent2:#22c55e;
 --text:#ffffff;
 --muted:#94a3b8;
-
---border:#1e293b;
-
+--line:#1e293b;
 }
 
 *{
 box-sizing:border-box;
 margin:0;
 padding:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
 }
 
 body{
-background:linear-gradient(180deg,#020617,#020617,#000814);
+font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto;
+background:var(--bg);
 color:var(--text);
 }
 
@@ -51,343 +39,253 @@ padding:20px;
 }
 
 header{
-
-background:rgba(2,6,23,0.95);
-border-bottom:1px solid var(--border);
-
-position:sticky;
-top:0;
-z-index:999;
-
+border-bottom:1px solid var(--line);
+background:#020617;
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:14px;
+gap:15px;
 }
 
 .logo{
-
-height:52px;
-width:52px;
-
+width:55px;
+height:55px;
 border-radius:12px;
-
-box-shadow:
-0 0 15px var(--goldGlow),
-0 0 30px rgba(255,213,74,0.25);
-
-}
-
-.brandText strong{
-
-font-size:18px;
-letter-spacing:0.5px;
-
-}
-
-.brandText span{
-
-font-size:13px;
-color:var(--muted);
-
-}
-
-.hero{
-
-padding:60px 20px;
-
-}
-
-.heroGrid{
-
-display:grid;
-grid-template-columns:1fr 340px;
-gap:40px;
-
-}
-
-@media(max-width:900px){
-
-.heroGrid{
-grid-template-columns:1fr;
-}
-
+object-fit:cover;
+border:2px solid var(--accent);
 }
 
 h1{
+font-size:20px;
+}
 
-font-size:48px;
-line-height:1.1;
+.tag{
+font-size:13px;
+color:var(--muted);
+}
 
+.hero{
+padding:60px 20px;
+}
+
+.hero h2{
+font-size:42px;
 margin-bottom:15px;
-
 }
 
 .hero p{
-
 color:var(--muted);
 font-size:18px;
 margin-bottom:25px;
-
-}
-
-.btnRow{
-display:flex;
-gap:14px;
-flex-wrap:wrap;
 }
 
 .btn{
-
-padding:14px 22px;
+display:inline-block;
+padding:14px 26px;
 border-radius:10px;
-font-weight:600;
 text-decoration:none;
-border:1px solid var(--border);
-
+font-weight:600;
+margin-right:10px;
 }
 
-.btnGold{
-
-background:var(--gold);
+.btn-call{
+background:var(--accent);
 color:black;
-
-box-shadow:0 0 15px rgba(255,213,74,0.35);
-
 }
 
-.btnBlue{
-
-border:1px solid var(--blue);
-color:var(--blue);
-
-box-shadow:0 0 12px rgba(0,198,255,0.25);
-
+.btn-quote{
+border:2px solid #0ea5e9;
+color:#0ea5e9;
 }
 
 .card{
-
-background:linear-gradient(180deg,var(--panel),var(--panel2));
-
-padding:22px;
+background:var(--panel);
+border:1px solid var(--line);
 border-radius:14px;
-border:1px solid var(--border);
-
+padding:20px;
+margin-top:20px;
 }
 
-section{
-
+.section{
 padding:40px 20px;
-border-top:1px solid var(--border);
-
 }
 
-h2{
-
-margin-bottom:18px;
-
+.section h3{
+margin-bottom:15px;
+font-size:24px;
 }
 
 .grid{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:16px;
-
+gap:15px;
 }
 
-.tile{
-
-background:linear-gradient(180deg,var(--panel),var(--panel2));
-padding:18px;
-border-radius:12px;
-border:1px solid var(--border);
-
+.service{
+background:var(--panel);
+border:1px solid var(--line);
+padding:15px;
+border-radius:10px;
 }
 
 footer{
-
-padding:25px;
-border-top:1px solid var(--border);
-text-align:center;
+border-top:1px solid var(--line);
+margin-top:40px;
+padding:20px;
 color:var(--muted);
-
+text-align:center;
 }
 
 </style>
+
 </head>
+
 <body>
 
 <header>
-<div class="wrap">
+<div class="wrap brand">
 
-<div class="brand">
+<img src="IMG_1006.png" class="logo">
 
-<img src="logo.png" class="logo">
-
-<div class="brandText">
-<strong>Paint A Perfect Picture LLC</strong><br>
-<span>Residential • Commercial • Industrial Painting</span>
+<div>
+<h1>Paint A Perfect Picture LLC</h1>
+<div class="tag">
+Residential • Commercial • Industrial Painting
 </div>
-
 </div>
 
 </div>
 </header>
 
-<main>
+<section class="hero wrap">
 
-<section class="hero">
-<div class="wrap heroGrid">
-
-<div>
-
-<h1>
+<h2>
 Clean Prep.<br>
 Sharp Lines.<br>
 Perfect Results.
-</h1>
+</h2>
 
 <p>
-Professional painting services in Columbus Ohio.
-Residential, commercial, and industrial projects completed with precision and durability.
+Professional painting services built to scale from residential homes to full commercial and industrial projects.
 </p>
 
-<div class="btnRow">
-
-<a href="tel:6145964019" class="btn btnGold">
+<a href="tel:6145964019" class="btn btn-call">
 Call Now
 </a>
 
-<a href="sms:6145964019" class="btn btnBlue">
-Text Now
+<a href="#quote" class="btn btn-quote">
+Get Quote
 </a>
-
-<a href="#quote" class="btn btnBlue">
-Get Free Quote
-</a>
-
-</div>
-
-</div>
 
 <div class="card">
 
 <h3>Contact</h3>
 
-<p style="margin-top:10px">
-
-Phone:<br>
-<a href="tel:6145964019" style="color:var(--gold)">
-614-596-4019
-</a>
-
+<p>
+Phone: <a href="tel:6145964019" style="color:var(--accent)">614-596-4019</a>
 </p>
 
-<p style="margin-top:10px">
-
-Email:<br>
-contact@paintaperfectpicture.com
-
-</p>
-
-<p style="margin-top:10px">
-
-Location:<br>
-Columbus Ohio
-
+<p>
+Email: contact@paintaperfectpicture.com
 </p>
 
 </div>
 
-</div>
 </section>
 
-<section>
+<section class="section wrap">
 
-<div class="wrap">
-
-<h2>Services</h2>
+<h3>Services</h3>
 
 <div class="grid">
 
-<div class="tile">
-<h3>Residential Painting</h3>
-<p>Interior, exterior, trim, walls, ceilings, and full home painting.</p>
+<div class="service">
+Interior Painting
 </div>
 
-<div class="tile">
-<h3>Commercial Painting</h3>
-<p>Offices, apartments, retail, and business buildings.</p>
+<div class="service">
+Exterior Painting
 </div>
 
-<div class="tile">
-<h3>Industrial Painting</h3>
-<p>Warehouses, facilities, equipment, and large-scale projects.</p>
+<div class="service">
+Commercial Buildings
 </div>
 
+<div class="service">
+Industrial Facilities
 </div>
 
+<div class="service">
+Apartment Complexes
 </div>
 
-</section>
-
-<section>
-
-<div class="wrap">
-
-<h2>Service Areas</h2>
-
-<div class="grid">
-
-<div class="tile">Columbus</div>
-<div class="tile">Dublin</div>
-<div class="tile">Westerville</div>
-<div class="tile">Grove City</div>
-<div class="tile">Reynoldsburg</div>
-
+<div class="service">
+Office Spaces
 </div>
 
 </div>
 
 </section>
 
-<section id="quote">
+<section class="section wrap">
 
-<div class="wrap">
-
-<h2>Request Free Quote</h2>
+<h3>Service Area</h3>
 
 <div class="card">
 
-<p>Call or text for fastest response.</p>
-
-<div class="btnRow" style="margin-top:15px">
-
-<a href="tel:6145964019" class="btn btnGold">
-Call Now
-</a>
-
-<a href="sms:6145964019" class="btn btnBlue">
-Text Now
-</a>
-
-</div>
-
-</div>
+Columbus, Ohio<br>
+Dublin<br>
+Westerville<br>
+Gahanna<br>
+Reynoldsburg<br>
+New Albany<br>
+Hilliard<br>
+Grove City
 
 </div>
 
 </section>
 
-</main>
+<section id="quote" class="section wrap">
+
+<h3>Request Free Quote</h3>
+
+<div class="card">
+
+<form name="quote" method="POST" data-netlify="true">
+
+<input type="hidden" name="form-name" value="quote">
+
+<p>
+<input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:12px;margin-bottom:10px;">
+</p>
+
+<p>
+<input type="text" name="contact" placeholder="Phone or Email" required style="width:100%;padding:12px;margin-bottom:10px;">
+</p>
+
+<p>
+<textarea name="details" placeholder="Project details" style="width:100%;padding:12px;height:100px;"></textarea>
+</p>
+
+<p>
+<button type="submit" class="btn btn-call">
+Submit Quote Request
+</button>
+</p>
+
+</form>
+
+</div>
+
+</section>
 
 <footer>
 
 © 2026 Paint A Perfect Picture LLC  
-Columbus Ohio  
+Columbus, Ohio  
 
 </footer>
 
