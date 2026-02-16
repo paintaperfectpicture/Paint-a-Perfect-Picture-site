@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
   <title>Paint a Perfect Picture LLC | Columbus, OH</title>
   <meta name="description" content="Paint a Perfect Picture LLC — Professional residential, commercial, and industrial painting, drywall repair, and fireproofing support in Columbus, OH. Fast quotes with photo uploads." />
 
@@ -17,7 +16,6 @@
     :root{
       --bg:#0b0f14;
       --card:#101826;
-      --card2:#0f1722;
       --text:#eaf2ff;
       --muted:#a9b7cc;
       --line:rgba(255,255,255,.10);
@@ -25,62 +23,123 @@
       --accent2:#ff5a3c;
       --shadow:0 18px 60px rgba(0,0,0,.55);
       --radius:18px;
+      --glass:rgba(255,255,255,.05);
+      --glass2:rgba(255,255,255,.02);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 600px at 15% 10%, rgba(23,224,193,.22), transparent 60%),
-        radial-gradient(900px 500px at 85% 30%, rgba(255,90,60,.18), transparent 55%),
-        linear-gradient(180deg,#0b0f17,#111827);
       color:var(--text);
       line-height:1.45;
+
+      /* Base background under animation layers */
+      background:
+        linear-gradient(180deg,
+          #0a0f17 0%,
+          #0b111a 25%,
+          #0c1420 50%,
+          #0b0f14 100%
+        );
+      background-attachment: fixed;
+      overflow-x:hidden;
+      position:relative;
     }
+
+    /* PREMIUM ANIMATED BACKGROUND (no external files) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-30%;
+      z-index:-2;
+      background:
+        radial-gradient(900px 700px at 15% 10%, rgba(23,224,193,.22), transparent 70%),
+        radial-gradient(850px 650px at 85% 20%, rgba(255,90,60,.18), transparent 72%),
+        radial-gradient(900px 700px at 50% 110%, rgba(23,224,193,.10), transparent 70%),
+        radial-gradient(700px 500px at 10% 70%, rgba(90,120,255,.10), transparent 72%),
+        radial-gradient(700px 500px at 95% 80%, rgba(255,90,60,.08), transparent 72%);
+      filter: blur(20px) saturate(120%);
+      transform: translate3d(0,0,0);
+      animation: bgFloat 18s ease-in-out infinite alternate;
+      opacity:.9;
+    }
+
+    /* subtle “film grain” noise overlay */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.03), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(255,255,255,.02), transparent 40%),
+        radial-gradient(circle at 20% 90%, rgba(255,255,255,.02), transparent 45%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 2px, transparent 6px);
+      mix-blend-mode: overlay;
+      opacity:.18;
+    }
+
+    @keyframes bgFloat{
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1.00) rotate(0deg); }
+      35%  { transform: translate3d(2%, 1%, 0)  scale(1.04) rotate(1deg); }
+      70%  { transform: translate3d(-1%, 2%, 0) scale(1.02) rotate(-1deg); }
+      100% { transform: translate3d(3%, -2%, 0) scale(1.06) rotate(1.2deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      body::before{animation:none}
+    }
+
     a{color:inherit}
     .wrap{max-width:1100px;margin:0 auto;padding:22px}
 
-    /* Header */
+    /* Top bar */
     .topbar{
       display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-      margin-top:10px;margin-bottom:18px;flex-wrap:wrap;
+      margin-top:10px;margin-bottom:18px;
+      flex-wrap:wrap;
     }
-    .brand{display:flex;align-items:flex-start;gap:14px;min-width:0}
+    .brand{
+      display:flex;align-items:flex-start;gap:14px;min-width:0;
+    }
     .logo{
       width:56px;height:56px;border-radius:14px;object-fit:cover;
       background:rgba(255,255,255,.06);
       box-shadow:0 10px 26px rgba(0,0,0,.35);
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
     }
     .brand-text{min-width:0}
     .brand-text .name{font-size:18px;font-weight:900;letter-spacing:.2px;margin:0}
-    .brand-text .meta{
-      margin:3px 0 0;color:var(--muted);font-size:13px;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis
-    }
+    .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .nav-links{
-      margin-top:10px;display:flex;gap:10px;flex-wrap:wrap
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
-    .navbtn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:9px 12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      text-decoration:none;font-weight:800;font-size:13px;
-      transition:transform .08s ease, background .2s ease;
-    }
-    .navbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
 
-    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:8px}
+    /* Buttons */
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
+      padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
       text-decoration:none;font-weight:800;font-size:14px;
-      transition:transform .08s ease, background .2s ease, border-color .2s ease;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
       cursor:pointer;
+      user-select:none;
     }
     .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .btn:active{transform:translateY(0px)}
+    .btn:focus-visible{
+      outline:none;
+      box-shadow:0 0 0 4px rgba(23,224,193,.22);
+      border-color:rgba(23,224,193,.45);
+    }
     .btn.primary{
       background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));
       color:#001b17;border:none;
@@ -91,33 +150,48 @@
       color:#170400;border:none;
     }
 
+    .top-actions{
+      display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;
+      margin-top:2px;
+    }
+
     /* Hero */
     .hero{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:26px;
       position:relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        radial-gradient(700px 340px at 30% 0%, rgba(23,224,193,.12), transparent 72%);
+
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+      padding:26px;
       overflow:hidden;
     }
     .pill{
       display:inline-flex;gap:10px;align-items:center;
       padding:8px 12px;border-radius:999px;
       background:rgba(255,255,255,.06);
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
       color:var(--muted);
       font-size:13px;font-weight:800;
     }
     .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
-    .hero p{margin:0;color:var(--muted);max-width:72ch;font-size:15px}
+    .hero p{margin:0;color:var(--muted);max-width:70ch;font-size:15px}
     .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
     /* Open/Closed badge */
     .biz-status{
       display:inline-flex;align-items:center;gap:10px;
-      padding:9px 12px;border-radius:999px;
-      border:1px solid var(--line);
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
       margin-top:14px;
       font-weight:900;
@@ -132,7 +206,7 @@
     }
     .biz-status.open .dot{ background:#22c55e; }
     .biz-status.closed .dot{ background:#ef4444; }
-    .biz-status .sub{ color:var(--muted); font-weight:800; }
+    .biz-status .sub{ color:var(--muted); font-weight:800; margin-left:6px; }
 
     /* Grid/cards */
     .grid{
@@ -142,11 +216,18 @@
       gap:16px;
     }
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+      border:1px solid rgba(255,255,255,.06);
       border-radius:var(--radius);
       padding:18px;
-      box-shadow:0 10px 28px rgba(0,0,0,.35);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      box-shadow:
+        0 10px 40px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.03);
     }
     .card h2{margin:0 0 8px;font-size:18px}
     .card p{margin:0;color:var(--muted);font-size:14px}
@@ -154,16 +235,25 @@
     .col-5{grid-column:span 5}
     .col-12{grid-column:span 12}
 
-    /* Section headings */
+    /* Soft blend between sections */
+    .section{position:relative}
+    .section::before{
+      content:"";
+      position:absolute;
+      top:-40px;left:0;right:0;height:40px;
+      background:linear-gradient(to bottom, transparent, rgba(11,15,20,.85));
+      pointer-events:none;
+    }
+
+    /* Services tabs */
     .section-title{margin:0 0 8px;font-size:28px;letter-spacing:-.2px}
     .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
 
-    /* Tabs */
     .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
     .tab{
       cursor:pointer;
       padding:10px 14px;border-radius:14px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
       color:var(--text);
       font-weight:900;
@@ -184,7 +274,7 @@
     .mini{
       grid-column:span 6;
       background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.08);
       border-radius:16px;
       padding:14px;
     }
@@ -194,11 +284,15 @@
     details{
       grid-column:span 12;
       background:rgba(0,0,0,.15);
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.08);
       border-radius:16px;
       padding:12px 14px;
     }
-    summary{cursor:pointer;font-weight:950;list-style:none}
+    summary{
+      cursor:pointer;
+      font-weight:950;
+      list-style:none;
+    }
     summary::-webkit-details-marker{display:none}
     details p, details ul{margin:10px 0 0;color:var(--muted);font-size:13px}
     details ul{padding-left:18px}
@@ -210,19 +304,25 @@
       width:100%;
       padding:12px 12px;
       border-radius:14px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,.10);
       background:rgba(0,0,0,.25);
       color:var(--text);
       outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(23,224,193,.45);
+      box-shadow:0 0 0 4px rgba(23,224,193,.16);
     }
     textarea{min-height:120px;resize:vertical}
     .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
     .row .half{grid-column:span 6}
     .row .full{grid-column:span 12}
     .small{font-size:12px;color:var(--muted)}
-    .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
+    .footer{
+      margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center
+    }
 
-    /* FAQ work examples */
+    /* FAQ + Work Examples */
     .faq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:10px}
     .faq-item{grid-column:span 12}
     .work-examples{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -230,12 +330,12 @@
       background:rgba(255,255,255,.04);
       border:1px dashed rgba(255,255,255,.18);
       border-radius:16px;
-      aspect-ratio: 4/3;
+      aspect-ratio:4/3;
       display:flex;align-items:flex-end;justify-content:flex-start;
       padding:12px;color:rgba(255,255,255,.55);font-weight:900;
     }
 
-    /* Floating actions */
+    /* Floating quick actions */
     .float{
       position:fixed;right:18px;bottom:18px;
       display:flex;flex-direction:column;gap:10px;z-index:50;
@@ -248,11 +348,29 @@
       text-decoration:none;
       background:rgba(255,255,255,.06);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition:transform .08s ease, background .2s ease;
     }
+    .fab:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
     .fab.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.55)); color:#130300;border:none}
     .fab.quote{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.55)); color:#001b17;border:none}
     .fab.mail{background:rgba(255,255,255,.07)}
     .fab span{font-size:22px}
+
+    /* Optional: slim “trust bar” */
+    .trustbar{
+      margin-top:14px;
+      display:flex;flex-wrap:wrap;gap:10px;
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      font-weight:800;
+    }
+    .trustbar .item{
+      padding:8px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+    }
 
     @media (max-width:900px){
       .col-7,.col-5{grid-column:span 12}
@@ -266,39 +384,51 @@
 
 <body>
   <div class="wrap">
+
     <!-- Top bar -->
-    <div class="topbar">
+    <div class="topbar" role="banner">
       <div class="brand">
-        <!-- LOGO: IMG_1006.png must be in the SAME folder as index.html -->
+        <!-- LOGO: IMG_1006.png must be in SAME folder as index.html -->
         <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
         <div class="brand-text">
           <p class="name">Paint a Perfect Picture LLC</p>
           <p class="meta">Columbus, Ohio • Residential • Commercial • Industrial</p>
 
-          <!-- Links under name/logo (like your screenshot) -->
-          <div class="nav-links">
-            <a class="navbtn" href="#services">🧰 Services</a>
-            <a class="navbtn" href="#faq">❓ FAQ</a>
-            <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
-          </div>
+          <!-- LINKS IN HEADER BELOW COMPANY NAME + LOGO (as requested) -->
+          <nav class="nav-links" aria-label="Primary">
+            <a class="btn" href="#services">🧰 Services</a>
+            <a class="btn" href="#faq">❓ FAQ</a>
+            <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
+            <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
+          </nav>
         </div>
       </div>
 
-      <div class="top-actions">
+      <!-- Optional right-side actions (kept, but not required since nav is under logo) -->
+      <div class="top-actions" aria-label="Quick header actions">
         <a class="btn call" href="tel:+16145853880">📞 Call</a>
         <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text</a>
-        <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
       </div>
     </div>
 
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="pill">✅ Licensed LLC • Fast Quotes • Photo Uploads</div>
+
       <h1>Professional finishes that make your property look expensive.</h1>
+
       <p>
         Interior and exterior painting, drywall repair, commercial painting, plus industrial coating and fireproofing support.
         Upload photos for the fastest quote and a clean, professional scope.
       </p>
+
+      <!-- Premium “trust bar” -->
+      <div class="trustbar" aria-label="Highlights">
+        <div class="item">Clean prep + sharp lines</div>
+        <div class="item">Fast quote turnaround</div>
+        <div class="item">Photo uploads supported</div>
+        <div class="item">Clear scope + timeline</div>
+      </div>
 
       <!-- Auto Open/Closed -->
       <div id="bizStatus" class="biz-status" aria-live="polite">
@@ -309,18 +439,18 @@
 
       <div class="hero-actions">
         <a class="btn call" href="tel:+16145853880">📞 Call 614-585-3880</a>
-        <a class="btn" href="#quote">🧾 Request Quote</a>
-        <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email Us</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text Us</a>
+        <a class="btn primary" href="#quote">🧾 Request Quote</a>
       </div>
     </section>
 
     <!-- What you get / Serving area -->
-    <div class="grid">
+    <div class="grid section" style="margin-top:16px">
       <div class="card col-7">
         <h2>What You Get</h2>
         <p>
           Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
-          Website leads are captured automatically through Netlify Forms (ready for CRM automation).
+          Website leads are captured automatically through Netlify Forms (ready for CRM automation like Zoho CRM).
         </p>
       </div>
       <div class="card col-5">
@@ -329,11 +459,11 @@
       </div>
     </div>
 
-    <!-- Services (Tabs + deep details) -->
-    <div class="grid" style="margin-top:16px">
+    <!-- Services (Tabs) -->
+    <div class="grid section" style="margin-top:16px">
       <section class="card col-12" id="services">
         <h2 class="section-title">Services</h2>
-        <p class="subtle">Professional details so customers know exactly what’s included.</p>
+        <p class="subtle">In-depth service details so customers know exactly what to expect.</p>
 
         <div class="tabs" role="tablist" aria-label="Services tabs">
           <button class="tab active" type="button" data-tab="interior" aria-selected="true">Interior</button>
@@ -341,7 +471,6 @@
           <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial</button>
           <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall</button>
           <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
-          <button class="tab" type="button" data-tab="automation" aria-selected="false">Automation Systems</button>
         </div>
 
         <!-- Interior -->
@@ -349,20 +478,20 @@
           <div class="panel-grid">
             <div class="mini">
               <strong>What we paint</strong>
-              <span>Walls, ceilings, trim, doors, accent walls, full interior repaints (plus cabinets if scoped).</span>
+              <span>Walls, ceilings, trim, doors, cabinets (as scoped), accent walls, full interior repaints.</span>
             </div>
             <div class="mini">
               <strong>Prep & protection</strong>
-              <span>Cover floors, mask edges, patch/sand, caulk lines, spot-prime repairs for clean results.</span>
+              <span>Floor protection, patching, sanding, caulk lines, clean cut-ins, prime where needed.</span>
             </div>
 
             <details>
               <summary>Interior process (step-by-step)</summary>
               <ul>
-                <li>Protect floors/furniture; mask edges and fixtures.</li>
-                <li>Repair: patch holes/cracks; sand smooth; spot-prime as needed.</li>
-                <li>Apply finish coats with consistent coverage and clean cut-ins.</li>
-                <li>Final walkthrough + touchups + cleanup (jobsite-clean).</li>
+                <li>Protect floors and furniture; mask edges and fixtures.</li>
+                <li>Repair: patch nail holes/cracks; sand smooth; spot-prime repairs.</li>
+                <li>Apply finish coats with consistent coverage and clean edges.</li>
+                <li>Final walkthrough + touchups + cleanup (leave it jobsite-clean).</li>
               </ul>
             </details>
 
@@ -395,15 +524,15 @@
                 <li>Inspect surfaces; identify peeling, rot, chalking, and adhesion risks.</li>
                 <li>Clean/prep; scrape and sand; caulk/seal gaps where appropriate.</li>
                 <li>Prime bare areas and stains; apply weather-appropriate finish coats.</li>
-                <li>Detail work + cleanup; protect landscaping and walkways.</li>
+                <li>Detail work + cleanup + protect landscaping and walkways.</li>
               </ul>
             </details>
 
             <details>
               <summary>What customers should know</summary>
               <ul>
-                <li>Weather affects scheduling—quality needs proper cure windows.</li>
-                <li>Prep determines longevity more than paint brand alone.</li>
+                <li>Weather affects scheduling—quality requires proper dry/cure windows.</li>
+                <li>Prep determines longevity more than the paint brand alone.</li>
               </ul>
             </details>
           </div>
@@ -457,7 +586,7 @@
               <ul>
                 <li>Assess damage and choose patch method (mesh, backing, or replacement section).</li>
                 <li>Apply compound in layers; feather edges; sand smooth.</li>
-                <li>Prime repaired areas; paint to match or repaint for uniform finish.</li>
+                <li>Prime repaired areas; paint to match or repaint surface for uniform finish.</li>
               </ul>
             </details>
 
@@ -465,7 +594,7 @@
               <summary>Best results</summary>
               <ul>
                 <li>Photos help estimate repair scope quickly.</li>
-                <li>Repainting full wall/ceiling often blends best.</li>
+                <li>Repainting full wall/ceiling is often best for perfect blending.</li>
               </ul>
             </details>
           </div>
@@ -476,7 +605,7 @@
           <div class="panel-grid">
             <div class="mini">
               <strong>Industrial coatings support</strong>
-              <span>Durable coatings support for industrial environments (as specified / scoped).</span>
+              <span>Corrosion protection and durable coatings (as specified) for industrial environments.</span>
             </div>
             <div class="mini">
               <strong>Fireproofing levels</strong>
@@ -493,7 +622,7 @@
                 <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
               </ul>
               <p>
-                Final system selection depends on building requirements/specs (rated assembly, thickness, substrate, and inspection criteria).
+                Final system selection depends on the building requirements/specs (rated assembly, thickness, substrate, and inspection criteria).
               </p>
             </details>
 
@@ -502,42 +631,25 @@
               <ul>
                 <li>Surface prep planning (cleaning, abrasion, spot repairs).</li>
                 <li>Primer/topcoat systems for durability and chemical resistance (as specified).</li>
-                <li>Safety-minded approach: containment awareness and cleanup.</li>
+                <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
               </ul>
             </details>
-          </div>
-        </div>
-
-        <!-- Automation systems -->
-        <div class="panel" data-tab-panel="automation" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Lead automation (website)</strong>
-              <span>Netlify Forms captures leads automatically (ready for CRM routing and notifications).</span>
-            </div>
-            <div class="mini">
-              <strong>Workflow support</strong>
-              <span>Lead intake → follow-up → scheduling → closeout (connectable to Zoho CRM / email / SMS tools).</span>
-            </div>
 
             <details>
-              <summary>What “automation” can include</summary>
+              <summary>Automation-ready operations (website + CRM)</summary>
               <ul>
-                <li>Auto email response to new quote submissions.</li>
-                <li>Auto text follow-up (“We got your request—reply with photos/address”).</li>
-                <li>Lead routing into CRM pipeline (Zoho CRM).</li>
-                <li>Job status updates (optional) and closeout messaging.</li>
+                <li>Netlify Forms captures leads instantly from the quote form.</li>
+                <li>Ready to connect to Zoho CRM via Make.com/Zapier for auto follow-up, pipeline stages, and reminders.</li>
+                <li>Optional: auto-email or auto-text acknowledgment during/after hours (configured in CRM/automation tool).</li>
               </ul>
-              <p class="small">When you connect your CRM workflow later, your form fields are already mapped and ready.</p>
             </details>
           </div>
         </div>
-
       </section>
     </div>
 
     <!-- Quote Form (Netlify Forms) -->
-    <div class="grid" style="margin-top:16px">
+    <div class="grid section" style="margin-top:16px">
       <section class="card col-12" id="quote">
         <h2 class="section-title">Request a Fast Quote</h2>
         <p class="subtle">Upload photos + details. We’ll respond as soon as possible during business hours.</p>
@@ -601,14 +713,16 @@
         </form>
 
         <div class="small" style="margin-top:12px">
-          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
-          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+          Prefer texting?
+          <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
+          Email:
+          <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
         </div>
       </section>
     </div>
 
-    <!-- FAQ + Work Examples -->
-    <div class="grid" style="margin-top:16px">
+    <!-- FAQ + Work Examples (portfolio kept professional here) -->
+    <div class="grid section" style="margin-top:16px">
       <section class="card col-12" id="faq">
         <h2 class="section-title">FAQ + Work Examples</h2>
         <p class="subtle">Professional answers + examples kept in one place (not as a homepage “portfolio tab”).</p>
@@ -625,7 +739,7 @@
           <details class="faq-item">
             <summary>Do you do both residential and commercial?</summary>
             <p>
-              Yes. We provide residential work and also commercial and industrial support depending on scope and scheduling.
+              Yes. We do residential work and also provide commercial and industrial support depending on scope and scheduling.
             </p>
           </details>
 
@@ -662,6 +776,7 @@
       <br>
       Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
     </div>
+
   </div>
 
   <!-- Floating quick actions -->
@@ -676,7 +791,7 @@
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // SERVICES TABS
+    // SERVICES TABS (keeps tabs working)
     document.addEventListener("DOMContentLoaded", () => {
       const tabButtons = document.querySelectorAll("[data-tab]");
       const tabPanels  = document.querySelectorAll("[data-tab-panel]");
@@ -727,9 +842,11 @@
     })();
   </script>
 
-  <!-- NOTE:
-    Keep IMG_1006.png in the SAME folder as index.html.
-    Netlify form fields: name, contact, project, address, details, photos
+  <!-- DEPLOYMENT CHECKLIST (no edits needed):
+    1) Make sure IMG_1006.png is in the SAME folder as index.html (root).
+    2) Push to GitHub → Netlify deploys automatically.
+    3) Netlify Forms will capture submissions (name, contact, project, address, details, photos).
+    4) Optional next step: Connect Netlify Form → Zoho CRM using Make.com/Zapier (mapping those fields).
   -->
 </body>
 </html>
