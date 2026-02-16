@@ -3,8 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Paint a Perfect Picture LLC — Professional painting & drywall in Columbus, OH. Fast quotes. Photo uploads." />
   <title>Paint a Perfect Picture LLC | Columbus, OH</title>
+  <meta name="description" content="Paint a Perfect Picture LLC — Professional residential, commercial, and industrial painting, drywall repair, and fireproofing support in Columbus, OH. Fast quotes with photo uploads." />
+
+  <!-- Basic SEO / Sharing -->
+  <meta property="og:title" content="Paint a Perfect Picture LLC" />
+  <meta property="og:description" content="Professional painting, drywall, and fireproofing support in Columbus, OH. Fast quotes with photo uploads." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0f14" />
 
   <style>
     :root{
@@ -20,6 +26,7 @@
       --radius:18px;
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -54,6 +61,7 @@
       background:rgba(255,255,255,.06);
       text-decoration:none;font-weight:700;font-size:14px;
       transition:transform .08s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
     }
     .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
     .btn.primary{
@@ -83,8 +91,9 @@
       font-size:13px;font-weight:700;
     }
     .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
-    .hero p{margin:0;color:var(--muted);max-width:60ch;font-size:15px}
+    .hero p{margin:0;color:var(--muted);max-width:70ch;font-size:15px}
     .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+
     .grid{
       margin-top:18px;
       display:grid;
@@ -103,6 +112,26 @@
     .col-7{grid-column:span 7}
     .col-5{grid-column:span 5}
     .col-12{grid-column:span 12}
+
+    /* Open/Closed badge */
+    .biz-status{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      margin-top:12px;
+      font-weight:800;
+      font-size:13px;
+      color:var(--text);
+    }
+    .biz-status .dot{
+      width:10px;height:10px;border-radius:50%;
+      box-shadow:0 0 0 4px rgba(255,255,255,.07);
+      background:rgba(255,255,255,.25);
+    }
+    .biz-status.open .dot{ background:#22c55e; }
+    .biz-status.closed .dot{ background:#ef4444; }
+    .biz-status .sub{ color:var(--muted); font-weight:700; margin-left:6px; }
 
     /* Services tabs */
     .section-title{
@@ -130,6 +159,8 @@
     }
     .panel{display:none}
     .panel.active{display:block}
+
+    /* Deeper details grid + accordion */
     .panel-grid{
       display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px
     }
@@ -142,19 +173,22 @@
     }
     .mini strong{display:block;margin-bottom:6px}
     .mini span{color:var(--muted);font-size:13px}
-
-    /* Portfolio placeholders */
-    .photos{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px
-    }
-    .ph{
-      background:rgba(255,255,255,.04);
-      border:1px dashed rgba(255,255,255,.18);
+    details{
+      grid-column:span 12;
+      background:rgba(0,0,0,.15);
+      border:1px solid var(--line);
       border-radius:16px;
-      aspect-ratio: 4/3;
-      display:flex;align-items:flex-end;justify-content:flex-start;
-      padding:12px;color:rgba(255,255,255,.55);font-weight:800;
+      padding:12px 14px;
     }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p, details ul{margin:10px 0 0;color:var(--muted);font-size:13px}
+    details ul{padding-left:18px}
+    details li{margin:6px 0}
 
     /* Contact form */
     form label{display:block;margin:10px 0 6px;font-weight:800}
@@ -174,6 +208,21 @@
     .small{font-size:12px;color:var(--muted)}
     .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
 
+    /* FAQ / Work Examples (keeps portfolio professional & not on homepage as a main section) */
+    .faq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:10px}
+    .faq-item{grid-column:span 12}
+    .work-examples{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px
+    }
+    .ph{
+      background:rgba(255,255,255,.04);
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius:16px;
+      aspect-ratio: 4/3;
+      display:flex;align-items:flex-end;justify-content:flex-start;
+      padding:12px;color:rgba(255,255,255,.55);font-weight:800;
+    }
+
     /* Floating quick actions */
     .float{
       position:fixed;right:18px;bottom:18px;
@@ -192,11 +241,12 @@
     .fab.quote{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.55)); color:#001b17;border:none}
     .fab.mail{background:rgba(255,255,255,.07)}
     .fab span{font-size:22px}
+
     @media (max-width:900px){
       .col-7,.col-5{grid-column:span 12}
-      .photos{grid-template-columns:repeat(2,1fr)}
       .mini{grid-column:span 12}
       .hero h1{font-size:34px}
+      .work-examples{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
@@ -206,17 +256,17 @@
     <!-- Top bar -->
     <div class="topbar">
       <div class="brand">
-        <!-- LOGO (Make sure IMG_1006.png is in the SAME folder as this index.html, or update the path) -->
         <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
         <div class="brand-text">
           <p class="name">Paint a Perfect Picture LLC</p>
-          <p class="meta">Columbus, Ohio • Painting & Drywall</p>
+          <p class="meta">Columbus, Ohio • Residential • Commercial • Industrial</p>
         </div>
       </div>
 
       <div class="top-actions">
-        <!-- Update email here if you change it later -->
-        <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Business Email</a>
+        <a class="btn" href="#services">🧰 Services</a>
+        <a class="btn" href="#faq">❓ FAQ</a>
+        <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
         <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
       </div>
     </div>
@@ -224,121 +274,228 @@
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="pill">✅ Licensed LLC • Fast Quotes • Photo Uploads</div>
-      <h1>Professional painting that makes your property look expensive.</h1>
+      <h1>Professional finishes that make your property look expensive.</h1>
       <p>
-        Interior, exterior, drywall repair, and commercial painting—clean prep, sharp lines, durable finish.
-        Upload photos for the fastest quote.
+        Interior and exterior painting, drywall repair, commercial painting, plus industrial coating and fireproofing support.
+        Upload photos for the fastest quote and a clean, professional scope.
       </p>
+
+      <!-- Auto Open/Closed -->
+      <div id="bizStatus" class="biz-status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="text">Checking hours…</span>
+        <span class="sub">Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed</span>
+      </div>
+
       <div class="hero-actions">
-        <a class="btn call" href="tel:+16145853880">📞 Tap to Call</a>
-        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20would%20like%20a%20quote.%20My%20address%20is%3A%20%0AProject%20type%3A%20%0AI%20can%20upload%20photos%20too.">💬 Text Us</a>
+        <a class="btn call" href="tel:+16145853880">📞 Call 614-585-3880</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____%20.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text Us</a>
         <a class="btn primary" href="#quote">🧾 Request Quote</a>
       </div>
     </section>
 
-    <!-- What you get / Serving area -->
+    <!-- What you get / Serving area / Automation summary -->
     <div class="grid">
       <div class="card col-7">
         <h2>What You Get</h2>
-        <p>Clear scope + timeline, and an estimate that matches the photos you upload.</p>
+        <p>
+          Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
+          Website leads are captured automatically through Netlify Forms.
+        </p>
       </div>
       <div class="card col-5">
         <h2>Serving Area</h2>
-        <p>Columbus, OH + surrounding areas. (Add specific neighborhoods anytime.)</p>
+        <p>Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard).</p>
       </div>
     </div>
 
-    <!-- Services (TABS) -->
+    <!-- Services (Tabs) -->
     <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="services">
         <h2 class="section-title">Services</h2>
-        <p class="subtle">High quality work • Clear communication • On-time delivery</p>
+        <p class="subtle">In-depth service details so customers know exactly what to expect.</p>
 
         <div class="tabs" role="tablist" aria-label="Services tabs">
-          <button class="tab active" type="button" data-tab="interior" aria-selected="true">Interior Painting</button>
-          <button class="tab" type="button" data-tab="exterior" aria-selected="false">Exterior Painting</button>
-          <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial Painting</button>
-          <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall Repair</button>
+          <button class="tab active" type="button" data-tab="interior" aria-selected="true">Interior</button>
+          <button class="tab" type="button" data-tab="exterior" aria-selected="false">Exterior</button>
+          <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial</button>
+          <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall</button>
+          <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
         </div>
 
+        <!-- Interior -->
         <div class="panel active" data-tab-panel="interior" role="tabpanel">
           <div class="panel-grid">
             <div class="mini">
               <strong>What we paint</strong>
-              <span>Walls, ceilings, trim, doors, accent walls, full interior repaints.</span>
+              <span>Walls, ceilings, trim, doors, cabinets (as scoped), accent walls, full interior repaints.</span>
             </div>
             <div class="mini">
               <strong>Prep & protection</strong>
-              <span>Floor protection, patching, sanding, caulk lines, clean cut-ins.</span>
+              <span>Floor protection, patching, sanding, caulk lines, clean cut-ins, prime where needed.</span>
             </div>
+
+            <details>
+              <summary>Interior process (step-by-step)</summary>
+              <ul>
+                <li>Protect floors and furniture; mask edges and fixtures.</li>
+                <li>Repair: patch nail holes/cracks; sand smooth; spot-prime repairs.</li>
+                <li>Apply finish coats with consistent coverage and clean edges.</li>
+                <li>Final walkthrough + touchups + cleanup (leave it jobsite-clean).</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Common interior add-ons</summary>
+              <ul>
+                <li>Trim and doors for a “new build” look.</li>
+                <li>Ceiling repaint to brighten rooms.</li>
+                <li>Drywall touchups before paint.</li>
+              </ul>
+            </details>
           </div>
         </div>
 
+        <!-- Exterior -->
         <div class="panel" data-tab-panel="exterior" role="tabpanel">
           <div class="panel-grid">
             <div class="mini">
               <strong>Durable exterior coatings</strong>
-              <span>Clean prep, scrape, prime, paint—built for Ohio weather.</span>
+              <span>Prep-first approach built for Ohio weather—scrape, sand, prime, paint.</span>
             </div>
             <div class="mini">
               <strong>Curb appeal upgrades</strong>
-              <span>Siding, trim, doors, shutters, garages, fences & decks (as needed).</span>
+              <span>Siding, trim, doors, shutters, garages, fences & decks (as scoped).</span>
             </div>
+
+            <details>
+              <summary>Exterior process (step-by-step)</summary>
+              <ul>
+                <li>Inspect surfaces; identify peeling, rot, chalking, and adhesion risks.</li>
+                <li>Clean/prep; scrape and sand; caulk/seal gaps where appropriate.</li>
+                <li>Prime bare areas and stains; apply weather-appropriate finish coats.</li>
+                <li>Detail work + cleanup + protect landscaping and walkways.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>What customers should know</summary>
+              <ul>
+                <li>Weather affects scheduling—quality requires proper dry/cure windows.</li>
+                <li>Prep determines longevity more than the paint brand alone.</li>
+              </ul>
+            </details>
           </div>
         </div>
 
+        <!-- Commercial -->
         <div class="panel" data-tab-panel="commercial" role="tabpanel">
           <div class="panel-grid">
             <div class="mini">
               <strong>Fast & professional</strong>
-              <span>Offices, apartments, retail units, common areas—minimal disruption.</span>
+              <span>Offices, apartments, retail units, common areas—minimal disruption, clean finish.</span>
             </div>
             <div class="mini">
               <strong>Scheduling</strong>
-              <span>After-hours/weekend options depending on project scope.</span>
+              <span>Phased work, off-hours, or weekend options depending on scope and access.</span>
             </div>
+
+            <details>
+              <summary>Commercial scope examples</summary>
+              <ul>
+                <li>Turn-ready units (apartments), hallways, stairwells, offices.</li>
+                <li>Maintenance painting programs.</li>
+                <li>Touch-up plans for high-traffic areas.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Professional jobsite standards</summary>
+              <ul>
+                <li>Clean containment and daily cleanup.</li>
+                <li>Clear communication: scope, schedule, and completion confirmation.</li>
+              </ul>
+            </details>
           </div>
         </div>
 
+        <!-- Drywall -->
         <div class="panel" data-tab-panel="drywall" role="tabpanel">
           <div class="panel-grid">
             <div class="mini">
               <strong>Repair & patch</strong>
-              <span>Patching holes, fixing cracks, tape/mud, sanding, texture match.</span>
+              <span>Patching holes, fixing cracks, tape/mud, sanding, texture match (as needed).</span>
             </div>
             <div class="mini">
               <strong>Paint-ready finish</strong>
-              <span>Smooth finish that blends in—ready for prime & paint.</span>
+              <span>Smooth blend and proper priming to prevent flashing.</span>
             </div>
+
+            <details>
+              <summary>Drywall process (step-by-step)</summary>
+              <ul>
+                <li>Assess damage and choose patch method (mesh, backing, or replacement section).</li>
+                <li>Apply compound in layers; feather edges; sand smooth.</li>
+                <li>Prime repaired areas; paint to match or repaint surface for uniform finish.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Best results</summary>
+              <ul>
+                <li>Photos help estimate repair scope quickly.</li>
+                <li>Repainting full wall/ceiling is often best for perfect blending.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Industrial & Fireproofing -->
+        <div class="panel" data-tab-panel="industrial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Industrial coatings support</strong>
+              <span>Corrosion protection and durable coatings (as specified) for industrial environments.</span>
+            </div>
+            <div class="mini">
+              <strong>Fireproofing levels</strong>
+              <span>Multiple systems depending on spec—SFRM, intumescent, cementitious, and firestopping.</span>
+            </div>
+
+            <details open>
+              <summary>Fireproofing levels (multiple options)</summary>
+              <ul>
+                <li><strong>Level 1 — Firestopping:</strong> Fire caulk/sealants, collars, putty pads, pillows for penetrations and rated assemblies.</li>
+                <li><strong>Level 2 — SFRM:</strong> Spray-applied fire-resistive material for structural steel/decks where specified.</li>
+                <li><strong>Level 3 — Intumescent:</strong> Thin-film coating that expands under heat (often used where appearance matters).</li>
+                <li><strong>Level 4 — Cementitious:</strong> Durable fireproofing systems for industrial/structural protection.</li>
+                <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
+              </ul>
+              <p>
+                Final system selection depends on the building requirements/specs (rated assembly, thickness, substrate, and inspection criteria).
+              </p>
+            </details>
+
+            <details>
+              <summary>Industrial coating scope examples</summary>
+              <ul>
+                <li>Surface prep planning (cleaning, abrasion, spot repairs).</li>
+                <li>Primer/topcoat systems for durability and chemical resistance (as specified).</li>
+                <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
+              </ul>
+            </details>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- Portfolio -->
-    <div class="grid" style="margin-top:16px">
-      <section class="card col-12" id="portfolio">
-        <h2 class="section-title">Portfolio</h2>
-        <p class="subtle">Replace these placeholders with your real job photos anytime.</p>
-        <div class="photos" aria-label="Portfolio placeholders">
-          <div class="ph">Project Photo</div>
-          <div class="ph">Project Photo</div>
-          <div class="ph">Project Photo</div>
-          <div class="ph">Project Photo</div>
-        </div>
-        <p class="small" style="margin-top:12px">
-          Tip: Your quote form below already supports photo uploads from customers.
-        </p>
-      </section>
-    </div>
-
-    <!-- Quote Form -->
+    <!-- Quote Form (Netlify Forms) -->
     <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="quote">
         <h2 class="section-title">Request a Fast Quote</h2>
-        <p class="subtle">Upload photos + a quick description and we’ll respond as soon as possible.</p>
+        <p class="subtle">Upload photos + details. We’ll respond as soon as possible during business hours.</p>
 
-        <!-- NETLIFY FORM (works on Netlify when deployed from GitHub) -->
+        <!-- NETLIFY FORM -->
         <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
           <input type="hidden" name="form-name" value="quote" />
           <p style="display:none">
@@ -363,6 +520,8 @@
                 <option>Exterior Painting</option>
                 <option>Commercial Painting</option>
                 <option>Drywall Repair</option>
+                <option>Industrial Coating</option>
+                <option>Fireproofing / Firestopping</option>
                 <option>Other</option>
               </select>
             </div>
@@ -380,7 +539,7 @@
             <div class="full">
               <label for="photos">Upload Photos (optional)</label>
               <input id="photos" name="photos" type="file" accept="image/*" multiple />
-              <div class="small">You can add multiple images. Clear pics = faster & more accurate quote.</div>
+              <div class="small">Clear pics = faster & more accurate quote.</div>
             </div>
 
             <div class="full" style="margin-top:10px">
@@ -388,11 +547,63 @@
                 Submit Quote Request
               </button>
               <div class="small" style="margin-top:10px">
-                Business hours: Mon–Fri 8am–5pm • Sat 1pm–5pm • Closed Sun
+                Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
               </div>
             </div>
           </div>
         </form>
+
+        <div class="small" style="margin-top:12px">
+          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
+          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- FAQ + Work Examples (portfolio kept professional here) -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="faq">
+        <h2 class="section-title">FAQ + Work Examples</h2>
+        <p class="subtle">Professional answers + examples kept in one place (not as a homepage “portfolio tab”).</p>
+
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>How fast can I get a quote?</summary>
+            <p>
+              Fastest method: submit the quote form with photos. We typically respond during business hours.
+              If you need faster, text us with your name, address, project type, and photos.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do you do both residential and commercial?</summary>
+            <p>
+              Yes. We start with residential work and also provide commercial and industrial support depending on scope and scheduling.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What fireproofing do you offer?</summary>
+            <p>
+              We support multiple systems depending on building specs: firestopping for penetrations/joints, SFRM, intumescent coatings,
+              and cementitious systems. Final selection depends on the rated assembly and inspection requirements.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Work examples (add your real photos anytime)</summary>
+            <p>Replace the placeholders below with real job photos whenever you’re ready.</p>
+            <div class="work-examples" aria-label="Work example placeholders">
+              <div class="ph">Interior</div>
+              <div class="ph">Exterior</div>
+              <div class="ph">Drywall</div>
+              <div class="ph">Commercial</div>
+            </div>
+            <p class="small" style="margin-top:10px">
+              Tip: Your quote form supports customer photo uploads already—so you can bid faster even before your gallery is full.
+            </p>
+          </details>
+        </div>
       </section>
     </div>
 
@@ -401,6 +612,8 @@
       © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
       <a href="tel:+16145853880">614-585-3880</a> •
       <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a>
+      <br>
+      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
     </div>
   </div>
 
@@ -409,38 +622,68 @@
     <a class="fab quote" href="#quote" title="Request Quote"><span>🧾</span></a>
     <a class="fab call" href="tel:+16145853880" title="Call"><span>📞</span></a>
     <a class="fab mail" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture" title="Email"><span>✉️</span></a>
-    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20would%20like%20a%20quote.%20My%20address%20is%3A%20%0AProject%20type%3A%20%0AI%20can%20upload%20photos%20too." title="Text"><span>💬</span></a>
+    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____%20.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too." title="Text"><span>💬</span></a>
   </div>
 
   <script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // SERVICES TABS (fixes "tabs not working")
+    // SERVICES TABS
     document.addEventListener("DOMContentLoaded", () => {
       const tabButtons = document.querySelectorAll("[data-tab]");
       const tabPanels  = document.querySelectorAll("[data-tab-panel]");
-
       if (!tabButtons.length || !tabPanels.length) return;
 
       tabButtons.forEach(btn => {
         btn.addEventListener("click", () => {
           const target = btn.getAttribute("data-tab");
-
-          tabButtons.forEach(b => {
-            b.classList.remove("active");
-            b.setAttribute("aria-selected", "false");
-          });
+          tabButtons.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected", "false"); });
           tabPanels.forEach(p => p.classList.remove("active"));
-
           btn.classList.add("active");
           btn.setAttribute("aria-selected", "true");
-
           const panel = document.querySelector(`[data-tab-panel="${target}"]`);
           if (panel) panel.classList.add("active");
         });
       });
     });
+
+    // OPEN / CLOSED BADGE (Mon–Fri 08:00–17:30, Sat 13:00–17:30, Sun closed)
+    (function () {
+      const el = document.getElementById("bizStatus");
+      if (!el) return;
+
+      function isOpen(now) {
+        const day = now.getDay(); // 0 Sun ... 6 Sat
+        const mins = now.getHours() * 60 + now.getMinutes();
+
+        // Mon–Fri: 08:00–17:30
+        if (day >= 1 && day <= 5) return mins >= 8*60 && mins <= (17*60 + 30);
+
+        // Sat: 13:00–17:30
+        if (day === 6) return mins >= 13*60 && mins <= (17*60 + 30);
+
+        // Sun: closed
+        return false;
+      }
+
+      function update() {
+        const open = isOpen(new Date());
+        el.classList.remove("open","closed");
+        el.classList.add(open ? "open" : "closed");
+        const text = el.querySelector(".text");
+        if (text) text.textContent = open ? "Open Now" : "Closed";
+      }
+
+      update();
+      setInterval(update, 60000);
+    })();
   </script>
+
+  <!-- AUTOMATION NOTE (NO EDIT NEEDED): 
+    Your form fields are:
+      name, contact, project, address, details, photos
+    These are ready for Make.com / Zapier mapping when you connect your webhook.
+  -->
 </body>
 </html>
