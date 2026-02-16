@@ -1,474 +1,364 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paint a Perfect Picture LLC | Columbus, OH Painting & Drywall</title>
-  <meta name="description" content="Paint a Perfect Picture LLC provides interior, exterior, and commercial painting plus drywall repair in Columbus, Ohio. Fast quotes, photo uploads, and professional results." />
-  <meta name="theme-color" content="#0b0f14" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="Paint a Perfect Picture LLC | Professional Painting" />
-  <meta property="og:description" content="Interior • Exterior • Commercial • Drywall Repair — Columbus, OH. Upload photos and get a fast quote." />
-  <meta property="og:type" content="website" />
-
-  <!-- Basic SEO -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Paint a Perfect Picture LLC — Professional painting & drywall in Columbus, OH. Fast quotes. Photo uploads." />
+  <title>Paint a Perfect Picture LLC | Columbus, OH</title>
 
   <style>
     :root{
       --bg:#0b0f14;
-      --panel:#0f1620;
-      --panel2:#101b28;
+      --card:#101826;
+      --card2:#0f1722;
       --text:#eaf2ff;
-      --muted:#a8b3c7;
-      --line:rgba(255,255,255,.08);
-      --brand:#00d1b2;
-      --brand2:#ff6a00;
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
-      --radius: 16px;
-      --radius2: 12px;
-      --max: 1100px;
+      --muted:#a9b7cc;
+      --line:rgba(255,255,255,.10);
+      --accent:#17e0c1;
+      --accent2:#ff5a3c;
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --radius:18px;
     }
-
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 15% 10%, rgba(0,209,178,.12), transparent 60%), radial-gradient(900px 500px at 90% 20%, rgba(255,106,0,.10), transparent 55%), var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";}
-
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px;}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); text-decoration:none; font-weight:700; box-shadow: 0 10px 30px rgba(0,0,0,.25);}
-    .btn:hover{transform: translateY(-1px); transition:.15s ease;}
-    .btn.primary{border:none; background:linear-gradient(135deg, var(--brand), #1aa2ff); color:#041017;}
-    .btn.accent{border:none; background:linear-gradient(135deg, var(--brand2), #ff2d55); color:#140700;}
-    .pill{display:inline-flex; gap:8px; align-items:center; padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:13px; background:rgba(255,255,255,.02);}
-
-    /* Header */
-    header{
-      position: sticky;
-      top:0;
-      z-index: 50;
-      backdrop-filter: blur(12px);
-      background: rgba(11,15,20,.68);
-      border-bottom:1px solid var(--line);
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 15% 10%, rgba(23,224,193,.22), transparent 60%),
+                  radial-gradient(900px 500px at 85% 30%, rgba(255,90,60,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
     }
-    .head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      margin-top:10px;margin-bottom:18px;
     }
     .brand{
-      display:flex; align-items:center; gap:12px;
-      font-weight:900; letter-spacing:.2px;
+      display:flex;align-items:center;gap:14px;min-width:0;
     }
     .logo{
-      width:40px; height:40px; border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 60%),
-                  linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: var(--shadow);
+      width:52px;height:52px;border-radius:14px;object-fit:cover;
+      background:rgba(255,255,255,.06);
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      border:1px solid var(--line);
     }
-    nav{display:flex; gap:14px; align-items:center; flex-wrap:wrap;}
-    nav a{color:var(--muted); text-decoration:none; font-weight:700; font-size:14px;}
-    nav a:hover{color:var(--text)}
-
-    /* Hero */
+    .brand-text{min-width:0}
+    .brand-text .name{font-size:18px;font-weight:800;letter-spacing:.2px;margin:0}
+    .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;font-weight:700;font-size:14px;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));
+      color:#001b17;border:none;
+    }
+    .btn.primary:hover{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.75))}
+    .btn.call{
+      background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.65));
+      color:#170400;border:none;
+    }
     .hero{
-      padding:56px 0 22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px;
+      position:relative;
+      overflow:hidden;
     }
-    .hero-grid{
+    .pill{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;font-weight:700;
+    }
+    .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
+    .hero p{margin:0;color:var(--muted);max-width:60ch;font-size:15px}
+    .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .grid{
+      margin-top:18px;
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
     }
     .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
     }
-    .hero-left{padding:26px;}
-    .hero h1{margin:10px 0 10px; font-size:44px; line-height:1.06;}
-    .hero p{margin:0; color:var(--muted); font-size:16px; line-height:1.6;}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
-    .trust{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;}
-    .hero-right{padding:18px; display:flex; flex-direction:column; gap:12px;}
-    .stat{
-      background: rgba(0,0,0,.25);
+    .card h2{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    .col-12{grid-column:span 12}
+
+    /* Services tabs */
+    .section-title{
+      margin:0 0 8px;
+      font-size:28px;letter-spacing:-.2px;
+    }
+    .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px;
+    }
+    .tab{
+      cursor:pointer;
+      padding:10px 14px;border-radius:14px;
       border:1px solid var(--line);
-      border-radius: 14px;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:800;
+      transition:transform .08s ease, background .2s ease;
+      user-select:none;
+    }
+    .tab:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .tab.active{
+      background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.55));
+      color:#001b17;border:none;
+    }
+    .panel{display:none}
+    .panel.active{display:block}
+    .panel-grid{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px
+    }
+    .mini{
+      grid-column:span 6;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:16px;
       padding:14px;
     }
-    .stat b{font-size:18px}
-    .stat p{margin:6px 0 0; color:var(--muted); font-size:13px; line-height:1.4}
+    .mini strong{display:block;margin-bottom:6px}
+    .mini span{color:var(--muted);font-size:13px}
 
-    /* Sections */
-    section{padding:46px 0;}
-    .title{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:14px;}
-    .title h2{margin:0; font-size:26px;}
-    .title span{color:var(--muted); font-size:14px; line-height:1.5}
-    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;}
-    .grid2{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;}
-    .tile{padding:16px; border-radius: var(--radius2); border:1px solid var(--line); background: rgba(255,255,255,.03);}
-    .tile h3{margin:0 0 6px; font-size:16px}
-    .tile p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
-
-    /* Gallery */
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
+    /* Portfolio placeholders */
+    .photos{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px
     }
     .ph{
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      overflow:hidden;
-      position:relative;
-      min-height:120px;
-    }
-    .ph::after{
-      content:"Project Photo";
-      position:absolute;
-      left:12px; bottom:10px;
-      font-weight:800;
-      font-size:12px;
-      color:rgba(255,255,255,.70);
-      letter-spacing:.2px;
+      background:rgba(255,255,255,.04);
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius:16px;
+      aspect-ratio: 4/3;
+      display:flex;align-items:flex-end;justify-content:flex-start;
+      padding:12px;color:rgba(255,255,255,.55);font-weight:800;
     }
 
-    /* Form */
-    .form-wrap{padding:18px;}
-    form{display:grid; gap:10px;}
-    label{font-size:13px; color:var(--muted); font-weight:700;}
-    input, textarea, select{
+    /* Contact form */
+    form label{display:block;margin:10px 0 6px;font-weight:800}
+    input, select, textarea{
       width:100%;
       padding:12px 12px;
-      border-radius:12px;
+      border-radius:14px;
       border:1px solid var(--line);
-      background: rgba(0,0,0,.25);
+      background:rgba(0,0,0,.25);
       color:var(--text);
       outline:none;
     }
-    textarea{min-height:110px; resize:vertical;}
-    .row2{display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
-    .row3{display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px;}
-    .help{color:var(--muted); font-size:12px; line-height:1.5}
-    .submit{
-      border:none;
-      border-radius:12px;
-      padding:14px 16px;
-      font-weight:900;
-      cursor:pointer;
-      background: linear-gradient(135deg, var(--brand2), #ff2d55);
-      color:#180700;
-      box-shadow: 0 16px 50px rgba(255,106,0,.18);
-    }
-    .submit:hover{transform: translateY(-1px); transition:.15s ease;}
-    .success{
-      display:none;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(0,209,178,.35);
-      background: rgba(0,209,178,.08);
-    }
-    .success b{display:block; margin-bottom:4px;}
-    .success p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
-
-    /* FAQ */
-    details{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: 14px;
-      padding:12px 14px;
-    }
-    summary{cursor:pointer; font-weight:900;}
-    details p{margin:8px 0 0; color:var(--muted); line-height:1.55; font-size:14px}
-
-    /* Footer */
-    footer{
-      padding:34px 0 60px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-    }
-    footer b{color:var(--text)}
-    .foot-grid{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;}
-    .mini{font-size:12px; color:var(--muted); line-height:1.5}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .row .half{grid-column:span 6}
+    .row .full{grid-column:span 12}
+    .small{font-size:12px;color:var(--muted)}
+    .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
 
     /* Floating quick actions */
-    .floatbar{
-      position: fixed;
-      right: 14px;
-      bottom: 14px;
-      z-index: 60;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    .float{
+      position:fixed;right:18px;bottom:18px;
+      display:flex;flex-direction:column;gap:10px;z-index:50;
     }
     .fab{
-      width:54px; height:54px;
-      border-radius: 18px;
-      display:grid; place-items:center;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.45);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
+      width:56px;height:56px;border-radius:18px;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 16px 40px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.12);
       text-decoration:none;
-      font-size:20px;
+      background:rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
     }
-    .fab.primary{background: linear-gradient(135deg, var(--brand), #1aa2ff); color:#041017; border:none;}
-    .fab.accent{background: linear-gradient(135deg, var(--brand2), #ff2d55); color:#180700; border:none;}
-
-    /* Responsive */
-    @media (max-width: 920px){
-      .hero-grid{grid-template-columns:1fr}
-      .hero h1{font-size:36px}
-      .grid3{grid-template-columns:1fr}
-      .grid2{grid-template-columns:1fr}
-      .gallery{grid-template-columns: repeat(2, 1fr);}
-      .foot-grid{grid-template-columns:1fr}
-      nav{display:none}
+    .fab.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.55)); color:#130300;border:none}
+    .fab.quote{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.55)); color:#001b17;border:none}
+    .fab.mail{background:rgba(255,255,255,.07)}
+    .fab span{font-size:22px}
+    @media (max-width:900px){
+      .col-7,.col-5{grid-column:span 12}
+      .photos{grid-template-columns:repeat(2,1fr)}
+      .mini{grid-column:span 12}
+      .hero h1{font-size:34px}
     }
   </style>
-
-  <!-- Local Business Structured Data (SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Paint a Perfect Picture LLC",
-    "areaServed":"Columbus, OH",
-    "email":"p3solutions@paintaperfectpicture.com",
-    "url":"https://paintaperfectpicture.com",
-    "description":"Interior, exterior, and commercial painting plus drywall repair in Columbus, Ohio."
-  }
-  </script>
 </head>
 
 <body>
+  <div class="wrap">
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <!-- LOGO (Make sure IMG_1006.png is in the SAME folder as this index.html, or update the path) -->
+        <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
+        <div class="brand-text">
+          <p class="name">Paint a Perfect Picture LLC</p>
+          <p class="meta">Columbus, Ohio • Painting & Drywall</p>
+        </div>
+      </div>
 
-<header>
-  <div class="wrap head">
-    <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
-      <div>
-        <div style="font-size:15px; line-height:1.1;">Paint a Perfect Picture LLC</div>
-        <div style="font-size:12px; color:var(--muted); font-weight:800;">Columbus, Ohio • Painting & Drywall</div>
+      <div class="top-actions">
+        <!-- Update email here if you change it later -->
+        <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Business Email</a>
+        <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
       </div>
     </div>
 
-    <nav aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#quote">Get a Quote</a>
-      <a href="#faq">FAQ</a>
-    </nav>
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="pill">✅ Licensed LLC • Fast Quotes • Photo Uploads</div>
+      <h1>Professional painting that makes your property look expensive.</h1>
+      <p>
+        Interior, exterior, drywall repair, and commercial painting—clean prep, sharp lines, durable finish.
+        Upload photos for the fastest quote.
+      </p>
+      <div class="hero-actions">
+        <a class="btn call" href="tel:+16145853880">📞 Tap to Call</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20would%20like%20a%20quote.%20My%20address%20is%3A%20%0AProject%20type%3A%20%0AI%20can%20upload%20photos%20too.">💬 Text Us</a>
+        <a class="btn primary" href="#quote">🧾 Request Quote</a>
+      </div>
+    </section>
 
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-      <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com">✉️ Business Email</a>
-      <a class="btn primary" href="#quote">Get Fast Quote</a>
+    <!-- What you get / Serving area -->
+    <div class="grid">
+      <div class="card col-7">
+        <h2>What You Get</h2>
+        <p>Clear scope + timeline, and an estimate that matches the photos you upload.</p>
+      </div>
+      <div class="card col-5">
+        <h2>Serving Area</h2>
+        <p>Columbus, OH + surrounding areas. (Add specific neighborhoods anytime.)</p>
+      </div>
     </div>
-  </div>
-</header>
 
-<main>
+    <!-- Services (TABS) -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="subtle">High quality work • Clear communication • On-time delivery</p>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="card hero-left">
-        <div class="pill">✅ Licensed LLC • Fast Quotes • Photo Uploads</div>
-        <h1>Professional painting that makes your property look expensive.</h1>
-        <p>
-          Interior, exterior, and commercial painting with clean prep, sharp lines, and durable finishes.
-          Upload photos for the fastest quote.
+        <div class="tabs" role="tablist" aria-label="Services tabs">
+          <button class="tab active" type="button" data-tab="interior" aria-selected="true">Interior Painting</button>
+          <button class="tab" type="button" data-tab="exterior" aria-selected="false">Exterior Painting</button>
+          <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial Painting</button>
+          <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall Repair</button>
+        </div>
+
+        <div class="panel active" data-tab-panel="interior" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>What we paint</strong>
+              <span>Walls, ceilings, trim, doors, accent walls, full interior repaints.</span>
+            </div>
+            <div class="mini">
+              <strong>Prep & protection</strong>
+              <span>Floor protection, patching, sanding, caulk lines, clean cut-ins.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="exterior" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Durable exterior coatings</strong>
+              <span>Clean prep, scrape, prime, paint—built for Ohio weather.</span>
+            </div>
+            <div class="mini">
+              <strong>Curb appeal upgrades</strong>
+              <span>Siding, trim, doors, shutters, garages, fences & decks (as needed).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="commercial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Fast & professional</strong>
+              <span>Offices, apartments, retail units, common areas—minimal disruption.</span>
+            </div>
+            <div class="mini">
+              <strong>Scheduling</strong>
+              <span>After-hours/weekend options depending on project scope.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="drywall" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Repair & patch</strong>
+              <span>Patching holes, fixing cracks, tape/mud, sanding, texture match.</span>
+            </div>
+            <div class="mini">
+              <strong>Paint-ready finish</strong>
+              <span>Smooth finish that blends in—ready for prime & paint.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="subtle">Replace these placeholders with your real job photos anytime.</p>
+        <div class="photos" aria-label="Portfolio placeholders">
+          <div class="ph">Project Photo</div>
+          <div class="ph">Project Photo</div>
+          <div class="ph">Project Photo</div>
+          <div class="ph">Project Photo</div>
+        </div>
+        <p class="small" style="margin-top:12px">
+          Tip: Your quote form below already supports photo uploads from customers.
         </p>
-
-        <div class="cta-row">
-          <!-- tel: (blank) opens dialer on most phones -->
-          <a class="btn accent" href="tel:">📞 Tap to Call</a>
-          <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com">✉️ Email Us</a>
-
-          <!-- SMS link (works on mobile). You can add a number later in the phone app if needed. -->
-          <a class="btn" href="sms:">💬 Text Us</a>
-
-          <a class="btn primary" href="#quote">🧾 Request Quote</a>
-        </div>
-
-        <div class="trust">
-          <span class="pill">🧽 Clean prep & protection</span>
-          <span class="pill">🎯 Crisp edges & trim</span>
-          <span class="pill">🧱 Drywall patch & repair</span>
-          <span class="pill">🏠 Residential + Commercial</span>
-        </div>
-      </div>
-
-      <aside class="card hero-right">
-        <div class="stat">
-          <b>Fast Quote System</b>
-          <p>Fill the form + add photos. You’ll receive a reply at <b>p3solutions@paintaperfectpicture.com</b>.</p>
-        </div>
-        <div class="stat">
-          <b>What You Get</b>
-          <p>Clear scope + timeline, and an estimate that matches the photos you upload.</p>
-        </div>
-        <div class="stat">
-          <b>Serving Area</b>
-          <p>Columbus, OH + surrounding areas. (Add specific neighborhoods anytime.)</p>
-        </div>
-      </aside>
+      </section>
     </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="wrap">
-      <div class="title">
-        <h2>Services</h2>
-        <span>High quality work • Clear communication • On-time delivery</span>
-      </div>
+    <!-- Quote Form -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="quote">
+        <h2 class="section-title">Request a Fast Quote</h2>
+        <p class="subtle">Upload photos + a quick description and we’ll respond as soon as possible.</p>
 
-      <div class="grid3">
-        <div class="tile">
-          <h3>Interior Painting</h3>
-          <p>Walls, ceilings, trim, doors, accent walls, and full interior repaints.</p>
-        </div>
-        <div class="tile">
-          <h3>Exterior Painting</h3>
-          <p>Durable coatings, clean prep, and weather protection for curb appeal.</p>
-        </div>
-        <div class="tile">
-          <h3>Commercial Painting</h3>
-          <p>Offices, apartments, retail units, and common areas—fast and professional.</p>
-        </div>
-        <div class="tile">
-          <h3>Drywall Repair</h3>
-          <p>Patching, repairs, sanding, and smooth finish ready for paint.</p>
-        </div>
-        <div class="tile">
-          <h3>Surface Prep</h3>
-          <p>Caulk, scrape, prime, masking, and protection—prep is where quality lives.</p>
-        </div>
-        <div class="tile">
-          <h3>Touch-Ups</h3>
-          <p>Move-out, move-in, and rental refresh. Quick turnaround available.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <div class="wrap">
-      <div class="title">
-        <h2>Portfolio</h2>
-        <span>Replace these placeholders with your real job photos anytime.</span>
-      </div>
-
-      <div class="gallery">
-        <div class="ph" aria-label="Project photo placeholder"></div>
-        <div class="ph" aria-label="Project photo placeholder"></div>
-        <div class="ph" aria-label="Project photo placeholder"></div>
-        <div class="ph" aria-label="Project photo placeholder"></div>
-      </div>
-
-      <div style="margin-top:12px;" class="mini">
-        Tip: You can keep uploading project photos through your phone and later add them here.
-        For now, your quote form already supports photo uploads for customers.
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section>
-    <div class="wrap">
-      <div class="title">
-        <h2>Customer Experience</h2>
-        <span>Simple process. Strong results.</span>
-      </div>
-
-      <div class="grid3">
-        <div class="tile">
-          <h3>Clear Communication</h3>
-          <p>Customers know what’s happening and when. Clean scope, clean work.</p>
-        </div>
-        <div class="tile">
-          <h3>Professional Prep</h3>
-          <p>Protection + prep for the best finish: edges, trim, patching, and prime.</p>
-        </div>
-        <div class="tile">
-          <h3>Respectful Jobsite</h3>
-          <p>Keep spaces clean, minimize disruption, and leave it better than we found it.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE FORM -->
-  <section id="quote">
-    <div class="wrap">
-      <div class="title">
-        <h2>Request a Fast Quote</h2>
-        <span>Upload photos + details. You’ll get the fastest estimate.</span>
-      </div>
-
-      <div class="card form-wrap">
-        <div id="successBox" class="success" role="status" aria-live="polite">
-          <b>✅ Quote request sent!</b>
-          <p>We received your request. If you uploaded photos, give it a moment to finish processing. You’ll hear back soon.</p>
-        </div>
-
-        <!-- Netlify needs a plain HTML form it can parse at build time -->
-        <form id="quoteForm"
-              name="quote-request"
-              method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              enctype="multipart/form-data">
-
-          <input type="hidden" name="form-name" value="quote-request" />
-
-          <!-- honeypot (spam protection) -->
-          <p style="display:none;">
+        <!-- NETLIFY FORM (works on Netlify when deployed from GitHub) -->
+        <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="quote" />
+          <p style="display:none">
             <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
 
-          <div class="row2">
-            <div>
-              <label for="name">Full Name</label>
-              <input id="name" name="name" type="text" placeholder="John Smith" required />
+          <div class="row">
+            <div class="half">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Customer name" required />
             </div>
-            <div>
-              <label for="phone">Phone Number</label>
-              <input id="phone" name="phone" type="tel" placeholder="(614) 555-1234" required />
+            <div class="half">
+              <label for="contact">Phone or Email</label>
+              <input id="contact" name="contact" placeholder="Phone number or email address" required />
             </div>
-          </div>
 
-          <div class="row2">
-            <div>
-              <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" placeholder="customer@email.com" required />
-            </div>
-            <div>
-              <label for="preferred">Preferred Contact Method</label>
-              <select id="preferred" name="preferred_contact" required>
-                <option>Email</option>
-                <option>Phone Call</option>
-                <option>Text Message</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row2">
-            <div>
-              <label for="address">Job Address (City is fine)</label>
-              <input id="address" name="job_address" type="text" placeholder="Columbus, OH" required />
-            </div>
-            <div>
-              <label for="service">Service Needed</label>
-              <select id="service" name="service" required>
+            <div class="half">
+              <label for="project">Project Type</label>
+              <select id="project" name="project" required>
+                <option value="" disabled selected>Select one</option>
                 <option>Interior Painting</option>
                 <option>Exterior Painting</option>
                 <option>Commercial Painting</option>
@@ -476,172 +366,81 @@
                 <option>Other</option>
               </select>
             </div>
-          </div>
 
-          <div class="row3">
-            <div>
-              <label for="timeframe">Timeframe</label>
-              <select id="timeframe" name="timeframe" required>
-                <option>ASAP</option>
-                <option>This Week</option>
-                <option>Next 2 Weeks</option>
-                <option>This Month</option>
-                <option>Just Planning</option>
-              </select>
+            <div class="half">
+              <label for="address">Job Address (optional)</label>
+              <input id="address" name="address" placeholder="Street / City" />
             </div>
-            <div>
-              <label for="budget">Budget Range (optional)</label>
-              <select id="budget" name="budget">
-                <option value="">Select</option>
-                <option>$200–$500</option>
-                <option>$500–$1,500</option>
-                <option>$1,500–$3,500</option>
-                <option>$3,500+</option>
-              </select>
+
+            <div class="full">
+              <label for="details">Details</label>
+              <textarea id="details" name="details" placeholder="Tell us what you need done (rooms, surfaces, timeline, etc.)" required></textarea>
             </div>
-            <div>
-              <label for="property">Property Type</label>
-              <select id="property" name="property_type" required>
-                <option>House</option>
-                <option>Apartment</option>
-                <option>Condo</option>
-                <option>Office / Commercial</option>
-                <option>Other</option>
-              </select>
+
+            <div class="full">
+              <label for="photos">Upload Photos (optional)</label>
+              <input id="photos" name="photos" type="file" accept="image/*" multiple />
+              <div class="small">You can add multiple images. Clear pics = faster & more accurate quote.</div>
+            </div>
+
+            <div class="full" style="margin-top:10px">
+              <button class="btn primary" type="submit" style="width:100%;padding:14px 16px;border-radius:16px;font-size:15px">
+                Submit Quote Request
+              </button>
+              <div class="small" style="margin-top:10px">
+                Business hours: Mon–Fri 8am–5pm • Sat 1pm–5pm • Closed Sun
+              </div>
             </div>
           </div>
-
-          <div>
-            <label for="details">Project Details</label>
-            <textarea id="details" name="details" placeholder="Rooms, colors, condition, sqft estimate, what you want done..." required></textarea>
-            <div class="help">Add anything important: pets, access, ceilings, trim, stains, repairs, schedule limits, etc.</div>
-          </div>
-
-          <div>
-            <label for="photos">Upload Photos (recommended)</label>
-            <input id="photos" name="photos" type="file" multiple accept="image/*" />
-            <div class="help">Photos help us price faster and more accurately.</div>
-          </div>
-
-          <button class="submit" type="submit">Submit Quote Request</button>
-
-          <div class="mini">
-            Your request is delivered to your Netlify Form notifications.
-            Set notifications to <b>p3solutions@paintaperfectpicture.com</b> to receive everything in Zoho.
-          </div>
-
         </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="wrap">
-      <div class="title">
-        <h2>FAQ</h2>
-        <span>Quick answers customers ask most.</span>
-      </div>
-
-      <div class="grid2">
-        <details>
-          <summary>How fast do I get a quote?</summary>
-          <p>Usually same day when photos are included. If it’s a larger job, we may schedule a quick walkthrough.</p>
-        </details>
-
-        <details>
-          <summary>Do you do drywall repair too?</summary>
-          <p>Yes—patching, sanding, and prep so paint goes on smooth and clean.</p>
-        </details>
-
-        <details>
-          <summary>Can you match colors?</summary>
-          <p>Yes. If you have a sample or existing paint, we can help match or recommend durable options.</p>
-        </details>
-
-        <details>
-          <summary>What areas do you serve?</summary>
-          <p>Columbus, OH and nearby areas. If you’re outside Columbus, submit a quote request and we’ll confirm.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap foot-grid">
-    <div>
-      <b>Paint a Perfect Picture LLC</b><br>
-      Columbus, Ohio<br><br>
-      <span class="mini">
-        Business Email: <b>p3solutions@paintaperfectpicture.com</b><br>
-        © 2026 Paint a Perfect Picture LLC
-      </span>
+      </section>
     </div>
 
-    <div class="mini">
-      <b>Pro Tip:</b> In Netlify, set Form notifications to your Zoho email so every quote hits your Zoho inbox instantly.
-      You can also add spam filters + subject lines inside Netlify notifications.
+    <!-- Footer -->
+    <div class="footer">
+      © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
+      <a href="tel:+16145853880">614-585-3880</a> •
+      <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a>
     </div>
   </div>
-</footer>
 
-<!-- Floating quick actions -->
-<div class="floatbar" aria-label="Quick actions">
-  <a class="fab primary" href="#quote" title="Request Quote">🧾</a>
-  <a class="fab accent" href="tel:" title="Call">📞</a>
-  <a class="fab" href="mailto:p3solutions@paintaperfectpicture.com" title="Email">✉️</a>
-  <a class="fab" href="sms:" title="Text">💬</a>
-</div>
+  <!-- Floating quick actions -->
+  <div class="float" aria-label="Quick actions">
+    <a class="fab quote" href="#quote" title="Request Quote"><span>🧾</span></a>
+    <a class="fab call" href="tel:+16145853880" title="Call"><span>📞</span></a>
+    <a class="fab mail" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture" title="Email"><span>✉️</span></a>
+    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20would%20like%20a%20quote.%20My%20address%20is%3A%20%0AProject%20type%3A%20%0AI%20can%20upload%20photos%20too." title="Text"><span>💬</span></a>
+  </div>
 
-<script>
-/**
- * Professional UX: AJAX submit to Netlify Forms + success message (no redirect).
- * Netlify still captures it because we POST as form-encoded to "/".
- * NOTE: For file uploads, Netlify needs multipart form-data.
- * We'll use FormData and POST to "/" which Netlify will capture.
- */
-(function () {
-  const form = document.getElementById('quoteForm');
-  const successBox = document.getElementById('successBox');
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-  if (!form) return;
+    // SERVICES TABS (fixes "tabs not working")
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabButtons = document.querySelectorAll("[data-tab]");
+      const tabPanels  = document.querySelectorAll("[data-tab-panel]");
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+      if (!tabButtons.length || !tabPanels.length) return;
 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Sending...";
-    submitBtn.disabled = true;
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-tab");
 
-    try {
-      const data = new FormData(form);
+          tabButtons.forEach(b => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          tabPanels.forEach(p => p.classList.remove("active"));
 
-      const res = await fetch("/", {
-        method: "POST",
-        body: data
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+
+          const panel = document.querySelector(`[data-tab-panel="${target}"]`);
+          if (panel) panel.classList.add("active");
+        });
       });
-
-      // Most successful Netlify form posts return 200/302. We'll treat ok or redirected as success.
-      if (res.ok || res.type === "opaqueredirect") {
-        successBox.style.display = "block";
-        form.reset();
-        // Scroll into view for confirmation
-        successBox.scrollIntoView({behavior:"smooth", block:"start"});
-      } else {
-        alert("Something went wrong sending the form. Please try again.");
-      }
-    } catch (err) {
-      alert("Network error. Please try again.");
-    } finally {
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
-  });
-})();
-</script>
-
+    });
+  </script>
 </body>
 </html>
