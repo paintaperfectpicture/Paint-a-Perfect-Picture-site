@@ -16,6 +16,7 @@
     :root{
       --bg:#0b0f14;
       --card:#101826;
+      --card2:#0f1722;
       --text:#eaf2ff;
       --muted:#a9b7cc;
       --line:rgba(255,255,255,.10);
@@ -23,82 +24,70 @@
       --accent2:#ff5a3c;
       --shadow:0 18px 60px rgba(0,0,0,.55);
       --radius:18px;
-      --glass:rgba(255,255,255,.05);
-      --glass2:rgba(255,255,255,.02);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
       line-height:1.45;
-
-      /* Base background under animation layers */
-      background:
-        linear-gradient(180deg,
-          #0a0f17 0%,
-          #0b111a 25%,
-          #0c1420 50%,
-          #0b0f14 100%
-        );
-      background-attachment: fixed;
       overflow-x:hidden;
-      position:relative;
+      background: var(--bg);
     }
+    a{color:inherit}
 
-    /* PREMIUM ANIMATED BACKGROUND (no external files) */
-    body::before{
-      content:"";
+    /* ===== Premium animated background (subtle, professional) ===== */
+    .bg-wrap{
       position:fixed;
-      inset:-30%;
+      inset:0;
       z-index:-2;
+      overflow:hidden;
       background:
-        radial-gradient(900px 700px at 15% 10%, rgba(23,224,193,.22), transparent 70%),
-        radial-gradient(850px 650px at 85% 20%, rgba(255,90,60,.18), transparent 72%),
-        radial-gradient(900px 700px at 50% 110%, rgba(23,224,193,.10), transparent 70%),
-        radial-gradient(700px 500px at 10% 70%, rgba(90,120,255,.10), transparent 72%),
-        radial-gradient(700px 500px at 95% 80%, rgba(255,90,60,.08), transparent 72%);
-      filter: blur(20px) saturate(120%);
-      transform: translate3d(0,0,0);
-      animation: bgFloat 18s ease-in-out infinite alternate;
-      opacity:.9;
+        radial-gradient(1200px 700px at 10% 10%, rgba(23,224,193,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 25%, rgba(255,90,60,.14), transparent 55%),
+        radial-gradient(900px 600px at 40% 90%, rgba(23,224,193,.10), transparent 60%),
+        linear-gradient(180deg, #070a10 0%, #0b0f14 35%, #070a10 100%);
     }
 
-    /* subtle “film grain” noise overlay */
-    body::after{
-      content:"";
+    .blob{
+      position:absolute;
+      width:700px;
+      height:700px;
+      border-radius:50%;
+      filter: blur(70px);
+      opacity:.55;
+      transform: translate3d(0,0,0);
+      mix-blend-mode: screen;
+      animation: floaty 18s ease-in-out infinite;
+      will-change: transform;
+    }
+    .blob.b1{left:-200px; top:-220px; background:rgba(23,224,193,.28); animation-duration: 22s;}
+    .blob.b2{right:-260px; top:-140px; background:rgba(255,90,60,.22); animation-duration: 26s;}
+    .blob.b3{left:18%; bottom:-330px; background:rgba(23,224,193,.18); animation-duration: 24s;}
+    .blob.b4{right:12%; bottom:-380px; background:rgba(120,140,255,.14); animation-duration: 28s;}
+
+    @keyframes floaty{
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      25%  { transform: translate3d(60px, -40px, 0) scale(1.05); }
+      50%  { transform: translate3d(-40px, 70px, 0) scale(0.98); }
+      75%  { transform: translate3d(30px, 40px, 0) scale(1.04); }
+      100% { transform: translate3d(0,0,0) scale(1); }
+    }
+
+    /* Soft vignette to blend everything */
+    .vignette{
       position:fixed;
       inset:0;
       z-index:-1;
       pointer-events:none;
       background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,.03), transparent 35%),
-        radial-gradient(circle at 90% 20%, rgba(255,255,255,.02), transparent 40%),
-        radial-gradient(circle at 20% 90%, rgba(255,255,255,.02), transparent 45%),
-        repeating-linear-gradient(0deg, rgba(255,255,255,.015) 0px, rgba(255,255,255,.015) 1px, transparent 2px, transparent 6px);
-      mix-blend-mode: overlay;
-      opacity:.18;
+        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.06), transparent 65%),
+        radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
     }
 
-    @keyframes bgFloat{
-      0%   { transform: translate3d(-2%, -1%, 0) scale(1.00) rotate(0deg); }
-      35%  { transform: translate3d(2%, 1%, 0)  scale(1.04) rotate(1deg); }
-      70%  { transform: translate3d(-1%, 2%, 0) scale(1.02) rotate(-1deg); }
-      100% { transform: translate3d(3%, -2%, 0) scale(1.06) rotate(1.2deg); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      body::before{animation:none}
-    }
-
-    a{color:inherit}
     .wrap{max-width:1100px;margin:0 auto;padding:22px}
-
-    /* Top bar */
     .topbar{
       display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
       margin-top:10px;margin-bottom:18px;
@@ -108,38 +97,50 @@
       display:flex;align-items:flex-start;gap:14px;min-width:0;
     }
     .logo{
-      width:56px;height:56px;border-radius:14px;object-fit:cover;
+      width:52px;height:52px;border-radius:14px;object-fit:cover;
       background:rgba(255,255,255,.06);
       box-shadow:0 10px 26px rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
     }
     .brand-text{min-width:0}
-    .brand-text .name{font-size:18px;font-weight:900;letter-spacing:.2px;margin:0}
+    .brand-text .name{font-size:18px;font-weight:800;letter-spacing:.2px;margin:0}
     .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    /* Header links under the company name/logo */
     .nav-links{
       margin-top:10px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
     }
+    .navbtn{
+      padding:8px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:13px;
+      font-weight:800;
+      text-decoration:none;
+      color:var(--text);
+      transition:transform .08s ease, background .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .navbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
 
-    /* Buttons */
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:10px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.10);
+      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
       background:rgba(255,255,255,.06);
       text-decoration:none;font-weight:800;font-size:14px;
-      transition:transform .08s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease;
       cursor:pointer;
-      user-select:none;
+      color:var(--text);
+      backdrop-filter: blur(10px);
     }
     .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
-    .btn:active{transform:translateY(0px)}
-    .btn:focus-visible{
-      outline:none;
-      box-shadow:0 0 0 4px rgba(23,224,193,.22);
-      border-color:rgba(23,224,193,.45);
-    }
     .btn.primary{
       background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));
       color:#001b17;border:none;
@@ -150,36 +151,21 @@
       color:#170400;border:none;
     }
 
-    .top-actions{
-      display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;
-      margin-top:2px;
-    }
-
-    /* Hero */
     .hero{
-      position:relative;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
-        radial-gradient(700px 340px at 30% 0%, rgba(23,224,193,.12), transparent 72%);
-
-      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
       border-radius:var(--radius);
-
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.04);
-
+      box-shadow:var(--shadow);
       padding:26px;
+      position:relative;
       overflow:hidden;
+      backdrop-filter: blur(10px);
     }
     .pill{
       display:inline-flex;gap:10px;align-items:center;
       padding:8px 12px;border-radius:999px;
       background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       color:var(--muted);
       font-size:13px;font-weight:800;
     }
@@ -187,17 +173,36 @@
     .hero p{margin:0;color:var(--muted);max-width:70ch;font-size:15px}
     .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    .col-12{grid-column:span 12}
+
     /* Open/Closed badge */
     .biz-status{
       display:inline-flex;align-items:center;gap:10px;
-      padding:10px 12px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      padding:9px 12px;border-radius:999px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.06);
-      margin-top:14px;
+      margin-top:12px;
       font-weight:900;
       font-size:13px;
       color:var(--text);
-      flex-wrap:wrap;
     }
     .biz-status .dot{
       width:10px;height:10px;border-radius:50%;
@@ -208,52 +213,49 @@
     .biz-status.closed .dot{ background:#ef4444; }
     .biz-status .sub{ color:var(--muted); font-weight:800; margin-left:6px; }
 
-    /* Grid/cards */
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:16px;
+    /* Offer / Coupon */
+    .offer{
+      border:1px solid rgba(23,224,193,.35);
+      background:linear-gradient(135deg, rgba(23,224,193,.10), rgba(255,255,255,.02));
     }
-    .card{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius);
-      padding:18px;
-
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-
-      box-shadow:
-        0 10px 40px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.03);
+    .offer-row{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top:10px;
     }
-    .card h2{margin:0 0 8px;font-size:18px}
-    .card p{margin:0;color:var(--muted);font-size:14px}
-    .col-7{grid-column:span 7}
-    .col-5{grid-column:span 5}
-    .col-12{grid-column:span 12}
-
-    /* Soft blend between sections */
-    .section{position:relative}
-    .section::before{
-      content:"";
-      position:absolute;
-      top:-40px;left:0;right:0;height:40px;
-      background:linear-gradient(to bottom, transparent, rgba(11,15,20,.85));
-      pointer-events:none;
+    .codebox{
+      min-width:220px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+    }
+    .code{
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:2px;
+      color:var(--accent);
+      margin-top:6px;
+      user-select:all;
+    }
+    .fineprint{
+      font-size:11px;
+      color:rgba(233,242,255,.65);
+      line-height:1.35;
+      margin-top:10px;
     }
 
     /* Services tabs */
-    .section-title{margin:0 0 8px;font-size:28px;letter-spacing:-.2px}
-    .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
-
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .section-title{ margin:0 0 8px; font-size:28px; letter-spacing:-.2px; }
+    .subtle{ color:var(--muted); margin:0 0 14px; font-size:14px; }
+    .tabs{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 14px; }
     .tab{
       cursor:pointer;
       padding:10px 14px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       background:rgba(255,255,255,.06);
       color:var(--text);
       font-weight:900;
@@ -268,61 +270,49 @@
     .panel{display:none}
     .panel.active{display:block}
 
-    .panel-grid{
-      display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px
-    }
+    /* Deeper details grid + accordion */
+    .panel-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:12px; margin-top:12px }
     .mini{
       grid-column:span 6;
       background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid var(--line);
       border-radius:16px;
       padding:14px;
     }
     .mini strong{display:block;margin-bottom:6px}
     .mini span{color:var(--muted);font-size:13px}
-
     details{
       grid-column:span 12;
       background:rgba(0,0,0,.15);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid var(--line);
       border-radius:16px;
       padding:12px 14px;
     }
-    summary{
-      cursor:pointer;
-      font-weight:950;
-      list-style:none;
-    }
+    summary{ cursor:pointer; font-weight:1000; list-style:none; }
     summary::-webkit-details-marker{display:none}
     details p, details ul{margin:10px 0 0;color:var(--muted);font-size:13px}
     details ul{padding-left:18px}
     details li{margin:6px 0}
 
-    /* Form */
+    /* Contact form */
     form label{display:block;margin:10px 0 6px;font-weight:900}
     input, select, textarea{
       width:100%;
       padding:12px 12px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       background:rgba(0,0,0,.25);
       color:var(--text);
       outline:none;
-    }
-    input:focus, select:focus, textarea:focus{
-      border-color:rgba(23,224,193,.45);
-      box-shadow:0 0 0 4px rgba(23,224,193,.16);
     }
     textarea{min-height:120px;resize:vertical}
     .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
     .row .half{grid-column:span 6}
     .row .full{grid-column:span 12}
     .small{font-size:12px;color:var(--muted)}
-    .footer{
-      margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center
-    }
+    .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
 
-    /* FAQ + Work Examples */
+    /* FAQ + Work Examples (portfolio kept professional here) */
     .faq-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:10px}
     .faq-item{grid-column:span 12}
     .work-examples{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -330,7 +320,7 @@
       background:rgba(255,255,255,.04);
       border:1px dashed rgba(255,255,255,.18);
       border-radius:16px;
-      aspect-ratio:4/3;
+      aspect-ratio: 4/3;
       display:flex;align-items:flex-end;justify-content:flex-start;
       padding:12px;color:rgba(255,255,255,.55);font-weight:900;
     }
@@ -347,88 +337,68 @@
       border:1px solid rgba(255,255,255,.12);
       text-decoration:none;
       background:rgba(255,255,255,.06);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition:transform .08s ease, background .2s ease;
+      backdrop-filter: blur(10px);
     }
-    .fab:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
     .fab.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.55)); color:#130300;border:none}
     .fab.quote{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.55)); color:#001b17;border:none}
     .fab.mail{background:rgba(255,255,255,.07)}
     .fab span{font-size:22px}
-
-    /* Optional: slim “trust bar” */
-    .trustbar{
-      margin-top:14px;
-      display:flex;flex-wrap:wrap;gap:10px;
-      color:rgba(255,255,255,.72);
-      font-size:13px;
-      font-weight:800;
-    }
-    .trustbar .item{
-      padding:8px 10px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-    }
 
     @media (max-width:900px){
       .col-7,.col-5{grid-column:span 12}
       .mini{grid-column:span 12}
       .hero h1{font-size:34px}
       .work-examples{grid-template-columns:repeat(2,1fr)}
-      .top-actions{justify-content:flex-start}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .blob{animation:none}
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
+  <!-- Animated background -->
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
 
+  <div class="wrap">
     <!-- Top bar -->
-    <div class="topbar" role="banner">
+    <div class="topbar">
       <div class="brand">
-        <!-- LOGO: IMG_1006.png must be in SAME folder as index.html -->
         <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
         <div class="brand-text">
           <p class="name">Paint a Perfect Picture LLC</p>
           <p class="meta">Columbus, Ohio • Residential • Commercial • Industrial</p>
 
-          <!-- LINKS IN HEADER BELOW COMPANY NAME + LOGO (as requested) -->
-          <nav class="nav-links" aria-label="Primary">
-            <a class="btn" href="#services">🧰 Services</a>
-            <a class="btn" href="#faq">❓ FAQ</a>
-            <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
-            <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
+          <!-- LINKS UNDER NAME/LOGO -->
+          <nav class="nav-links" aria-label="Header links">
+            <a class="navbtn" href="#services">🧰 Services</a>
+            <a class="navbtn" href="#faq">❓ FAQ</a>
+            <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
+            <a class="navbtn" href="#quote">🧾 Quote</a>
           </nav>
         </div>
       </div>
 
-      <!-- Optional right-side actions (kept, but not required since nav is under logo) -->
-      <div class="top-actions" aria-label="Quick header actions">
-        <a class="btn call" href="tel:+16145853880">📞 Call</a>
-        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text</a>
+      <div class="top-actions">
+        <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
       </div>
     </div>
 
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="pill">✅ Licensed LLC • Fast Quotes • Photo Uploads</div>
-
       <h1>Professional finishes that make your property look expensive.</h1>
-
       <p>
         Interior and exterior painting, drywall repair, commercial painting, plus industrial coating and fireproofing support.
         Upload photos for the fastest quote and a clean, professional scope.
       </p>
-
-      <!-- Premium “trust bar” -->
-      <div class="trustbar" aria-label="Highlights">
-        <div class="item">Clean prep + sharp lines</div>
-        <div class="item">Fast quote turnaround</div>
-        <div class="item">Photo uploads supported</div>
-        <div class="item">Clear scope + timeline</div>
-      </div>
 
       <!-- Auto Open/Closed -->
       <div id="bizStatus" class="biz-status" aria-live="polite">
@@ -439,18 +409,48 @@
 
       <div class="hero-actions">
         <a class="btn call" href="tel:+16145853880">📞 Call 614-585-3880</a>
-        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text Us</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____%20.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text Us</a>
         <a class="btn primary" href="#quote">🧾 Request Quote</a>
       </div>
     </section>
 
+    <!-- FIRST-TIME CLIENT OFFER (NEW) -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12 offer" id="offer">
+        <h2 class="section-title" style="font-size:24px;margin-bottom:6px;">🎉 First-Time Clients Save Up To 20%</h2>
+        <p class="subtle" style="margin-bottom:10px;">
+          Use the code below when you request your quote.
+        </p>
+
+        <div class="offer-row">
+          <div class="codebox" aria-label="Coupon code">
+            <div style="font-weight:900;color:var(--muted);font-size:12px;">COUPON CODE</div>
+            <div class="code">FIRST20</div>
+          </div>
+
+          <div style="flex:1;min-width:240px">
+            <p style="margin:0;color:var(--muted);font-size:14px;">
+              Ideal for first-time customers looking for premium results on interior, exterior, drywall, commercial, and fireproofing support.
+            </p>
+            <div class="fineprint">
+              *First-time clients only. Discount varies by scope/size; most residential up to 10%, larger projects up to 20%. Min project. Not combinable.
+            </div>
+
+            <div style="margin-top:12px;">
+              <a class="btn primary" href="#quote">Claim Offer & Request Quote</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <!-- What you get / Serving area -->
-    <div class="grid section" style="margin-top:16px">
+    <div class="grid">
       <div class="card col-7">
         <h2>What You Get</h2>
         <p>
           Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
-          Website leads are captured automatically through Netlify Forms (ready for CRM automation like Zoho CRM).
+          Website leads are captured automatically through Netlify Forms (ready for CRM automation).
         </p>
       </div>
       <div class="card col-5">
@@ -460,7 +460,7 @@
     </div>
 
     <!-- Services (Tabs) -->
-    <div class="grid section" style="margin-top:16px">
+    <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="services">
         <h2 class="section-title">Services</h2>
         <p class="subtle">In-depth service details so customers know exactly what to expect.</p>
@@ -622,7 +622,7 @@
                 <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
               </ul>
               <p>
-                Final system selection depends on the building requirements/specs (rated assembly, thickness, substrate, and inspection criteria).
+                Final system selection depends on building requirements/specs (rated assembly, thickness, substrate, and inspection criteria).
               </p>
             </details>
 
@@ -634,22 +634,13 @@
                 <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
               </ul>
             </details>
-
-            <details>
-              <summary>Automation-ready operations (website + CRM)</summary>
-              <ul>
-                <li>Netlify Forms captures leads instantly from the quote form.</li>
-                <li>Ready to connect to Zoho CRM via Make.com/Zapier for auto follow-up, pipeline stages, and reminders.</li>
-                <li>Optional: auto-email or auto-text acknowledgment during/after hours (configured in CRM/automation tool).</li>
-              </ul>
-            </details>
           </div>
         </div>
       </section>
     </div>
 
     <!-- Quote Form (Netlify Forms) -->
-    <div class="grid section" style="margin-top:16px">
+    <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="quote">
         <h2 class="section-title">Request a Fast Quote</h2>
         <p class="subtle">Upload photos + details. We’ll respond as soon as possible during business hours.</p>
@@ -666,6 +657,7 @@
               <label for="name">Name</label>
               <input id="name" name="name" placeholder="Customer name" required />
             </div>
+
             <div class="half">
               <label for="contact">Phone or Email</label>
               <input id="contact" name="contact" placeholder="Phone number or email address" required />
@@ -686,8 +678,18 @@
             </div>
 
             <div class="half">
+              <label for="coupon">Coupon Code (optional)</label>
+              <input id="coupon" name="coupon" placeholder="e.g., FIRST20" />
+            </div>
+
+            <div class="half">
               <label for="address">Job Address (optional)</label>
               <input id="address" name="address" placeholder="Street / City" />
+            </div>
+
+            <div class="half">
+              <label for="timeline">Preferred Timeline (optional)</label>
+              <input id="timeline" name="timeline" placeholder="e.g., ASAP / This week / Next month" />
             </div>
 
             <div class="full">
@@ -708,24 +710,25 @@
               <div class="small" style="margin-top:10px">
                 Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
               </div>
+              <div class="fineprint" style="margin-top:8px;">
+                *If a coupon is provided, eligibility/amount confirmed after scope review.
+              </div>
             </div>
           </div>
         </form>
 
         <div class="small" style="margin-top:12px">
-          Prefer texting?
-          <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
-          Email:
-          <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
+          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
         </div>
       </section>
     </div>
 
-    <!-- FAQ + Work Examples (portfolio kept professional here) -->
-    <div class="grid section" style="margin-top:16px">
+    <!-- FAQ + Work Examples -->
+    <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="faq">
         <h2 class="section-title">FAQ + Work Examples</h2>
-        <p class="subtle">Professional answers + examples kept in one place (not as a homepage “portfolio tab”).</p>
+        <p class="subtle">Professional answers + examples kept in one place.</p>
 
         <div class="faq-grid">
           <details class="faq-item">
@@ -739,7 +742,7 @@
           <details class="faq-item">
             <summary>Do you do both residential and commercial?</summary>
             <p>
-              Yes. We do residential work and also provide commercial and industrial support depending on scope and scheduling.
+              Yes. We start with residential work and also provide commercial and industrial support depending on scope and scheduling.
             </p>
           </details>
 
@@ -776,7 +779,6 @@
       <br>
       Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
     </div>
-
   </div>
 
   <!-- Floating quick actions -->
@@ -784,14 +786,14 @@
     <a class="fab quote" href="#quote" title="Request Quote"><span>🧾</span></a>
     <a class="fab call" href="tel:+16145853880" title="Call"><span>📞</span></a>
     <a class="fab mail" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture" title="Email"><span>✉️</span></a>
-    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too." title="Text"><span>💬</span></a>
+    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____%20.%20My%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too." title="Text"><span>💬</span></a>
   </div>
 
   <script>
     // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // SERVICES TABS (keeps tabs working)
+    // SERVICES TABS
     document.addEventListener("DOMContentLoaded", () => {
       const tabButtons = document.querySelectorAll("[data-tab]");
       const tabPanels  = document.querySelectorAll("[data-tab-panel]");
@@ -842,11 +844,9 @@
     })();
   </script>
 
-  <!-- DEPLOYMENT CHECKLIST (no edits needed):
-    1) Make sure IMG_1006.png is in the SAME folder as index.html (root).
-    2) Push to GitHub → Netlify deploys automatically.
-    3) Netlify Forms will capture submissions (name, contact, project, address, details, photos).
-    4) Optional next step: Connect Netlify Form → Zoho CRM using Make.com/Zapier (mapping those fields).
+  <!-- Automation note:
+    Netlify form fields ready to map:
+      name, contact, project, coupon, address, timeline, details, photos
   -->
 </body>
 </html>
