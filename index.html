@@ -4,11 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Paint a Perfect Picture LLC | Columbus, OH</title>
-  <meta name="description" content="Paint a Perfect Picture LLC — Professional residential, commercial, and industrial painting, drywall repair, and fireproofing support in Columbus, OH. Fast quotes with photo uploads." />
+  <meta name="description" content="Paint a Perfect Picture LLC — Commercial, multi-unit, residential, and industrial painting in Columbus, OH. Structured execution, minimal disruption, and professional documentation. Fast quote requests with photo uploads." />
 
-  <!-- Basic SEO / Sharing -->
   <meta property="og:title" content="Paint a Perfect Picture LLC" />
-  <meta property="og:description" content="Professional painting, drywall, and fireproofing support in Columbus, OH. Fast quotes with photo uploads." />
+  <meta property="og:description" content="Commercial & multi-unit painting built for scale. Residential welcomed. Fast quotes with photo uploads." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b0f14" />
 
@@ -16,7 +15,6 @@
     :root{
       --bg:#0b0f14;
       --card:#101826;
-      --card2:#0f1722;
       --text:#eaf2ff;
       --muted:#a9b7cc;
       --line:rgba(255,255,255,.10);
@@ -29,159 +27,746 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
       line-height:1.45;
       overflow-x:hidden;
       background: var(--bg);
     }
     a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px}
 
-    /* ===== Premium animated background (subtle, professional) ===== */
-    .bg-wrap{
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      overflow:hidden;
+    /* premium background */
+    .bg-wrap{position:fixed;inset:0;z-index:-2;overflow:hidden;
       background:
         radial-gradient(1200px 700px at 10% 10%, rgba(23,224,193,.18), transparent 60%),
         radial-gradient(900px 600px at 90% 25%, rgba(255,90,60,.14), transparent 55%),
         radial-gradient(900px 600px at 40% 90%, rgba(23,224,193,.10), transparent 60%),
         linear-gradient(180deg, #070a10 0%, #0b0f14 35%, #070a10 100%);
     }
-
-    .blob{
-      position:absolute;
-      width:700px;
-      height:700px;
-      border-radius:50%;
-      filter: blur(70px);
-      opacity:.55;
-      transform: translate3d(0,0,0);
-      mix-blend-mode: screen;
-      animation: floaty 18s ease-in-out infinite;
-      will-change: transform;
-    }
-    .blob.b1{left:-200px; top:-220px; background:rgba(23,224,193,.28); animation-duration: 22s;}
-    .blob.b2{right:-260px; top:-140px; background:rgba(255,90,60,.22); animation-duration: 26s;}
-    .blob.b3{left:18%; bottom:-330px; background:rgba(23,224,193,.18); animation-duration: 24s;}
-    .blob.b4{right:12%; bottom:-380px; background:rgba(120,140,255,.14); animation-duration: 28s;}
-
-    @keyframes floaty{
-      0%   { transform: translate3d(0,0,0) scale(1); }
-      25%  { transform: translate3d(60px, -40px, 0) scale(1.05); }
-      50%  { transform: translate3d(-40px, 70px, 0) scale(0.98); }
-      75%  { transform: translate3d(30px, 40px, 0) scale(1.04); }
-      100% { transform: translate3d(0,0,0) scale(1); }
-    }
-
-    /* Soft vignette to blend everything */
-    .vignette{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      pointer-events:none;
+    .vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;
       background:
         radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.06), transparent 65%),
         radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
     }
+    .blob{position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(70px);opacity:.55;mix-blend-mode:screen;animation:floaty 18s ease-in-out infinite;will-change:transform}
+    .b1{left:-200px;top:-220px;background:rgba(23,224,193,.28);animation-duration:22s}
+    .b2{right:-260px;top:-140px;background:rgba(255,90,60,.22);animation-duration:26s}
+    .b3{left:18%;bottom:-330px;background:rgba(23,224,193,.18);animation-duration:24s}
+    .b4{right:12%;bottom:-380px;background:rgba(120,140,255,.14);animation-duration:28s}
+    @keyframes floaty{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      25%{transform:translate3d(60px,-40px,0) scale(1.05)}
+      50%{transform:translate3d(-40px,70px,0) scale(.98)}
+      75%{transform:translate3d(30px,40px,0) scale(1.04)}
+      100%{transform:translate3d(0,0,0) scale(1)}
+    }
 
-    .wrap{max-width:1100px;margin:0 auto;padding:22px}
-    .topbar{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-      margin-top:10px;margin-bottom:18px;
-      flex-wrap:wrap;
-    }
-    .brand{
-      display:flex;align-items:flex-start;gap:14px;min-width:0;
-    }
+    /* top */
+    .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:10px 0 18px;flex-wrap:wrap}
+    .brand{display:flex;align-items:flex-start;gap:14px;min-width:0}
     .logo{
       width:52px;height:52px;border-radius:14px;object-fit:cover;
-      background:rgba(255,255,255,.06);
-      box-shadow:0 10px 26px rgba(0,0,0,.35);
-      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.35)
     }
-    .brand-text{min-width:0}
-    .brand-text .name{font-size:18px;font-weight:800;letter-spacing:.2px;margin:0}
+    .brand-text .name{font-size:18px;font-weight:900;letter-spacing:.2px;margin:0}
     .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-    /* Header links under the company name/logo */
-    .nav-links{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .nav-links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
     .navbtn{
-      padding:8px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      font-size:13px;
-      font-weight:800;
-      text-decoration:none;
-      color:var(--text);
-      transition:transform .08s ease, background .2s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
+      padding:8px 12px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);font-size:13px;font-weight:900;text-decoration:none;
+      transition:transform .08s ease, background .2s ease;display:inline-flex;align-items:center;gap:8px
     }
     .navbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
-
-    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:10px 14px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,.06);
-      text-decoration:none;font-weight:800;font-size:14px;
-      transition:transform .08s ease, background .2s ease, border-color .2s ease;
-      cursor:pointer;
-      color:var(--text);
-      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.06);text-decoration:none;font-weight:900;font-size:14px;
+      transition:transform .08s ease, background .2s ease;cursor:pointer;color:var(--text);backdrop-filter: blur(10px);
     }
     .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));
-      color:#001b17;border:none;
-    }
-    .btn.primary:hover{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.75))}
-    .btn.call{
-      background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.65));
-      color:#170400;border:none;
-    }
+    .btn.primary{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));color:#001b17;border:none}
+    .btn.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.65));color:#170400;border:none}
 
+    /* hero/cards */
     .hero{
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:26px;
-      position:relative;
-      overflow:hidden;
-      backdrop-filter: blur(10px);
+      border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:26px;position:relative;overflow:hidden;backdrop-filter: blur(10px);
     }
-    .pill{
-      display:inline-flex;gap:10px;align-items:center;
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;font-weight:800;
-    }
+    .pill{display:inline-flex;gap:10px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted);font-size:13px;font-weight:900}
     .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
-    .hero p{margin:0;color:var(--muted);max-width:70ch;font-size:15px}
+    .hero p{margin:0;color:var(--muted);max-width:72ch;font-size:15px}
     .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:16px;
-    }
+    .grid{margin-top:18px;display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:0 10px 28px rgba(0,0
+      border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);backdrop-filter: blur(10px);
+    }
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    .col-12{grid-column:span 12}
+    .section-title{margin:0 0 8px;font-size:28px;letter-spacing:-.2px}
+    .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
+
+    /* status badge */
+    .biz-status{display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.06);margin-top:12px;font-weight:1000;font-size:13px}
+    .biz-status .dot{width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 4px rgba(255,255,255,.07);background:rgba(255,255,255,.25)}
+    .biz-status.open .dot{background:#22c55e}
+    .biz-status.closed .dot{background:#ef4444}
+    .biz-status .sub{color:var(--muted);font-weight:900;margin-left:6px}
+
+    /* offer */
+    .offer{border:1px solid rgba(23,224,193,.35);background:linear-gradient(135deg, rgba(23,224,193,.10), rgba(255,255,255,.02))}
+    .offer-row{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
+    .codebox{min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.20)}
+    .code{font-size:22px;font-weight:1000;letter-spacing:2px;color:var(--accent);margin-top:6px;user-select:all}
+    .fineprint{font-size:11px;color:rgba(233,242,255,.65);line-height:1.35;margin-top:10px}
+
+    /* tabs */
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .tab{cursor:pointer;padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.06);font-weight:1000}
+    .tab.active{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.55));color:#001b17;border:none}
+    .panel{display:none}
+    .panel.active{display:block}
+    .panel-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+    .mini{grid-column:span 6;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:14px}
+    .mini strong{display:block;margin-bottom:6px}
+    .mini span{color:var(--muted);font-size:13px}
+    details{grid-column:span 12;background:rgba(0,0,0,.15);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+    summary{cursor:pointer;font-weight:1000;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    details p, details ul{margin:10px 0 0;color:var(--muted);font-size:13px}
+    details ul{padding-left:18px}
+    details li{margin:6px 0}
+
+    /* forms */
+    form label{display:block;margin:10px 0 6px;font-weight:1000}
+    input, select, textarea{
+      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(0,0,0,.25);color:var(--text);outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .half{grid-column:span 6}
+    .full{grid-column:span 12}
+    .small{font-size:12px;color:var(--muted)}
+    .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
+
+    /* floating quick actions (bottom-right) */
+    .float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom, 0px));display:flex;flex-direction:column;gap:10px;z-index:50}
+    .fab{
+      width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 16px 40px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.12);
+      text-decoration:none;background:rgba(255,255,255,.06);backdrop-filter: blur(10px);
+    }
+    .fab.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.55));color:#130300;border:none}
+    .fab.quote{background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.55));color:#001b17;border:none}
+    .fab.mail{background:rgba(255,255,255,.07)}
+    .fab span{font-size:22px}
+
+    /* CHAT UI (bottom-left) */
+    .p3chat-launch{
+      position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom, 0px));
+      width:56px;height:56px;border-radius:18px;border:1px solid rgba(255,255,255,.14);
+      background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));
+      color:#04110e;font-weight:1000;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 16px 40px rgba(0,0,0,.55);cursor:pointer;z-index:9999;
+    }
+    .p3chat{
+      position:fixed;left:18px;bottom:calc(84px + env(safe-area-inset-bottom, 0px));
+      width:min(420px, calc(100vw - 36px));max-height:72vh;border-radius:20px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(10,14,20,.76);
+      backdrop-filter: blur(14px);box-shadow:0 18px 60px rgba(0,0,0,.60);
+      overflow:hidden;display:none;flex-direction:column;z-index:9999;
+    }
+    .p3chat.open{display:flex}
+    .p3chat-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-bottom:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(135deg, rgba(23,224,193,.12), rgba(255,90,60,.08));
+    }
+    .p3chat-title strong{font-size:13px;letter-spacing:.2px}
+    .p3chat-title span{font-size:11px;color:rgba(233,242,255,.72)}
+    .p3chat-close{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text);border-radius:12px;padding:8px 10px;font-weight:1000;cursor:pointer}
+    .p3chat-body{padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
+    .msg{max-width:92%;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);font-size:13px}
+    .msg.ai{align-self:flex-start;background:rgba(23,224,193,.08);border-color:rgba(23,224,193,.18)}
+    .msg.user{align-self:flex-end;background:rgba(255,90,60,.07);border-color:rgba(255,90,60,.18)}
+    .p3chat-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
+    .chip{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text);border-radius:999px;padding:8px 10px;font-size:12px;font-weight:1000;cursor:pointer}
+    .chip.primary{border:none;background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.60));color:#001b17}
+    .p3chat-inputbar{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+    .p3chat-inputbar input{flex:1;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.22);color:var(--text);padding:12px;outline:none;font-weight:900}
+    .p3chat-send{border-radius:14px;padding:12px 14px;font-weight:1000;border:none;cursor:pointer;background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));color:#04110e}
+    .p3chat-mini{font-size:11px;color:rgba(233,242,255,.72);padding:0 12px 12px;line-height:1.35}
+
+    @media (max-width:900px){.col-7,.col-5{grid-column:span 12}.mini{grid-column:span 12}.hero h1{font-size:34px}}
+    @media (prefers-reduced-motion: reduce){.blob{animation:none}}
+  </style>
+</head>
+
+<body>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
+        <div class="brand-text">
+          <p class="name">Paint a Perfect Picture LLC</p>
+          <p class="meta">Columbus, Ohio • Commercial & Multi-Unit Priority • Residential Welcome</p>
+          <nav class="nav-links" aria-label="Header links">
+            <a class="navbtn" href="#services">🧰 Services</a>
+            <a class="navbtn" href="#offer">🏷️ Offer</a>
+            <a class="navbtn" href="#quote">🧾 Quote</a>
+            <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
+          </nav>
+        </div>
+      </div>
+      <div class="top-actions">
+        <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
+      </div>
+    </div>
+
+    <section class="hero" id="top">
+      <div class="pill">✅ Structured Scheduling • Minimal Disruption • Professional Documentation</div>
+      <h1>Commercial & multi-unit painting built for scale.</h1>
+      <p>
+        We execute phased scopes, protect occupied spaces, and keep timelines tight.
+        Residential projects are welcomed with the same clean execution and premium finish.
+      </p>
+
+      <div id="bizStatus" class="biz-status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="text">Checking hours…</span>
+        <span class="sub">Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed</span>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn call" href="tel:+16145853880">📞 Call 614-585-3880</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20Job%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text Us</a>
+        <a class="btn primary" href="#quote">🧾 Request Quote</a>
+      </div>
+    </section>
+
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12 offer" id="offer">
+        <h2 class="section-title" style="font-size:24px;margin-bottom:6px;">🎉 First-Time Clients Save Up To 20%</h2>
+        <p class="subtle" style="margin-bottom:10px;">Use the code below when you request your quote.</p>
+        <div class="offer-row">
+          <div class="codebox" aria-label="Coupon code">
+            <div style="font-weight:1000;color:var(--muted);font-size:12px;">COUPON CODE</div>
+            <div class="code">FIRST20</div>
+          </div>
+          <div style="flex:1;min-width:240px">
+            <p style="margin:0;color:var(--muted);font-size:14px;">
+              Commercial and multi-unit scopes are prioritized. Residential welcomed.
+            </p>
+            <div class="fineprint">
+              *First-time clients only. Discount varies by scope/size; most residential up to 10%, larger projects up to 20%. Not combinable. Eligibility confirmed after scope review.
+            </div>
+            <div style="margin-top:12px;">
+              <a class="btn primary" href="#quote">Claim Offer & Request Quote</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid">
+      <div class="card col-7">
+        <h2>Commercial Standards</h2>
+        <p style="color:var(--muted);margin:0">
+          Scalable crews, phased execution, schedule control, site protection, and clean closeout. Documentation available upon request (W-9/COI/onboarding/logs/photos).
+        </p>
+      </div>
+      <div class="card col-5">
+        <h2>Serving Area</h2>
+        <p style="color:var(--muted);margin:0">Columbus, OH + surrounding (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard).</p>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="subtle">Clear expectations, professional scope, and execution standards.</p>
+
+        <div class="tabs" role="tablist" aria-label="Services tabs">
+          <button class="tab active" type="button" data-tab="commercial" aria-selected="true">Commercial</button>
+          <button class="tab" type="button" data-tab="multi" aria-selected="false">Multi-Unit Turns</button>
+          <button class="tab" type="button" data-tab="residential" aria-selected="false">Residential</button>
+          <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
+        </div>
+
+        <div class="panel active" data-tab-panel="commercial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini"><strong>Minimal disruption</strong><span>Phased areas, off-hours options, daily cleanup, protected access paths.</span></div>
+            <div class="mini"><strong>Documentation</strong><span>Scope + schedule + closeout confirmation. COI/W-9/onboarding available.</span></div>
+            <details><summary>Typical commercial scopes</summary>
+              <ul><li>Offices, retail, common areas</li><li>Hallways, stairwells, lobbies</li><li>Maintenance painting programs</li></ul>
+            </details>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="multi" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini"><strong>Turn-ready units</strong><span>Fast resets aligned to leasing/turn calendars and access windows.</span></div>
+            <div class="mini"><strong>Consistency</strong><span>Repeatable system for prep, paint, punch list, and sign-off.</span></div>
+            <details><summary>What we need for accurate ranges</summary>
+              <ul><li>Unit count + size + surfaces</li><li>Condition level</li><li>Timeline and access windows</li></ul>
+            </details>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="residential" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini"><strong>Clean execution</strong><span>Prep, protection, sharp lines, premium finish.</span></div>
+            <div class="mini"><strong>Property value</strong><span>Colors and finishes that enhance resale and appearance.</span></div>
+            <details><summary>Residential scope examples</summary>
+              <ul><li>Interior repaints</li><li>Exterior paint systems</li><li>Drywall repairs + paint-ready finish</li></ul>
+            </details>
+          </div>
+        </div>
+
+        <div class="panel" data-tab-panel="industrial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini"><strong>Industrial coatings support</strong><span>Durable systems per spec, surface prep planning, containment awareness.</span></div>
+            <div class="mini"><strong>Fireproofing support</strong><span>Firestopping, SFRM, intumescent, cementitious (per requirements).</span></div>
+            <details><summary>Documentation support</summary>
+              <ul><li>Photo records (as requested)</li><li>Closeout support for inspection readiness (as requested)</li></ul>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="quote">
+        <h2 class="section-title">Request a Fast Quote</h2>
+        <p class="subtle">Upload photos + details. We respond during business hours. Pricing provided as a range until walkthrough or photo-verified scope.</p>
+
+        <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="quote" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+          <div class="row">
+            <div class="half">
+              <label for="q_name">Name</label>
+              <input id="q_name" name="name" placeholder="Customer / PM / GC name" required />
+            </div>
+            <div class="half">
+              <label for="q_contact">Phone or Email</label>
+              <input id="q_contact" name="contact" placeholder="Phone number or email address" required />
+            </div>
+            <div class="half">
+              <label for="q_project">Project Type</label>
+              <select id="q_project" name="project" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Commercial Painting</option>
+                <option>Multi-Unit Unit Turns</option>
+                <option>Residential Painting</option>
+                <option>Drywall Repair</option>
+                <option>Industrial Coating</option>
+                <option>Fireproofing / Firestopping</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="half">
+              <label for="q_coupon">Coupon Code (optional)</label>
+              <input id="q_coupon" name="coupon" placeholder="e.g., FIRST20" />
+            </div>
+            <div class="half">
+              <label for="q_location">Job Location (City + ZIP)</label>
+              <input id="q_location" name="location" placeholder="Columbus 43224" />
+            </div>
+            <div class="half">
+              <label for="q_timeline">Timeline (optional)</label>
+              <input id="q_timeline" name="timeline" placeholder="ASAP / 1–2 weeks / next month" />
+            </div>
+            <div class="full">
+              <label for="q_details">Details</label>
+              <textarea id="q_details" name="details" placeholder="Scope, surfaces, condition, access windows, occupancy, unit count, etc." required></textarea>
+            </div>
+            <div class="full">
+              <label for="q_photos">Upload Photos (optional)</label>
+              <input id="q_photos" name="photos" type="file" accept="image/*" multiple />
+              <div class="small">Clear photos = faster and more accurate pricing ranges.</div>
+            </div>
+            <div class="full" style="margin-top:10px">
+              <button class="btn primary" type="submit" style="width:100%;padding:14px 16px;border-radius:16px;font-size:15px">Submit Quote Request</button>
+              <div class="fineprint" style="margin-top:10px">
+                Policy: Pricing is provided as a range until walkthrough or photo-verified scope. Conditions not disclosed may require change orders. Discounts confirmed after scope review.
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="small" style="margin-top:12px">
+          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
+          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+        </div>
+      </section>
+    </div>   
+    
+    <div class="footer">
+      © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
+      <a href="tel:+16145853880">614-585-3880</a> •
+      <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a>
+      <br>
+      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
+    </div>
+  </div><!-- /wrap -->
+
+  <!-- Floating quick actions (bottom-right) -->
+  <div class="float" aria-label="Quick actions">
+    <a class="fab quote" href="#quote" title="Request Quote"><span>🧾</span></a>
+    <a class="fab call" href="tel:+16145853880" title="Call"><span>📞</span></a>
+    <a class="fab mail" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture" title="Email"><span>✉️</span></a>
+    <a class="fab" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20Job%20address%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too." title="Text"><span>💬</span></a>
+  </div>
+
+  <!-- Hidden Netlify Booking Form (AI Chat submits to this) -->
+  <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-booking" style="display:none">
+    <input type="hidden" name="form-name" value="booking" />
+    <input name="bot-booking" />
+    <input name="lead_name" />
+    <input name="lead_contact" />
+    <input name="property_type" />
+    <input name="requester_role" />
+    <input name="authority_confirmed" />
+    <input name="occupied" />
+    <input name="restrictions" />
+    <input name="hazards" />
+    <input name="pre1978" />
+    <input name="permits_hoa" />
+    <input name="documentation_needed" />
+    <input name="location_zip" />
+    <input name="scope" />
+    <input name="surfaces" />
+    <input name="condition" />
+    <input name="timeline" />
+    <input name="budget_range" />
+    <input name="notes" />
+    <input name="priority" />
+    <input name="priority_reason" />
+  </form>
+
+  <!-- P3Solutions AI Chat UI -->
+  <button class="p3chat-launch" id="p3chatLaunch" aria-label="Open chat">✦</button>
+
+  <div class="p3chat" id="p3chat" aria-label="P3Solutions AI Chat">
+    <div class="p3chat-header">
+      <div class="p3chat-title">
+        <strong>P3Solutions AI — Lead Intake</strong>
+        <span>Commercial & multi-unit priority • Ranges only before verification</span>
+      </div>
+      <button class="p3chat-close" id="p3chatClose" type="button">Close</button>
+    </div>
+
+    <div class="p3chat-body" id="p3chatBody"></div>
+    <div class="p3chat-actions" id="p3chatActions"></div>
+
+    <div class="p3chat-inputbar">
+      <input id="p3chatInput" placeholder="Type your answer… (or SKIP where allowed)" autocomplete="off" />
+      <button class="p3chat-send" id="p3chatSend" type="button">Send</button>
+    </div>
+
+    <div class="p3chat-mini">
+      Compliance note: Pricing is a range until walkthrough or photo-verified scope. Conditions not disclosed may require change orders.
+      Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%).
+    </div>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Services tabs
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabButtons = document.querySelectorAll("[data-tab]");
+      const tabPanels  = document.querySelectorAll("[data-tab-panel]");
+      if (!tabButtons.length || !tabPanels.length) return;
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-tab");
+          tabButtons.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected","false"); });
+          tabPanels.forEach(p => p.classList.remove("active"));
+          btn.classList.add("active"); btn.setAttribute("aria-selected","true");
+          const panel = document.querySelector(`[data-tab-panel="${target}"]`);
+          if (panel) panel.classList.add("active");
+        });
+      });
+    });
+
+    // Open / Closed badge (Mon–Fri 08:00–17:30, Sat 13:00–17:30, Sun closed)
+    (function () {
+      const el = document.getElementById("bizStatus");
+      if (!el) return;
+      function isOpen(now) {
+        const day = now.getDay(); // 0 Sun .. 6 Sat
+        const mins = now.getHours() * 60 + now.getMinutes();
+        if (day >= 1 && day <= 5) return mins >= 8*60 && mins <= (17*60 + 30);
+        if (day === 6) return mins >= 13*60 && mins <= (17*60 + 30);
+        return false;
+      }
+      function update() {
+        const open = isOpen(new Date());
+        el.classList.remove("open","closed");
+        el.classList.add(open ? "open" : "closed");
+        const text = el.querySelector(".text");
+        if (text) text.textContent = open ? "Open Now" : "Closed";
+      }
+      update();
+      setInterval(update, 60000);
+    })();
+
+        /* =========================
+       P3Solutions AI Chat Logic
+       - Optional legal qualifiers (SKIP allowed)
+       - Priority scoring A/B/C
+       - Submits to Netlify hidden form "booking"
+       ========================= */
+    (function(){
+      const launch = document.getElementById("p3chatLaunch");
+      const chat = document.getElementById("p3chat");
+      const close = document.getElementById("p3chatClose");
+      const body = document.getElementById("p3chatBody");
+      const actions = document.getElementById("p3chatActions");
+      const input = document.getElementById("p3chatInput");
+      const send = document.getElementById("p3chatSend");
+
+      if (!launch || !chat || !close || !body || !actions || !input || !send) return;
+
+      const state = {
+        step: 0,
+        data: {
+          property_type: "",
+          requester_role: "",
+          authority_confirmed: "",
+          occupied: "",
+          restrictions: "",
+          hazards: "",
+          pre1978: "",
+          permits_hoa: "",
+          documentation_needed: "",
+          location_zip: "",
+          scope: "",
+          surfaces: "",
+          condition: "",
+          timeline: "",
+          budget_range: "",
+          lead_name: "",
+          lead_contact: "",
+          notes: "",
+          priority: "",
+          priority_reason: ""
+        }
+      };
+
+      const steps = [
+        { key:"property_type", q:"Which property type are we quoting? (Commercial / Multi-Unit / Residential / Industrial)" },
+
+        // Legal/compliance qualifiers (optional)
+        { key:"requester_role", q:"For documentation: are you Owner, Property Manager, Tenant, or GC? (Type SKIP to skip)", optional:true },
+        { key:"authority_confirmed", q:"Do you have authorization to approve scope/schedule? (Yes/No/Not sure — SKIP allowed)", optional:true },
+        { key:"occupied", q:"Will the area be occupied during work? (Yes/No — SKIP allowed)", optional:true },
+        { key:"restrictions", q:"Any access restrictions (hours, security, unit windows)? Type NONE or SKIP.", optional:true },
+        { key:"hazards", q:"Any known conditions (water damage, mold, smoke, peeling, unstable surfaces)? Type NONE or SKIP.", optional:true },
+        { key:"pre1978", q:"Built before 1978 (possible lead paint)? (Yes/No/Unknown — SKIP allowed)", optional:true },
+        { key:"permits_hoa", q:"Any HOA/building rules, permits, parking/elevator constraints? Type NONE or SKIP.", optional:true },
+        { key:"documentation_needed", q:"Do you require W-9/COI/vendor onboarding/logs/photos/closeout? Type NONE or SKIP.", optional:true },
+
+        // Core scope intake (you can SKIP, but qualified leads get prioritized)
+        { key:"location_zip", q:"Location (City + ZIP). Example: Columbus 43224 (Type SKIP if unknown)", optional:true },
+        { key:"scope", q:"Scope summary (units/halls/offices/interior/exterior). Type SKIP if unknown.", optional:true },
+        { key:"surfaces", q:"Surfaces (drywall/trim/ceilings/doors/metal). Type SKIP if unknown.", optional:true },
+        { key:"condition", q:"Condition (light wear/heavy damage/peeling/stains/new build). Type SKIP if unknown.", optional:true },
+        { key:"timeline", q:"Timeline (ASAP/1–2 weeks/next month). Type SKIP if unknown.", optional:true },
+        { key:"budget_range", q:"Budget range ($2–5k / $5–15k / $15k+ / not sure). Type SKIP if unknown.", optional:true },
+
+        // Contact (recommended for priority)
+        { key:"lead_name", q:"Name for the request (Type SKIP allowed).", optional:true },
+        { key:"lead_contact", q:"Best contact (phone or email). (Type SKIP allowed, but missing contact = low priority)", optional:true },
+
+        { key:"notes", q:"Any final notes? (Type SKIP to finish)", optional:true }
+      ];
+
+      function addMsg(text, who="ai"){
+        const div = document.createElement("div");
+        div.className = `msg ${who}`;
+        div.textContent = text;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+      }
+      function clearActions(){ actions.innerHTML = ""; }
+      function addChip(label, fn, primary=false){
+        const b = document.createElement("button");
+        b.type="button";
+        b.className="chip"+(primary?" primary":"");
+        b.textContent=label;
+        b.addEventListener("click", fn);
+        actions.appendChild(b);
+      }
+      function normalize(v){ return (v||"").toString().trim(); }
+
+      function openChat(){
+        chat.classList.add("open");
+        if (!body.childElementCount){
+          addMsg("Welcome to Paint a Perfect Picture LLC.", "ai");
+          addMsg("Commercial and multi-unit projects are prioritized: scalable crews, schedule control, minimal disruption, and professional documentation.", "ai");
+          addMsg("Residential projects are welcomed: clean execution, premium finish, and reliable timelines.", "ai");
+          addMsg("We’ll collect details for a pricing range + next steps. You can type SKIP on most questions.", "ai");
+          ask();
+        }
+        setTimeout(()=>input.focus(), 50);
+      }
+      function closeChat(){ chat.classList.remove("open"); }
+
+      function ask(){
+        clearActions();
+        const s = steps[state.step];
+        if (!s) return;
+
+        addMsg(s.q, "ai");
+
+        // speed chips
+        if (s.key === "property_type"){
+          addChip("Commercial", ()=>{ input.value="Commercial"; submitText(); }, true);
+          addChip("Multi-Unit", ()=>{ input.value="Multi-Unit"; submitText(); }, true);
+          addChip("Industrial", ()=>{ input.value="Industrial"; submitText(); });
+          addChip("Residential", ()=>{ input.value="Residential"; submitText(); });
+        }
+        if (s.key === "timeline"){
+          addChip("ASAP", ()=>{ input.value="ASAP"; submitText(); }, true);
+          addChip("1–2 weeks", ()=>{ input.value="1–2 weeks"; submitText(); });
+          addChip("Next month", ()=>{ input.value="Next month"; submitText(); });
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+        if (s.key === "budget_range"){
+          addChip("$2–5k", ()=>{ input.value="$2–5k"; submitText(); });
+          addChip("$5–15k", ()=>{ input.value="$5–15k"; submitText(); }, true);
+          addChip("$15k+", ()=>{ input.value="$15k+"; submitText(); }, true);
+          addChip("Not sure", ()=>{ input.value="Not sure"; submitText(); });
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+        if (s.optional){
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+      }
+
+      function scorePriority(){
+        const pt = (state.data.property_type || "").toLowerCase();
+        const isCommercial = pt.includes("commercial") || pt.includes("multi") || pt.includes("unit") || pt.includes("industrial");
+
+        const hasContact = !!(state.data.lead_contact && state.data.lead_contact.trim().length >= 5);
+        const hasLocation = !!(state.data.location_zip && state.data.location_zip.trim().length >= 4);
+        const hasScope = !!(state.data.scope && state.data.scope.trim().length >= 6);
+        const hasTimeline = !!(state.data.timeline && state.data.timeline.trim().length >= 3);
+
+        let score = 0;
+        let reasons = [];
+
+        if (isCommercial) { score += 3; reasons.push("Commercial/Multi-Unit/Industrial"); }
+        if (hasContact)   { score += 3; reasons.push("Contact provided"); }
+        if (hasLocation)  { score += 2; reasons.push("Location provided"); }
+        if (hasScope)     { score += 2; reasons.push("Scope provided"); }
+        if (hasTimeline)  { score += 1; reasons.push("Timeline provided"); }
+
+        const pre = (state.data.pre1978 || "").toLowerCase();
+        const haz = (state.data.hazards || "").toLowerCase();
+        if (pre === "yes") reasons.push("Pre-1978 risk flag");
+        if (haz && haz !== "none" && haz !== "skip") reasons.push("Hazards disclosed");
+
+        let priority = "C";
+        if (score >= 8) priority = "A";
+        else if (score >= 5) priority = "B";
+
+        state.data.priority = priority;
+        state.data.priority_reason = reasons.join(" | ");
+      }
+
+      async function submitBooking(){
+        const fd = new FormData();
+        fd.append("form-name", "booking");
+        Object.entries(state.data).forEach(([k,v])=>fd.append(k, v || ""));
+        await fetch("/", { method:"POST", body: fd });
+      }
+
+      async function finalize(){
+        scorePriority();
+
+        const pt = state.data.property_type || "";
+        const commercialFirst = /commercial|multi|unit|industrial/i.test(pt);
+
+        addMsg(
+          commercialFirst
+            ? "Received. Commercial/multi-unit scopes are prioritized for schedule control and minimal disruption."
+            : "Received. Residential scopes are welcomed and scheduled based on availability.",
+          "ai"
+        );
+
+        addMsg("Policy: pricing is provided as a range until walkthrough or photo-verified scope. Conditions not disclosed may require change orders.", "ai");
+        addMsg("Savings: projects may qualify for up to 20% based on size/scope. Most residential qualify up to 10%.", "ai");
+        addMsg("Priority status: " + (state.data.priority || "C") + " (A/B are handled first during business hours).", "ai");
+
+        try{
+          await submitBooking();
+          addMsg("Submitted. We’ll contact you during business hours. For the fastest estimate, upload photos in the Quote form.", "ai");
+        } catch(e){
+          addMsg("Submission issue detected. Please submit the Quote form or text us at 614-585-3880 and we’ll confirm manually.", "ai");
+        }
+
+        clearActions();
+        addChip("Upload Photos (Quote Form)", ()=>{ window.location.hash="#quote"; }, true);
+        addChip("Text Us", ()=>{
+          const msg = `Hi Paint a Perfect Picture LLC, I submitted a request on the website.\nProperty: ${state.data.property_type||""}\nLocation: ${state.data.location_zip||""}\nScope: ${state.data.scope||""}\nPriority: ${state.data.priority||""}`;
+          window.location.href = "sms:+16145853880?&body=" + encodeURIComponent(msg);
+        });
+        addChip("Call", ()=>{ window.location.href="tel:+16145853880"; });
+      }
+
+      function submitText(){
+        const s = steps[state.step];
+        if (!s) return;
+
+        const val = normalize(input.value);
+        if (s.optional && /^skip$/i.test(val)){
+          state.data[s.key] = "";
+          addMsg("(skipped)", "user");
+          input.value = "";
+          state.step++;
+          if (state.step >= steps.length) finalize();
+          else ask();
+          return;
+        }
+
+        if (!val){
+          if (s.optional){ input.value="SKIP"; return submitText(); }
+          return;
+        }
+
+        state.data[s.key] = val;
+        addMsg(val, "user");
+        input.value = "";
+
+        state.step++;
+        if (state.step >= steps.length) finalize();
+        else ask();
+      }
+
+      // Events
+      launch.addEventListener("click", openChat);
+      close.addEventListener("click", closeChat);
+      send.addEventListener("click", submitText);
+      input.addEventListener("keydown", (e)=>{
+        if (e.key === "Enter"){ e.preventDefault(); submitText(); }
+      });
+    })();
+  </script>
+</body>
+</html>
