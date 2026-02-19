@@ -1,1023 +1,1040 @@
-<!-- =========================
-PART 1 of 4 — <head> + global styles + header
-Copy/paste PART 1, then PART 2, PART 3, PART 4 in order into ONE index.html
-========================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Paint a Perfect Picture LLC | Columbus, OH | Apartment Turnovers & Painting</title>
-  <meta name="description" content="Columbus apartment turnovers & professional property painting. Fast estimates, clean prep, consistent finish standards. Residential welcomed. Request a quote today." />
+  <title>Paint a Perfect Picture LLC | Columbus, OH</title>
+  <meta name="description" content="Paint a Perfect Picture LLC — Professional residential, multi-unit turnovers, commercial, and industrial painting in Columbus, OH. Fast quotes with photo uploads and structured execution." />
 
   <!-- Basic SEO / Sharing -->
   <meta property="og:title" content="Paint a Perfect Picture LLC" />
-  <meta property="og:description" content="Columbus apartment turnovers & professional painting — fast estimates, clean prep, consistent finish standards." />
+  <meta property="og:description" content="Residential welcomed. Multi-unit turnovers prioritized for speed and consistency. Commercial and industrial support available." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b0f14" />
 
-  <!-- Preload-ish system fonts -->
   <style>
     :root{
       --bg:#0b0f14;
-      --bg2:#070b10;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.08);
-      --stroke:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.55);
+      --text:#eaf2ff;
+      --muted:#a9b7cc;
+      --line:rgba(255,255,255,.10);
+      --accent:#17e0c1;
+      --accent2:#ff5a3c;
       --shadow:0 18px 60px rgba(0,0,0,.55);
       --radius:18px;
-      --radius2:24px;
-
-      --brand1:#13e0b6;
-      --brand2:#ff5a3d;
-      --brand3:#6c7bff;
-
-      --ok:#22c55e;
-      --warn:#f59e0b;
-
-      --max:1080px;
-
-      --focus:0 0 0 3px rgba(19,224,182,.22);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      background:
-        radial-gradient(1100px 700px at 20% 10%, rgba(19,224,182,.14), transparent 60%),
-        radial-gradient(900px 600px at 85% 15%, rgba(108,123,255,.16), transparent 55%),
-        radial-gradient(900px 600px at 70% 95%, rgba(255,90,61,.12), transparent 55%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.45;
       overflow-x:hidden;
+      background: var(--bg);
     }
+    a{color:inherit}
 
-    /* Premium animated background (no images) */
-    .bgfx{
-      position:fixed;
-      inset:-30vh -30vw;
-      z-index:-2;
-      pointer-events:none;
-      filter: blur(30px) saturate(120%);
-      opacity:.9;
-      animation: bgfloat 14s ease-in-out infinite alternate;
-      transform: translate3d(0,0,0);
-    }
-    .bgfx::before,
-    .bgfx::after{
-      content:"";
-      position:absolute;
-      inset:0;
+    /* Premium animated background */
+    .bg-wrap{
+      position:fixed; inset:0; z-index:-2; overflow:hidden;
       background:
-        radial-gradient(closest-side at 18% 28%, rgba(19,224,182,.16), transparent 58%),
-        radial-gradient(closest-side at 78% 22%, rgba(108,123,255,.18), transparent 60%),
-        radial-gradient(closest-side at 70% 78%, rgba(255,90,61,.14), transparent 60%);
-      border-radius: 50%;
-      mix-blend-mode: screen;
-      transform: rotate(0deg);
-      animation: spin 28s linear infinite;
+        radial-gradient(1200px 700px at 10% 10%, rgba(23,224,193,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 25%, rgba(255,90,60,.14), transparent 55%),
+        radial-gradient(900px 600px at 40% 90%, rgba(23,224,193,.10), transparent 60%),
+        linear-gradient(180deg, #070a10 0%, #0b0f14 35%, #070a10 100%);
     }
-    .bgfx::after{
-      opacity:.65;
-      animation-duration: 42s;
-      transform: rotate(25deg) scale(1.05);
+    .blob{
+      position:absolute; width:700px; height:700px; border-radius:50%;
+      filter: blur(70px); opacity:.55; mix-blend-mode: screen;
+      animation: floaty 18s ease-in-out infinite; will-change: transform;
     }
-    @keyframes bgfloat{
-      from{transform:translate3d(-2%, -1%, 0) scale(1)}
-      to{transform:translate3d(2%, 1%, 0) scale(1.02)}
+    .blob.b1{left:-200px; top:-220px; background:rgba(23,224,193,.28); animation-duration: 22s;}
+    .blob.b2{right:-260px; top:-140px; background:rgba(255,90,60,.22); animation-duration: 26s;}
+    .blob.b3{left:18%; bottom:-330px; background:rgba(23,224,193,.18); animation-duration: 24s;}
+    .blob.b4{right:12%; bottom:-380px; background:rgba(120,140,255,.14); animation-duration: 28s;}
+    @keyframes floaty{
+      0%{ transform: translate3d(0,0,0) scale(1); }
+      25%{ transform: translate3d(60px, -40px, 0) scale(1.05); }
+      50%{ transform: translate3d(-40px, 70px, 0) scale(0.98); }
+      75%{ transform: translate3d(30px, 40px, 0) scale(1.04); }
+      100%{ transform: translate3d(0,0,0) scale(1); }
     }
-    @keyframes spin{
-      from{transform:rotate(0deg)}
-      to{transform:rotate(360deg)}
+    .vignette{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.06), transparent 65%),
+        radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
     }
 
-    a{color:inherit; text-decoration:none}
-    button, input, select, textarea{font:inherit}
-    :focus-visible{outline:none; box-shadow: var(--focus); border-color: rgba(19,224,182,.55) !important}
-
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 80px}
-
-    /* Header / top */
+    .wrap{max-width:1100px;margin:0 auto;padding:22px}
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(11,15,20,.78), rgba(11,15,20,.45));
-      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+      margin-top:10px;margin-bottom:18px;flex-wrap:wrap;
     }
-    .topbar .inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:12px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:220px;
-    }
+    .brand{display:flex;align-items:flex-start;gap:14px;min-width:0;}
     .logo{
-      width:36px; height:36px;
-      border-radius:12px;
-      background:
-        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.16), transparent 65%),
-        linear-gradient(135deg, rgba(19,224,182,.85), rgba(108,123,255,.75));
-      box-shadow: 0 10px 28px rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.18);
-      position:relative;
+      width:52px;height:52px;border-radius:14px;object-fit:cover;
+      background:rgba(255,255,255,.06);
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      border:1px solid var(--line);
+    }
+    .brand-text .name{font-size:18px;font-weight:900;letter-spacing:.2px;margin:0}
+    .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .nav-links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
+    .navbtn{
+      padding:8px 12px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      font-size:13px;font-weight:900;text-decoration:none;
+      transition:transform .08s ease, background .2s ease;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .navbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;font-weight:950;font-size:14px;
+      transition:transform .08s ease, background .2s ease;
+      cursor:pointer;color:var(--text);
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .btn.primary{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));color:#001b17;border:none}
+    .btn.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.65));color:#170400;border:none}
+
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px;
       overflow:hidden;
-      flex:0 0 auto;
+      backdrop-filter: blur(10px);
     }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-30%;
-      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,.18), transparent 60%);
-      transform: rotate(20deg);
-      animation: sheen 3.4s ease-in-out infinite;
-    }
-    @keyframes sheen{
-      0%{transform:translateX(-28%) rotate(20deg)}
-      55%{transform:translateX(28%) rotate(20deg)}
-      100%{transform:translateX(28%) rotate(20deg)}
-    }
-
-    .brand h1{
-      margin:0;
-      font-size:15px;
-      line-height:1.1;
-      letter-spacing:.2px;
-    }
-    .brand p{
-      margin:3px 0 0;
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.2px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width:520px;
-    }
-
-    .top-actions{
-      display:flex; align-items:center; gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
     .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
       background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.92);
-      box-shadow: 0 12px 30px rgba(0,0,0,.22);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-    }
-    .pill:hover{transform: translateY(-1px); background:rgba(255,255,255,.08); border-color: rgba(255,255,255,.18)}
-    .pill .ico{width:16px; height:16px; display:inline-block}
-    .pill.secondary{background:rgba(255,255,255,.04)}
-    .pill.brand{border-color: rgba(19,224,182,.35); background:rgba(19,224,182,.10)}
-    .pill.email{border-color: rgba(108,123,255,.35); background:rgba(108,123,255,.10)}
-    .pill.small{padding:8px 10px; font-size:12px}
-
-    .sr-only{
-      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
-    }
-
-    /* Sections */
-    .card{
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.045));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .section{
-      margin-top:18px;
-      padding:18px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:16px;
-      align-items:start;
-    }
-    @media (max-width: 920px){
-      .grid{grid-template-columns:1fr}
-      .brand p{max-width: 62vw}
-    }
-
-    /* Hero */
-    .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.88);
-      font-size:12px;
-      letter-spacing:.2px;
-      margin-bottom:12px;
-    }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), rgba(34,197,94,.95));
-      box-shadow: 0 0 0 4px rgba(34,197,94,.12);
-    }
-
-    .hero h2{
-      margin:0 0 10px;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height:1.08;
-      letter-spacing:-.6px;
-    }
-    .hero p{
-      margin:0 0 16px;
+      border:1px solid var(--line);
       color:var(--muted);
-      font-size:15px;
-      line-height:1.55;
-      max-width: 62ch;
+      font-size:13px;font-weight:950;
     }
-    .bullets{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin:12px 0 16px;
-    }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 12px;
-      border-radius:999px;
-      background:rgba(0,0,0,.18);
-      border:1px solid rgba(255,255,255,.12);
-      font-size:13px;
-      color:rgba(255,255,255,.88);
-    }
-    .badge .check{
-      width:16px; height:16px;
-      border-radius:6px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background:rgba(34,197,94,.14);
-      border:1px solid rgba(34,197,94,.35);
-      color:#d1fae5;
-      font-weight:800;
-      font-size:12px;
-    }
+    .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
+    .hero p{margin:0;color:var(--muted);max-width:78ch;font-size:15px}
+    .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
 
-    .ctaRow{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:10px;
+    .grid{margin-top:18px;display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
     }
-    .cta{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.92);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      min-width: 180px;
-      font-weight:650;
-      box-shadow: 0 14px 34px rgba(0,0,0,.28);
-    }
-    .cta:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); border-color: rgba(255,255,255,.18)}
-    .cta.primary{
-      background: linear-gradient(135deg, rgba(19,224,182,.95), rgba(19,224,182,.55));
-      border-color: rgba(19,224,182,.45);
-      color:#06120f;
-    }
-    .cta.call{
-      background: linear-gradient(135deg, rgba(255,90,61,.92), rgba(255,90,61,.55));
-      border-color: rgba(255,90,61,.45);
-      color:#140604;
-    }
+    .card h2{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    .col-7{grid-column:span 7}
+    .col-5{grid-column:span 5}
+    .col-12{grid-column:span 12}
 
-    /* Right column mini cards */
-    .sideStack{display:flex; flex-direction:column; gap:12px}
-    .mini{
-      padding:14px;
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.055);
-    }
-    .mini h3{margin:0 0 8px; font-size:14px}
-    .mini p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
-
-    .statusLine{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+    /* Open/Closed badge */
+    .biz-status{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
       margin-top:12px;
+      font-weight:950;font-size:13px;
     }
-    .status{
-      display:flex; align-items:center; gap:8px;
-      font-size:13px;
-      color: rgba(255,255,255,.88);
-      white-space:nowrap;
+    .biz-status .dot{
+      width:10px;height:10px;border-radius:50%;
+      box-shadow:0 0 0 4px rgba(255,255,255,.07);
+      background:rgba(255,255,255,.25);
     }
-    .status .pulse{
-      width:10px;height:10px;border-radius:999px;background:rgba(34,197,94,.95);
-      box-shadow: 0 0 0 0 rgba(34,197,94,.35);
-      animation: pulse 1.5s ease-out infinite;
+    .biz-status.open .dot{background:#22c55e}
+    .biz-status.closed .dot{background:#ef4444}
+    .biz-status .sub{color:var(--muted);font-weight:900;margin-left:6px}
+
+    /* Offer */
+    .offer{
+      border:1px solid rgba(23,224,193,.35);
+      background:linear-gradient(135deg, rgba(23,224,193,.10), rgba(255,255,255,.02));
     }
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(34,197,94,.35)}
-      100%{box-shadow:0 0 0 12px rgba(34,197,94,0)}
+    .offer-row{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
+    .codebox{
+      min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
     }
-    .hours{
-      font-size:12px;
-      color:var(--muted2);
-      text-align:right;
-      line-height:1.25;
+    .code{font-size:22px;font-weight:1000;letter-spacing:2px;color:var(--accent);margin-top:6px;user-select:all}
+    .fineprint{font-size:11px;color:rgba(233,242,255,.65);line-height:1.35;margin-top:10px}
+
+    /* Services tabs */
+    .section-title{margin:0 0 8px;font-size:28px;letter-spacing:-.2px}
+    .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
+    .tab{
+      cursor:pointer;padding:10px 14px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);color:var(--text);
+      font-weight:950;transition:transform .08s ease, background .2s ease;user-select:none;
+    }
+    .tab:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
+    .tab.active{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.55));color:#001b17;border:none}
+    .panel{display:none}
+    .panel.active{display:block}
+
+    .panel-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+    .mini{
+      grid-column:span 6;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+    }
+    .mini strong{display:block;margin-bottom:6px}
+    .mini span{color:var(--muted);font-size:13px}
+    details{
+      grid-column:span 12;
+      background:rgba(0,0,0,.15);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 14px;
+    }
+    summary{cursor:pointer;font-weight:1000;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    details p, details ul{margin:10px 0 0;color:var(--muted);font-size:13px}
+    details ul{padding-left:18px}
+    details li{margin:6px 0}
+
+    /* Quote form */
+    form label{display:block;margin:10px 0 6px;font-weight:950}
+    input, select, textarea{
+      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(0,0,0,.25);color:var(--text);outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .row .half{grid-column:span 6}
+    .row .full{grid-column:span 12}
+    .small{font-size:12px;color:var(--muted)}
+    .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
+
+    /* AI Robot Float (ONLY floating element) */
+    .p3chat-launch{
+      position:fixed;
+      left:20px;
+      bottom:calc(20px + env(safe-area-inset-bottom, 0px));
+      width:68px;height:68px;border-radius:20px;border:none;
+      background:linear-gradient(145deg,#0e141c,#131c27);
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;z-index:9999;
+      box-shadow:
+        0 0 0 2px rgba(23,224,193,.25),
+        0 0 25px rgba(23,224,193,.35),
+        0 18px 55px rgba(0,0,0,.70);
+      transition:all .25s ease;
+      animation: aiPulse 3s infinite ease-in-out;
+    }
+    .p3chat-launch:hover{
+      transform:translateY(-4px) scale(1.05);
+      box-shadow:
+        0 0 0 2px rgba(23,224,193,.45),
+        0 0 44px rgba(23,224,193,.55),
+        0 22px 70px rgba(0,0,0,.78);
+    }
+    .p3chat-launch svg{
+      width:36px;height:36px;fill:#17e0c1;
+      filter:drop-shadow(0 0 10px rgba(23,224,193,.65));
+    }
+    @keyframes aiPulse{
+      0%{ box-shadow:0 0 0 2px rgba(23,224,193,.22), 0 0 15px rgba(23,224,193,.22), 0 18px 55px rgba(0,0,0,.70); }
+      50%{ box-shadow:0 0 0 4px rgba(23,224,193,.35), 0 0 38px rgba(23,224,193,.48), 0 18px 55px rgba(0,0,0,.70); }
+      100%{ box-shadow:0 0 0 2px rgba(23,224,193,.22), 0 0 15px rgba(23,224,193,.22), 0 18px 55px rgba(0,0,0,.70); }
     }
 
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
-      margin:14px 0;
+    /* AI Chat panel */
+    .p3chat{
+      position:fixed;
+      left:20px;
+      bottom:calc(96px + env(safe-area-inset-bottom, 0px));
+      width:min(440px, calc(100vw - 40px));
+      max-height:74vh;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(10,14,20,.78);
+      backdrop-filter: blur(14px);
+      box-shadow:0 18px 60px rgba(0,0,0,.62);
+      overflow:hidden;
+      display:none;
+      flex-direction:column;
+      z-index:9999;
+    }
+    .p3chat.open{display:flex}
+    .p3chat-header{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:12px;border-bottom:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(135deg, rgba(23,224,193,.12), rgba(255,90,60,.08));
+    }
+    .p3chat-title strong{font-size:13px;letter-spacing:.2px}
+    .p3chat-title span{font-size:11px;color:rgba(233,242,255,.72)}
+    .p3chat-close{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+    .p3chat-body{padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
+    .msg{
+      max-width:92%;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+      font-size:13px;
+    }
+    .msg.ai{align-self:flex-start;background:rgba(23,224,193,.08);border-color:rgba(23,224,193,.18)}
+    .msg.user{align-self:flex-end;background:rgba(255,90,60,.07);border-color:rgba(255,90,60,.18)}
+    .p3chat-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
+    .chip{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+    .chip.primary{border:none;background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.60));color:#001b17}
+    .p3chat-inputbar{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+    .p3chat-inputbar input{
+      flex:1;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.22);color:var(--text);padding:12px;outline:none;font-weight:900;
+    }
+    .p3chat-send{
+      border-radius:14px;padding:12px 14px;font-weight:1000;border:none;cursor:pointer;
+      background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));color:#04110e;
+    }
+    .p3chat-mini{font-size:11px;color:rgba(233,242,255,.72);padding:0 12px 12px;line-height:1.35}
+
+    @media (max-width:900px){
+      .col-7,.col-5{grid-column:span 12}
+      .mini{grid-column:span 12}
+      .hero h1{font-size:34px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .blob{animation:none}
+      .p3chat-launch{animation:none}
     }
   </style>
 </head>
 
 <body>
-  <div class="bgfx" aria-hidden="true"></div>
+  <div class="bg-wrap" aria-hidden="true">
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <div class="inner">
-      <div class="brand" role="banner" aria-label="Paint a Perfect Picture LLC">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Paint a Perfect Picture LLC</h1>
-          <p>Columbus, Ohio • Apartment Turns • Residential Welcome • Commercial &amp; Industrial Support</p>
+  <div class="wrap">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" src="IMG_1006.png" alt="Paint a Perfect Picture LLC logo" />
+        <div class="brand-text">
+          <p class="name">Paint a Perfect Picture LLC</p>
+          <p class="meta">Columbus, Ohio • Apartment Turns • Residential Welcome • Commercial & Industrial Support</p>
+
+          <nav class="nav-links" aria-label="Header links">
+            <a class="navbtn" href="#services">🧰 Services</a>
+            <a class="navbtn" href="#quote">🧾 Quote</a>
+            <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
+          </nav>
         </div>
       </div>
 
-      <nav class="top-actions" aria-label="Quick actions">
-        <a class="pill" href="#services" aria-label="View services">
-          <span class="ico" aria-hidden="true">🧰</span> Services
-        </a>
-        <a class="pill brand" href="#quote" aria-label="Request a quote">
-          <span class="ico" aria-hidden="true">🧾</span> Quote
-        </a>
-        <a class="pill email" href="mailto:P3solutions@paintaperfectpicture.com" aria-label="Email us">
-          <span class="ico" aria-hidden="true">✉️</span> Email
-        </a>
-      </nav>
+      <div class="top-actions">
+        <a class="btn primary" href="#quote">🧾 Get Fast Quote</a>
+        <a class="btn call" href="tel:+16145853880">📞 614-585-3880</a>
+      </div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <!-- =========================
-PART 2 of 4 — Hero + trust + calls to action
-========================= -->
-
-    <section class="card section hero" id="top">
-      <div class="grid">
-        <!-- LEFT -->
-        <div>
-          <div class="kicker">
-            <span class="dot" aria-hidden="true"></span>
-            Fast Estimates • Clean Prep • Consistent Finish Standards
-          </div>
-
-          <h2>Columbus Apartment Turnovers &amp; Professional Property Painting — Fast, Clean, and Built to Last.</h2>
-
-          <p>
-            We deliver structured, reliable painting services for apartment communities, residential repaints, and
-            property improvements across Columbus and surrounding areas. Clear communication, clean job sites,
-            and a professional finish every time.
-          </p>
-
-          <div class="bullets" aria-label="Trust indicators">
-            <span class="badge"><span class="check" aria-hidden="true">✓</span> Fast Estimates Within 24 Hours</span>
-            <span class="badge"><span class="check" aria-hidden="true">✓</span> On-Time Completion Focus</span>
-            <span class="badge"><span class="check" aria-hidden="true">✓</span> Detailed Prep &amp; Clean Finish</span>
-          </div>
-
-          <div class="ctaRow">
-            <a class="cta primary" href="#quote" aria-label="Get fast quote">
-              <span aria-hidden="true">🧾</span> Get Fast Quote
-            </a>
-
-            <a class="cta call" href="tel:+16145853880" aria-label="Call 614-585-3880">
-              <span aria-hidden="true">📞</span> 614-585-3880
-            </a>
-
-            <a class="cta" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%20%E2%80%94%20I%E2%80%99d%20like%20a%20quote.%20My%20address%20is%20____.%20Service%3A%20____.%20Timeline%3A%20____.%20I%20can%20send%20photos%20too."
-               aria-label="Text us">
-              <span aria-hidden="true">💬</span> Text
-            </a>
-          </div>
-
-          <div class="statusLine" aria-label="Availability and business hours">
-            <div class="status">
-              <span class="pulse" aria-hidden="true"></span>
-              <strong>Accepting Quotes Now</strong>
-            </div>
-            <div class="hours">
-              Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed
-            </div>
-          </div>
-
-          <div class="divider" role="separator" aria-hidden="true"></div>
-
-          <p style="margin:0;color:rgba(255,255,255,.72);font-size:13px;line-height:1.55">
-            Supporting property managers, homeowners, and facilities with efficient workflows and consistent standards.
-            We treat every property like it’s our own — because your reputation matters as much as ours.
-          </p>
-        </div>
-
-        <!-- RIGHT -->
-        <aside class="sideStack" aria-label="Quick info">
-          <div class="mini">
-            <h3>Best Fit Projects</h3>
-            <p>
-              <strong>Apartment Turns</strong> (make-ready, move-outs, unit repaints), <strong>residential interiors/exteriors</strong>,
-              and <strong>property refresh</strong> projects.
-            </p>
-          </div>
-
-          <div class="mini">
-            <h3>What You Can Expect</h3>
-            <p>
-              Clear scope, clean prep, professional finish, and communication you don’t have to chase.
-            </p>
-          </div>
-
-          <div class="mini">
-            <h3>Service Area</h3>
-            <p>
-              Columbus, OH + surrounding areas. If you’re outside the metro, request a quote and we’ll confirm travel.
-            </p>
-          </div>
-
-          <div class="mini">
-            <h3>Insurance / Compliance</h3>
-            <p>
-              Add your exact status here (recommended). Example: “Insured — COI available upon request.”
-            </p>
-          </div>
-        </aside>
-      </div>
-    </section>
-    <!-- =========================
-PART 3 of 4 — Services (tabs), Offer/Coupon, Reviews, FAQ
-========================= -->
-
-    <!-- SERVICES -->
-    <section class="card section" id="services" aria-label="Services">
-      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap">
-        <div>
-          <h2 style="margin:0 0 6px; font-size:20px; letter-spacing:-.2px">Services</h2>
-          <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.5">
-            Built for fast apartment turns, consistent residential finishes, and scalable property work.
-          </p>
-        </div>
-        <a class="pill brand small" href="#quote" aria-label="Jump to quote">🧾 Request Quote</a>
-      </div>
-
-      <div class="divider" role="separator" aria-hidden="true"></div>
-
-      <style>
-        /* Tabs */
-        .tabs{
-          display:flex; gap:10px; flex-wrap:wrap;
-          margin: 0 0 12px;
-        }
-        .tabBtn{
-          border:1px solid rgba(255,255,255,.12);
-          background:rgba(255,255,255,.05);
-          color:rgba(255,255,255,.88);
-          padding:10px 12px;
-          border-radius:999px;
-          cursor:pointer;
-          transition: transform .12s ease, background .12s ease, border-color .12s ease;
-          font-weight:650;
-          font-size:13px;
-          user-select:none;
-        }
-        .tabBtn:hover{transform: translateY(-1px); background:rgba(255,255,255,.08); border-color: rgba(255,255,255,.18)}
-        .tabBtn[aria-selected="true"]{
-          border-color: rgba(19,224,182,.45);
-          background: rgba(19,224,182,.10);
-          color: rgba(255,255,255,.95);
-        }
-
-        .tabPanel{
-          display:none;
-          border:1px solid rgba(255,255,255,.10);
-          background: rgba(0,0,0,.16);
-          border-radius: var(--radius);
-          padding:14px;
-        }
-        .tabPanel.active{display:block}
-        .svcGrid{
-          display:grid; grid-template-columns: 1fr 1fr; gap:12px;
-        }
-        @media (max-width: 820px){
-          .svcGrid{grid-template-columns:1fr}
-        }
-        .svcItem{
-          padding:12px;
-          border-radius:14px;
-          border:1px solid rgba(255,255,255,.10);
-          background: rgba(255,255,255,.05);
-        }
-        .svcItem h3{margin:0 0 6px; font-size:14px}
-        .svcItem p{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
-        .svcMeta{margin-top:10px; color:rgba(255,255,255,.70); font-size:12px}
-        .svcMeta strong{color:rgba(255,255,255,.88)}
-      </style>
-
-      <div class="tabs" role="tablist" aria-label="Service categories">
-        <button class="tabBtn" type="button" role="tab" aria-selected="true" aria-controls="tab-apartments" id="tabbtn-apartments">Apartment Turnovers</button>
-        <button class="tabBtn" type="button" role="tab" aria-selected="false" aria-controls="tab-residential" id="tabbtn-residential">Residential</button>
-        <button class="tabBtn" type="button" role="tab" aria-selected="false" aria-controls="tab-commercial" id="tabbtn-commercial">Commercial &amp; Support</button>
-      </div>
-
-      <div id="tab-apartments" class="tabPanel active" role="tabpanel" aria-labelledby="tabbtn-apartments">
-        <div class="svcGrid">
-          <div class="svcItem">
-            <h3>Make-Ready Repaints (Move-Out / Turn)</h3>
-            <p>Fast, clean unit repaints with consistent standards — ideal for property managers.</p>
-            <div class="svcMeta"><strong>Best for:</strong> 1–30+ units, recurring turns</div>
-          </div>
-          <div class="svcItem">
-            <h3>Drywall Repair &amp; Patch</h3>
-            <p>Holes, dings, water stains, texture blending, and wall prep before paint.</p>
-            <div class="svcMeta"><strong>Focus:</strong> smooth finish + clean edges</div>
-          </div>
-          <div class="svcItem">
-            <h3>Trim, Doors, &amp; Detail Work</h3>
-            <p>Crisp lines on baseboards, door frames, doors, and touch-ups that read “new.”</p>
-            <div class="svcMeta"><strong>Upgrades:</strong> semi-gloss options, durable coatings</div>
-          </div>
-          <div class="svcItem">
-            <h3>Turn Coordination</h3>
-            <p>Clear scope, timeline planning, and communication to keep turns moving.</p>
-            <div class="svcMeta"><strong>Ideal for:</strong> maintenance teams + vendors</div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-residential" class="tabPanel" role="tabpanel" aria-labelledby="tabbtn-residential">
-        <div class="svcGrid">
-          <div class="svcItem">
-            <h3>Interior Painting</h3>
-            <p>Bedrooms, living rooms, kitchens, ceilings, trim — clean prep and professional finish.</p>
-            <div class="svcMeta"><strong>Includes:</strong> protect floors, tape, patch, sand</div>
-          </div>
-          <div class="svcItem">
-            <h3>Exterior Painting</h3>
-            <p>Exterior repaints with prep steps that help paint last (scrape, spot-prime, caulk).</p>
-            <div class="svcMeta"><strong>Weather-aware:</strong> scheduling based on conditions</div>
-          </div>
-          <div class="svcItem">
-            <h3>Drywall Repair</h3>
-            <p>Patch, skim, sand, and paint-ready surfaces — seamless where it matters.</p>
-            <div class="svcMeta"><strong>Goal:</strong> “you can’t tell it was repaired”</div>
-          </div>
-          <div class="svcItem">
-            <h3>Move-In / Move-Out Refresh</h3>
-            <p>Fast refresh projects for homeowners, landlords, and rental turnovers.</p>
-            <div class="svcMeta"><strong>Great for:</strong> tight timelines</div>
-          </div>
-        </div>
-      </div>
-
-      <div id="tab-commercial" class="tabPanel" role="tabpanel" aria-labelledby="tabbtn-commercial">
-        <div class="svcGrid">
-          <div class="svcItem">
-            <h3>Commercial Repaints</h3>
-            <p>Offices, retail, corridors, common areas — clean execution and minimal disruption.</p>
-            <div class="svcMeta"><strong>Scheduling:</strong> evenings/weekends when needed</div>
-          </div>
-          <div class="svcItem">
-            <h3>Property Improvement Support</h3>
-            <p>Painting + prep support for larger scope projects (repairs, refresh, turnaround).</p>
-            <div class="svcMeta"><strong>Works well with:</strong> GC’s + facility teams</div>
-          </div>
-          <div class="svcItem">
-            <h3>Industrial / Facility Support</h3>
-            <p>Available for select scopes — request details and we’ll confirm fit + requirements.</p>
-            <div class="svcMeta"><strong>Note:</strong> scope-dependent (site rules vary)</div>
-          </div>
-          <div class="svcItem">
-            <h3>Fireproofing / Specialty Support</h3>
-            <p>Available as support services where applicable — request a quote for confirmation.</p>
-            <div class="svcMeta"><strong>Reminder:</strong> share specs + deadlines</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- OFFER / COUPON -->
-    <section class="card section" id="offer" aria-label="First-time client offer">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
-        <div>
-          <h2 style="margin:0 0 6px; font-size:20px; letter-spacing:-.2px">First-Time Clients Save Up To 20%</h2>
-          <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.5">
-            Use the code below when you request your quote. Most residential projects qualify up to 10%.
-          </p>
-        </div>
-
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
-          <span class="pill secondary small" aria-label="Coupon code" style="cursor:default">
-            <span aria-hidden="true">🏷️</span> Coupon Code:
-            <strong style="margin-left:6px; letter-spacing:.8px">FIRST20</strong>
-          </span>
-          <button class="pill brand small" type="button" id="copyCoupon" aria-label="Copy coupon code">📋 Copy</button>
-        </div>
-      </div>
-
-      <div class="divider" role="separator" aria-hidden="true"></div>
-
-      <p style="margin:0; color:rgba(255,255,255,.62); font-size:11px; line-height:1.45">
-        *Discount varies by project size and scope; not all projects qualify; cannot be combined with other offers.
-      </p>
-    </section>
-
-    <!-- REVIEWS / TRUST -->
-    <section class="card section" id="reviews" aria-label="Trust and testimonials">
-      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap">
-        <div>
-          <h2 style="margin:0 0 6px; font-size:20px; letter-spacing:-.2px">Trusted &amp; Professional</h2>
-          <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.5">
-            Add your best testimonial(s) here as you collect reviews — even 1 strong review boosts conversions.
-          </p>
-        </div>
-        <a class="pill small" href="#quote" aria-label="Get a quote now">🧾 Get a Quote</a>
-      </div>
-
-      <div class="divider" role="separator" aria-hidden="true"></div>
-
-      <style>
-        .reviewGrid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
-        @media (max-width: 900px){.reviewGrid{grid-template-columns:1fr}}
-        .review{
-          padding:14px;
-          border-radius: var(--radius);
-          border:1px solid rgba(255,255,255,.10);
-          background: rgba(255,255,255,.05);
-        }
-        .review .stars{letter-spacing:2px; font-size:14px}
-        .review p{margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.5}
-        .review .who{margin-top:10px; color:rgba(255,255,255,.72); font-size:12px}
-      </style>
-
-      <div class="reviewGrid">
-        <div class="review">
-          <div class="stars" aria-label="5 star rating">★★★★★</div>
-          <p>“On time, clean prep, and the finish looked brand new. Communication was solid start to finish.”</p>
-          <div class="who">— Property Manager (sample)</div>
-        </div>
-        <div class="review">
-          <div class="stars" aria-label="5 star rating">★★★★★</div>
-          <p>“They handled patch work and repainting fast. Great edges, no mess left behind.”</p>
-          <div class="who">— Homeowner (sample)</div>
-        </div>
-        <div class="review">
-          <div class="stars" aria-label="5 star rating">★★★★★</div>
-          <p>“Professional turnaround for our units. Would hire again for make-ready work.”</p>
-          <div class="who">— Maintenance Lead (sample)</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="card section" id="faq" aria-label="Frequently asked questions">
-      <h2 style="margin:0 0 6px; font-size:20px; letter-spacing:-.2px">FAQ</h2>
-      <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.5">
-        Quick answers clients ask before booking.
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="pill">✅ Fast Quotes • Clean Prep • Consistent Finish</div>
+      <h1>Premium results for apartment turnovers, residential, and commercial spaces.</h1>
+      <p>
+        We prioritize fast, clean apartment turns and property painting with consistent standards.
+        Residential projects are welcomed. Commercial and industrial support available based on scope.
       </p>
 
-      <div class="divider" role="separator" aria-hidden="true"></div>
+      <div id="bizStatus" class="biz-status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="text">Checking hours…</span>
+        <span class="sub">Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed</span>
+      </div>
 
-      <style>
-        details{
-          border:1px solid rgba(255,255,255,.10);
-          background: rgba(0,0,0,.16);
-          border-radius: 14px;
-          padding:12px 12px;
-          margin:10px 0;
-        }
-        summary{
-          cursor:pointer;
-          font-weight:700;
-          color: rgba(255,255,255,.90);
-        }
-        details p{
-          margin:10px 0 0;
-          color: var(--muted);
-          font-size:13px;
-          line-height:1.55;
-        }
-      </style>
-
-      <details>
-        <summary>How fast can you provide an estimate?</summary>
-        <p>Most requests receive a response within 24 hours. The more details/photos you upload, the faster we can quote accurately.</p>
-      </details>
-
-      <details>
-        <summary>Do you prioritize apartment turnovers?</summary>
-        <p>Yes. Apartment turns and property work are a core focus, with systems built for speed and consistent finish standards.</p>
-      </details>
-
-      <details>
-        <summary>Do you take residential jobs?</summary>
-        <p>Absolutely. Residential projects are welcomed — interiors, exteriors, repairs, and refresh work.</p>
-      </details>
-
-      <details>
-        <summary>What paint brands do you use?</summary>
-        <p>We can match your preference (property standards or homeowner choice). We’ll recommend options based on durability and finish goals.</p>
-      </details>
-
-      <details>
-        <summary>Do you offer discounts?</summary>
-        <p>Yes. First-time clients may qualify for project-based discounts. Use code <strong>FIRST20</strong> when requesting a quote.</p>
-      </details>
+      <div class="hero-actions">
+        <a class="btn primary" href="#quote">🧾 Request Quote</a>
+        <a class="btn" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%20want%20a%20quote.%20My%20name%20is%20____.%20Address%20or%20ZIP%20is%20____.%20Project%3A%20____.%20I%20can%20share%20photos%20too.">💬 Text</a>
+        <a class="btn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
+      </div>
     </section>
-    <!-- =========================
-PART 4 of 4 — Quote form + footer + scripts + schema
-========================= -->
 
-    <!-- QUOTE -->
-    <section class="card section" id="quote" aria-label="Request a quote">
-      <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap">
-        <div>
-          <h2 style="margin:0 0 6px; font-size:20px; letter-spacing:-.2px">Request a Fast Quote</h2>
-          <p style="margin:0; color:var(--muted); font-size:13px; line-height:1.5">
-            Fill this out in under a minute. Upload photos if you can — it helps us quote faster and more accurately.
+    <!-- Offer -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12 offer" id="offer">
+        <h2 class="section-title" style="font-size:24px;margin-bottom:6px;">🎉 First-Time Clients Save Up To 20%</h2>
+        <p class="subtle" style="margin-bottom:10px;">Use the code below when you request your quote.</p>
+
+        <div class="offer-row">
+          <div class="codebox" aria-label="Coupon code">
+            <div style="font-weight:900;color:var(--muted);font-size:12px;">COUPON CODE</div>
+            <div class="code">FIRST20</div>
+          </div>
+
+          <div style="flex:1;min-width:240px">
+            <p style="margin:0;color:var(--muted);font-size:14px;">
+              Apartment turns, interior/exterior painting, drywall repair, commercial scopes, and fireproofing support (as required).
+            </p>
+            <div class="fineprint">
+              *First-time clients only. Discount varies by scope/size; most residential up to 10%, larger scopes may qualify up to 20%. Min project. Not combinable.
+            </div>
+
+            <div style="margin-top:12px;">
+              <a class="btn primary" href="#quote">Claim Offer & Request Quote</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- What you get / Serving area -->
+    <div class="grid">
+      <div class="card col-7">
+        <h2>What You Get</h2>
+        <p>
+          Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
+          Apartment turnovers are handled with speed, consistency, and clean closeout.
+        </p>
+      </div>
+      <div class="card col-5">
+        <h2>Serving Area</h2>
+        <p>Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard).</p>
+      </div>
+    </div>
+
+    <!-- Services (Tabs) -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="subtle">
+          Detailed service standards so you know exactly what to expect.
+          Apartment turnovers are a core focus. Residential is welcomed. Commercial/industrial available by scope.
+        </p>
+
+        <div class="tabs" role="tablist" aria-label="Services tabs">
+          <button class="tab active" type="button" data-tab="turnovers" aria-selected="true">Apartment Turnovers</button>
+          <button class="tab" type="button" data-tab="interior" aria-selected="false">Residential Interior</button>
+          <button class="tab" type="button" data-tab="exterior" aria-selected="false">Residential Exterior</button>
+          <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial</button>
+          <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall</button>
+          <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
+        </div>
+
+        <!-- Apartment Turnovers -->
+        <div class="panel active" data-tab-panel="turnovers" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Built for leasing schedules</strong>
+              <span>Fast resets, clean protection, consistent finish standards unit-to-unit.</span>
+            </div>
+            <div class="mini">
+              <strong>Repeatable scope</strong>
+              <span>Walls/ceilings/trim/doors touchups or full repaint as scoped. Punch-list friendly.</span>
+            </div>
+
+            <details open>
+              <summary>Turnover workflow (how we run it)</summary>
+              <ul>
+                <li>Quick scope confirmation (photos or walkthrough) + schedule window.</li>
+                <li>Protect floors, hardware, and fixtures; prep repairs; spot-prime.</li>
+                <li>Fast application with consistent coverage and clean edges.</li>
+                <li>Touch-up pass + cleanup + ready-for-inspection closeout.</li>
+              </ul>
+              <p>Ideal for: unit turns, hallway refresh, common areas, maintenance repaint programs.</p>
+            </details>
+
+            <details>
+              <summary>What we need from you (fastest way)</summary>
+              <ul>
+                <li>Unit count / sqft, access window, preferred paint brand (if any).</li>
+                <li>Any repairs needed (holes, water stains, smoke, etc.).</li>
+                <li>Color specs or “match existing” instructions.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Residential Interior -->
+        <div class="panel" data-tab-panel="interior" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>What we paint</strong>
+              <span>Walls, ceilings, trim, doors, accent walls, full interior repaints.</span>
+            </div>
+            <div class="mini">
+              <strong>Clean execution</strong>
+              <span>Floor protection, patching, sanding, caulk lines, sharp cut-ins, prime where needed.</span>
+            </div>
+
+            <details>
+              <summary>Interior process (step-by-step)</summary>
+              <ul>
+                <li>Protect floors and furniture; mask edges and fixtures.</li>
+                <li>Repair: patch nail holes/cracks; sand smooth; spot-prime repairs.</li>
+                <li>Apply finish coats with consistent coverage and clean edges.</li>
+                <li>Final walkthrough + touchups + cleanup (leave it jobsite-clean).</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Common interior upgrades</summary>
+              <ul>
+                <li>Trim and doors for a “new build” look.</li>
+                <li>Ceiling repaint to brighten rooms.</li>
+                <li>Drywall touchups before paint for clean walls.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Residential Exterior -->
+        <div class="panel" data-tab-panel="exterior" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Durable exterior coatings</strong>
+              <span>Prep-first approach built for Ohio weather—scrape, sand, prime, paint.</span>
+            </div>
+            <div class="mini">
+              <strong>Curb appeal upgrades</strong>
+              <span>Siding, trim, doors, shutters, garages, fences & decks (as scoped).</span>
+            </div>
+
+            <details>
+              <summary>Exterior process (step-by-step)</summary>
+              <ul>
+                <li>Inspect surfaces; identify peeling, rot, chalking, and adhesion risks.</li>
+                <li>Clean/prep; scrape and sand; caulk/seal gaps where appropriate.</li>
+                <li>Prime bare areas and stains; apply weather-appropriate finish coats.</li>
+                <li>Detail work + cleanup + protect landscaping and walkways.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>What customers should know</summary>
+              <ul>
+                <li>Weather affects scheduling—quality requires proper dry/cure windows.</li>
+                <li>Prep determines longevity more than the paint brand alone.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Commercial -->
+        <div class="panel" data-tab-panel="commercial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Professional & organized</strong>
+              <span>Offices, small retail, common areas, and property painting with clean standards.</span>
+            </div>
+            <div class="mini">
+              <strong>Scheduling options</strong>
+              <span>Phased work, off-hours, or weekend options depending on scope and access.</span>
+            </div>
+
+            <details>
+              <summary>Commercial scope examples</summary>
+              <ul>
+                <li>Common areas, hallways, stairwells, offices.</li>
+                <li>Touch-up plans for high-traffic areas.</li>
+                <li>Maintenance repaint programs for property managers.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Jobsite standards</summary>
+              <ul>
+                <li>Clean containment and daily cleanup.</li>
+                <li>Clear communication: scope, schedule, and completion confirmation.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Drywall -->
+        <div class="panel" data-tab-panel="drywall" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Repair & patch</strong>
+              <span>Patching holes, fixing cracks, tape/mud, sanding, texture match (as needed).</span>
+            </div>
+            <div class="mini">
+              <strong>Paint-ready finish</strong>
+              <span>Smooth blend and proper priming to prevent flashing.</span>
+            </div>
+
+            <details>
+              <summary>Drywall process (step-by-step)</summary>
+              <ul>
+                <li>Assess damage and choose patch method (mesh, backing, or replacement section).</li>
+                <li>Apply compound in layers; feather edges; sand smooth.</li>
+                <li>Prime repaired areas; paint to match or repaint surface for uniform finish.</li>
+              </ul>
+            </details>
+
+            <details>
+              <summary>Best results</summary>
+              <ul>
+                <li>Photos help estimate repair scope quickly.</li>
+                <li>Repainting full wall/ceiling is often best for perfect blending.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <!-- Industrial & Fireproofing -->
+        <div class="panel" data-tab-panel="industrial" role="tabpanel">
+          <div class="panel-grid">
+            <div class="mini">
+              <strong>Industrial coatings support</strong>
+              <span>Durable coatings support (as specified) for industrial environments.</span>
+            </div>
+            <div class="mini">
+              <strong>Fireproofing systems</strong>
+              <span>Multiple systems depending on spec—SFRM, intumescent, cementitious, firestopping.</span>
+            </div>
+
+            <details open>
+              <summary>Fireproofing levels (multiple options)</summary>
+              <ul>
+                <li><strong>Level 1 — Firestopping:</strong> Sealants/collars/putty/pillows for penetrations and rated assemblies.</li>
+                <li><strong>Level 2 — SFRM:</strong> Spray-applied fire-resistive material for structural steel/decks where specified.</li>
+                <li><strong>Level 3 — Intumescent:</strong> Thin-film coating that expands under heat (appearance-sensitive areas).</li>
+                <li><strong>Level 4 — Cementitious:</strong> Durable fireproofing systems for industrial/structural protection.</li>
+                <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
+              </ul>
+              <p>Final system selection depends on building requirements/specs and inspection criteria.</p>
+            </details>
+
+            <details>
+              <summary>Industrial coating scope examples</summary>
+              <ul>
+                <li>Surface prep planning (cleaning, abrasion, spot repairs).</li>
+                <li>Primer/topcoat systems for durability and chemical resistance (as specified).</li>
+                <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Quote Form (Netlify Forms) -->
+    <div class="grid" style="margin-top:16px">
+      <section class="card col-12" id="quote">
+        <h2 class="section-title">Request a Fast Quote</h2>
+        <p class="subtle">Upload photos + details. We’ll respond as soon as possible during business hours. (Incomplete submissions accepted.)</p>
+
+        <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+          <input type="hidden" name="form-name" value="quote" />
+          <p style="display:none">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
-        </div>
-        <a class="pill small" href="tel:+16145853880" aria-label="Call now">📞 Call 614-585-3880</a>
-      </div>
 
-      <div class="divider" role="separator" aria-hidden="true"></div>
-
-      <style>
-        form{
-          display:grid;
-          grid-template-columns: 1fr 1fr;
-          gap:12px;
-        }
-        @media (max-width: 860px){
-          form{grid-template-columns:1fr}
-        }
-        .field{
-          display:flex;
-          flex-direction:column;
-          gap:7px;
-        }
-        label{
-          font-size:12px;
-          color: rgba(255,255,255,.75);
-          letter-spacing:.2px;
-        }
-        input, select, textarea{
-          padding:12px 12px;
-          border-radius: 14px;
-          border:1px solid rgba(255,255,255,.12);
-          background: rgba(255,255,255,.05);
-          color: rgba(255,255,255,.92);
-          outline:none;
-        }
-        textarea{min-height: 110px; resize: vertical}
-        .span2{grid-column: 1 / -1}
-        .submitRow{
-          display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;
-        }
-        .noteSmall{
-          font-size:11px;
-          color: rgba(255,255,255,.62);
-          line-height:1.35;
-          max-width: 70ch;
-        }
-        .btn{
-          display:inline-flex; align-items:center; justify-content:center; gap:10px;
-          padding:12px 14px;
-          border-radius: 14px;
-          border:1px solid rgba(255,255,255,.12);
-          background: rgba(255,255,255,.06);
-          color: rgba(255,255,255,.92);
-          cursor:pointer;
-          transition: transform .12s ease, background .12s ease, border-color .12s ease;
-          font-weight:750;
-          min-width: 200px;
-        }
-        .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.09); border-color: rgba(255,255,255,.18)}
-        .btn.primary{
-          background: linear-gradient(135deg, rgba(19,224,182,.95), rgba(19,224,182,.55));
-          border-color: rgba(19,224,182,.45);
-          color:#06120f;
-        }
-      </style>
-
-      <!-- IMPORTANT:
-        This form uses "mailto:" to send details (works without any backend).
-        For best results later, connect to a form backend (Netlify Forms / Formspree / etc.).
-      -->
-      <form id="quoteForm"
-            action="mailto:P3solutions@paintaperfectpicture.com"
-            method="post"
-            enctype="text/plain">
-
-        <div class="field">
-          <label for="name">Full Name</label>
-          <input id="name" name="Name" autocomplete="name" required placeholder="Your name" />
-        </div>
-
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="Phone" inputmode="tel" autocomplete="tel" required placeholder="(614) 585-3880" />
-        </div>
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="Email" type="email" autocomplete="email" required placeholder="you@email.com" />
-        </div>
-
-        <div class="field">
-          <label for="address">Project Address (or neighborhood)</label>
-          <input id="address" name="Project Address" autocomplete="street-address" placeholder="Address or area" />
-        </div>
-
-        <div class="field">
-          <label for="service">Service Type</label>
-          <select id="service" name="Service Type" required>
-            <option value="" selected disabled>Select…</option>
-            <option>Apartment Turn / Make-Ready</option>
-            <option>Residential Interior</option>
-            <option>Residential Exterior</option>
-            <option>Drywall Repair</option>
-            <option>Commercial Repaint</option>
-            <option>Other / Not Sure</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="timeline">Timeline</label>
-          <select id="timeline" name="Timeline" required>
-            <option value="" selected disabled>Select…</option>
-            <option>ASAP (0–7 days)</option>
-            <option>1–2 weeks</option>
-            <option>2–4 weeks</option>
-            <option>1–2 months</option>
-            <option>Just pricing / planning</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="units"># of Units / Rooms (if applicable)</label>
-          <input id="units" name="Units or Rooms" placeholder="Example: 1 unit / 3 bedrooms" />
-        </div>
-
-        <div class="field">
-          <label for="coupon">Coupon Code (optional)</label>
-          <input id="coupon" name="Coupon Code" value="FIRST20" />
-        </div>
-
-        <div class="field span2">
-          <label for="details">Project Details</label>
-          <textarea id="details" name="Project Details" placeholder="Tell us what needs painted, any repairs, color changes, access notes, deadlines, etc."></textarea>
-        </div>
-
-        <div class="field span2">
-          <label for="photos">Upload Photos (recommended)</label>
-          <input id="photos" name="Photos" type="file" accept="image/*" multiple />
-          <div class="noteSmall">
-            Note: email forms can’t always attach files reliably on every device. If files don’t attach, submit the form and then text photos to 614-585-3880.
-          </div>
-        </div>
-
-        <div class="span2 submitRow">
-          <div class="noteSmall">
-            By submitting, you agree we may contact you by call/text/email to provide your estimate.
-            <span style="opacity:.9">*Discount varies by project size and scope; not all projects qualify; cannot be combined.</span>
-          </div>
-          <button class="btn primary" type="submit">🧾 Send Quote Request</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="section" aria-label="Footer">
-      <div class="card" style="padding:16px">
-        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap">
-          <div>
-            <div style="font-weight:800; letter-spacing:.2px">Paint a Perfect Picture LLC</div>
-            <div style="margin-top:6px; color:var(--muted); font-size:13px; line-height:1.5">
-              Columbus, Ohio • Apartment Turnovers • Residential Painting • Commercial Support
+          <div class="row">
+            <div class="half">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name" required />
             </div>
-            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-              <a class="pill small" href="tel:+16145853880" aria-label="Call">📞 614-585-3880</a>
-              <a class="pill small" href="mailto:P3solutions@paintaperfectpicture.com" aria-label="Email">✉️ P3solutions@paintaperfectpicture.com</a>
-              <a class="pill small" href="#top" aria-label="Back to top">⬆️ Top</a>
+
+            <div class="half">
+              <label for="contact">Phone or Email</label>
+              <input id="contact" name="contact" placeholder="Phone number or email address" required />
+            </div>
+
+            <div class="half">
+              <label for="project">Project Type</label>
+              <select id="project" name="project" required>
+                <option value="" disabled selected>Select one</option>
+                <option>Apartment Turnover</option>
+                <option>Interior Painting</option>
+                <option>Exterior Painting</option>
+                <option>Commercial Painting</option>
+                <option>Drywall Repair</option>
+                <option>Industrial Coating</option>
+                <option>Fireproofing / Firestopping</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="half">
+              <label for="coupon">Coupon Code (optional)</label>
+              <input id="coupon" name="coupon" placeholder="e.g., FIRST20" />
+            </div>
+
+            <div class="half">
+              <label for="address">Job Address / ZIP (optional)</label>
+              <input id="address" name="address" placeholder="Street / City / ZIP" />
+            </div>
+
+            <div class="half">
+              <label for="timeline">Preferred Timeline (optional)</label>
+              <input id="timeline" name="timeline" placeholder="e.g., ASAP / This week / Next month" />
+            </div>
+
+            <div class="full">
+              <label for="details">Details</label>
+              <textarea id="details" name="details" placeholder="Rooms/units, surfaces, condition, timeline, access window, etc." required></textarea>
+            </div>
+
+            <div class="full">
+              <label for="photos">Upload Photos (optional)</label>
+              <input id="photos" name="photos" type="file" accept="image/*" multiple />
+              <div class="small">Clear pics = faster & more accurate quote.</div>
+            </div>
+
+            <div class="full" style="margin-top:10px">
+              <button class="btn primary" type="submit" style="width:100%;padding:14px 16px;border-radius:16px;font-size:15px">
+                Submit Quote Request
+              </button>
+
+              <div class="small" style="margin-top:10px">
+                Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
+              </div>
+
+              <div class="fineprint" style="margin-top:8px;">
+                Pricing policy: we provide a <strong>range</strong> prior to walkthrough or photo-verified scope. Exact pricing requires verification.
+                Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%). Coupon eligibility confirmed after scope review.
+              </div>
             </div>
           </div>
-          <div style="text-align:right; color:var(--muted2); font-size:12px; line-height:1.5">
-            <div><strong style="color:rgba(255,255,255,.78)">Hours</strong></div>
-            <div>Mon–Fri 8:00–5:30</div>
-            <div>Sat 1:00–5:30</div>
-            <div>Sun Closed</div>
-          </div>
-        </div>
+        </form>
 
-        <div class="divider" role="separator" aria-hidden="true"></div>
-
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; color:rgba(255,255,255,.55); font-size:12px">
-          <div>© <span id="year"></span> Paint a Perfect Picture LLC. All rights reserved.</div>
-          <div style="opacity:.9">Built for speed • clean standards • consistent results</div>
+        <div class="small" style="margin-top:12px">
+          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
+          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
         </div>
+      </section>
+    </div>
+
+    <div class="footer">
+      © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
+      <a href="tel:+16145853880">614-585-3880</a> •
+      <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a><br>
+      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
+    </div>
+  </div>
+
+  <!-- Hidden Netlify form (AI can submit here for prioritized intake) -->
+  <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-booking" style="display:none">
+    <input type="hidden" name="form-name" value="booking" />
+    <input name="bot-booking" />
+    <input name="property_type" />
+    <input name="requester_role" />
+    <input name="authority_confirmed" />
+    <input name="location_zip" />
+    <input name="scope" />
+    <input name="occupied" />
+    <input name="hazards" />
+    <input name="pre1978" />
+    <input name="timeline" />
+    <input name="budget_range" />
+    <input name="contact" />
+    <input name="priority" />
+    <input name="priority_reason" />
+  </form>
+
+  <!-- AI Robot (ONLY floating item) -->
+  <button class="p3chat-launch" id="p3chatLaunch" aria-label="Open AI assistant">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M11 2h2v2h3a4 4 0 0 1 4 4v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8a4 4 0 0 1 4-4h3V2Zm-3 6a2 2 0 0 0-2 2v5a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V10a2 2 0 0 0-2-2H8Zm1 3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+    </svg>
+  </button>
+
+  <div class="p3chat" id="p3chat" aria-label="P3Solutions AI Chat">
+    <div class="p3chat-header">
+      <div class="p3chat-title">
+        <strong>P3Solutions AI — Quote Intake</strong><br/>
+        <span>Apartment turns + residential welcomed • Commercial/industrial by scope</span>
       </div>
-    </footer>
+      <button class="p3chat-close" id="p3chatClose" type="button">Close</button>
+    </div>
 
-  </main>
+    <div class="p3chat-body" id="p3chatBody"></div>
+    <div class="p3chat-actions" id="p3chatActions"></div>
+
+    <div class="p3chat-inputbar">
+      <input id="p3chatInput" placeholder="Type your answer… (SKIP allowed)" autocomplete="off" />
+      <button class="p3chat-send" id="p3chatSend" type="button">Send</button>
+    </div>
+
+    <div class="p3chat-mini">
+      Range pricing until walkthrough or photo-verified scope. Pre-1978 homes may require additional compliance.
+      Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%).
+    </div>
+  </div>
 
   <script>
-    // Smooth scroll for internal anchors (keeps it premium)
-    document.addEventListener('click', (e) => {
-      const a = e.target.closest('a[href^="#"]');
-      if(!a) return;
-      const id = a.getAttribute('href');
-      if(!id || id === '#') return;
-      const el = document.querySelector(id);
-      if(!el) return;
-      e.preventDefault();
-      el.scrollIntoView({behavior:'smooth', block:'start'});
-      history.replaceState(null, '', id);
-    });
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Tabs
-    const tabButtons = Array.from(document.querySelectorAll('.tabBtn'));
-    const panels = Array.from(document.querySelectorAll('.tabPanel'));
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('aria-controls');
-        tabButtons.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
-        panels.forEach(p => p.classList.toggle('active', p.id === targetId));
+    // SERVICES TABS
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabButtons = document.querySelectorAll("[data-tab]");
+      const tabPanels  = document.querySelectorAll("[data-tab-panel]");
+      if (!tabButtons.length || !tabPanels.length) return;
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.getAttribute("data-tab");
+          tabButtons.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected", "false"); });
+          tabPanels.forEach(p => p.classList.remove("active"));
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          const panel = document.querySelector(`[data-tab-panel="${target}"]`);
+          if (panel) panel.classList.add("active");
+        });
       });
     });
 
-    // Copy coupon
-    const copyBtn = document.getElementById('copyCoupon');
-    if(copyBtn){
-      copyBtn.addEventListener('click', async () => {
-        try{
-          await navigator.clipboard.writeText('FIRST20');
-          copyBtn.textContent = '✅ Copied';
-          setTimeout(()=> copyBtn.textContent = '📋 Copy', 1400);
-        }catch(err){
-          alert('Copy not supported on this device. Coupon code: FIRST20');
+    // OPEN / CLOSED BADGE
+    (function () {
+      const el = document.getElementById("bizStatus");
+      if (!el) return;
+
+      function isOpen(now) {
+        const day = now.getDay();
+        const mins = now.getHours() * 60 + now.getMinutes();
+        if (day >= 1 && day <= 5) return mins >= 8*60 && mins <= (17*60 + 30);
+        if (day === 6) return mins >= 13*60 && mins <= (17*60 + 30);
+        return false;
+      }
+
+      function update() {
+        const open = isOpen(new Date());
+        el.classList.remove("open","closed");
+        el.classList.add(open ? "open" : "closed");
+        const text = el.querySelector(".text");
+        if (text) text.textContent = open ? "Open Now" : "Closed";
+      }
+
+      update();
+      setInterval(update, 60000);
+    })();
+
+    // AI Intake (legal qualification questions + priority)
+    (function(){
+      const launch = document.getElementById("p3chatLaunch");
+      const chat = document.getElementById("p3chat");
+      const close = document.getElementById("p3chatClose");
+      const body = document.getElementById("p3chatBody");
+      const actions = document.getElementById("p3chatActions");
+      const input = document.getElementById("p3chatInput");
+      const send = document.getElementById("p3chatSend");
+      if (!launch || !chat || !close || !body || !actions || !input || !send) return;
+
+      const state = {
+        step: 0,
+        data: {
+          property_type: "",
+          requester_role: "",
+          authority_confirmed: "",
+          location_zip: "",
+          scope: "",
+          occupied: "",
+          hazards: "",
+          pre1978: "",
+          timeline: "",
+          budget_range: "",
+          contact: "",
+          priority: "",
+          priority_reason: ""
         }
-      });
-    }
+      };
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+      const steps = [
+        { key:"property_type", q:"What type of project is this? (Apartment Turnover / Residential / Commercial / Industrial)", optional:false },
+        { key:"requester_role", q:"For legal/authorization purposes: are you the Owner, Property Manager, GC, or Tenant? (SKIP allowed)", optional:true },
+        { key:"authority_confirmed", q:"Do you have approval authority for scope/schedule? (Yes/No/Not sure — SKIP allowed)", optional:true },
+        { key:"location_zip", q:"What city + ZIP is the project located in? (SKIP allowed)", optional:true },
+        { key:"scope", q:"Scope summary (units/rooms/sqft + areas). (SKIP allowed)", optional:true },
+        { key:"occupied", q:"Will the area be occupied during work? (Yes/No — SKIP allowed)", optional:true },
+        { key:"pre1978", q:"Was the home/building built before 1978? (Yes/No/Unknown — SKIP allowed)", optional:true },
+        { key:"hazards", q:"Any known hazards (mold/asbestos/smoke/water damage)? Type NONE/UNKNOWN/SKIP.", optional:true },
+        { key:"timeline", q:"Timeline (ASAP / This week / Next month / Flexible). (SKIP allowed)", optional:true },
+        { key:"budget_range", q:"Budget range (optional): $2–5k, $5–15k, $15k+, Not sure, SKIP", optional:true },
+        { key:"contact", q:"Best contact (phone or email). SKIP allowed (missing contact = lower priority).", optional:true }
+      ];
 
-    // Form helper: if file inputs present, remind user about texting photos if email client fails.
-    const form = document.getElementById('quoteForm');
-    if(form){
-      form.addEventListener('submit', () => {
-        // Pre-fill coupon if empty
-        const c = document.getElementById('coupon');
-        if(c && !c.value.trim()) c.value = 'FIRST20';
-      });
-    }
-  </script>
+      function addMsg(text, who="ai"){
+        const div = document.createElement("div");
+        div.className = `msg ${who}`;
+        div.textContent = text;
+        body.appendChild(div);
+        body.scrollTop = body.scrollHeight;
+      }
+      function clearActions(){ actions.innerHTML = ""; }
+      function addChip(label, fn, primary=false){
+        const b = document.createElement("button");
+        b.type="button";
+        b.className="chip"+(primary ? " primary" : "");
+        b.textContent=label;
+        b.addEventListener("click", fn);
+        actions.appendChild(b);
+      }
+      function norm(v){ return (v||"").toString().trim(); }
 
-  <!-- Local Business Schema (edit fields as you want) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Paint a Perfect Picture LLC",
-    "areaServed":"Columbus, OH",
-    "telephone":"+1-614-585-3880",
-    "email":"P3solutions@paintaperfectpicture.com",
-    "url":"https://paintaperfectpicture.com",
-    "description":"Columbus apartment turnovers & professional property painting. Fast estimates, clean prep, consistent finish standards. Residential welcomed."
-  }
+      function ask(){
+        clearActions();
+        const s = steps[state.step];
+        if (!s) return;
+        addMsg(s.q, "ai");
+
+        if (s.key === "property_type"){
+          addChip("Apartment Turnover", ()=>{ input.value="Apartment Turnover"; submitText(); }, true);
+          addChip("Residential", ()=>{ input.value="Residential"; submitText(); }, true);
+          addChip("Commercial", ()=>{ input.value="Commercial"; submitText(); });
+          addChip("Industrial", ()=>{ input.value="Industrial"; submitText(); });
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+
+        if (s.key === "timeline"){
+          addChip("ASAP", ()=>{ input.value="ASAP"; submitText(); }, true);
+          addChip("This week", ()=>{ input.value="This week"; submitText(); });
+          addChip("Next month", ()=>{ input.value="Next month"; submitText(); });
+          addChip("Flexible", ()=>{ input.value="Flexible"; submitText(); });
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+
+        if (s.key === "budget_range"){
+          addChip("$2–5k", ()=>{ input.value="$2–5k"; submitText(); });
+          addChip("$5–15k", ()=>{ input.value="$5–15k"; submitText(); }, true);
+          addChip("$15k+", ()=>{ input.value="$15k+"; submitText(); });
+          addChip("Not sure", ()=>{ input.value="Not sure"; submitText(); });
+          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+        }
+
+        if (s.optional) addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+      }
+
+      function scorePriority(){
+        const pt = (state.data.property_type || "").toLowerCase();
+        const isTurn = pt.includes("turn");
+        const isComm = pt.includes("commercial") || pt.includes("industrial");
+        const hasContact = !!(state.data.contact && state.data.contact.trim().length >= 5);
+        const hasScope = !!(state.data.scope && state.data.scope.trim().length >= 6);
+
+        let score = 0;
+        let reasons = [];
+
+        if (isTurn) { score += 3; reasons.push("Apartment turnover"); }
+        if (isComm) { score += 2; reasons.push("Commercial/industrial"); }
+        if (hasScope) { score += 2; reasons.push("Scope provided"); }
+        if (hasContact){ score += 3; reasons.push("Contact provided"); }
+
+        let priority = "C";
+        if (score >= 7) priority = "A";
+        else if (score >= 4) priority = "B";
+
+        state.data.priority = priority;
+        state.data.priority_reason = reasons.join(" | ");
+      }
+
+      async function submitBooking(){
+        const fd = new FormData();
+        fd.append("form-name", "booking");
+        Object.entries(state.data).forEach(([k,v])=>fd.append(k, v || ""));
+        await fetch("/", { method:"POST", body: fd });
+      }
+
+      async function finalize(){
+        scorePriority();
+        addMsg("Received. We’ll respond during business hours. Fastest estimate: submit the quote form and upload photos.", "ai");
+        addMsg("Pricing policy: range only until walkthrough or photo-verified scope. Exact pricing requires verification.", "ai");
+
+        const pre = (state.data.pre1978 || "").toLowerCase();
+        if (pre === "yes"){
+          addMsg("Compliance note: pre-1978 properties may require additional lead-safe procedures.", "ai");
+        }
+
+        addMsg(`Priority status: ${state.data.priority}.`, "ai");
+
+        try{
+          await submitBooking();
+          addMsg("Saved. If you want the fastest turnaround, include photos + scope in the quote form.", "ai");
+        } catch(e){
+          addMsg("Submission issue detected. Please submit the quote form or contact us directly.", "ai");
+        }
+
+        clearActions();
+        addChip("Open Quote Form", ()=>{ window.location.hash="#quote"; }, true);
+        addChip("Call", ()=>{ window.location.href="tel:+16145853880"; });
+        addChip("Email", ()=>{ window.location.href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture"; });
+      }
+
+      function submitText(){
+        const s = steps[state.step];
+        if (!s) return;
+        const val = norm(input.value);
+
+        if (s.optional && /^skip$/i.test(val)){
+          state.data[s.key] = "";
+          addMsg("(skipped)", "user");
+          input.value = "";
+          state.step++;
+          if (state.step >= steps.length) finalize();
+          else ask();
+          return;
+        }
+
+        if (!val){
+          if (s.optional){ input.value="SKIP"; return submitText(); }
+          return;
+        }
+
+        state.data[s.key] = val;
+        addMsg(val, "user");
+        input.value = "";
+        state.step++;
+        if (state.step >= steps.length) finalize();
+        else ask();
+      }
+
+      function openChat(){
+        chat.classList.add("open");
+        if (!body.childElementCount){
+          addMsg("Hi — I’m P3Solutions AI. I can take your details in 60 seconds.", "ai");
+          addMsg("Apartment turnovers and residential projects are welcomed. Commercial/industrial supported by scope.", "ai");
+          addMsg("You can type SKIP at any step.", "ai");
+          ask();
+        }
+        setTimeout(()=>input.focus(), 50);
+      }
+      function closeChat(){ chat.classList.remove("open"); }
+
+      launch.addEventListener("click", openChat);
+      close.addEventListener("click", closeChat);
+      send.addEventListener("click", submitText);
+      input.addEventListener("keydown", (e)=>{ if (e.key === "Enter"){ e.preventDefault(); submitText(); }});
+    })();
   </script>
 </body>
 </html>
