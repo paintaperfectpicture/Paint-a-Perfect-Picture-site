@@ -1,16 +1,17 @@
+<!-- ===================== PART 1/2 (DOCTYPE + HEAD + CSS) ===================== -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Paint a Perfect Picture LLC | Columbus, OH</title>
-  <meta name="description" content="Paint a Perfect Picture LLC — Professional residential, multi-unit turnovers, commercial, and industrial painting in Columbus, OH. Fast quotes with photo uploads and structured execution." />
 
-  <!-- Basic SEO / Sharing -->
+  <meta name="description" content="Commercial, multi-unit, and residential painting contractor in Columbus, Ohio. Structured execution. Professional documentation. Fast quote response." />
   <meta property="og:title" content="Paint a Perfect Picture LLC" />
-  <meta property="og:description" content="Residential welcomed. Multi-unit turnovers prioritized for speed and consistency. Commercial and industrial support available." />
+  <meta property="og:description" content="Commercial & multi-unit painting prioritized. Residential welcomed. Columbus, Ohio." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0b0f14" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 
   <style>
     :root{
@@ -20,100 +21,88 @@
       --line:rgba(255,255,255,.10);
       --accent:#17e0c1;
       --accent2:#ff5a3c;
-      --shadow:0 18px 60px rgba(0,0,0,.55);
       --radius:18px;
+      --shadow:0 20px 60px rgba(0,0,0,.55);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg);
       color:var(--text);
-      line-height:1.45;
+      line-height:1.5;
       overflow-x:hidden;
-      background: var(--bg);
     }
-    a{color:inherit}
-
-    /* Premium animated background */
-    .bg-wrap{
-      position:fixed; inset:0; z-index:-2; overflow:hidden;
-      background:
-        radial-gradient(1200px 700px at 10% 10%, rgba(23,224,193,.18), transparent 60%),
-        radial-gradient(900px 600px at 90% 25%, rgba(255,90,60,.14), transparent 55%),
-        radial-gradient(900px 600px at 40% 90%, rgba(23,224,193,.10), transparent 60%),
-        linear-gradient(180deg, #070a10 0%, #0b0f14 35%, #070a10 100%);
-    }
-    .blob{
-      position:absolute; width:700px; height:700px; border-radius:50%;
-      filter: blur(70px); opacity:.55; mix-blend-mode: screen;
-      animation: floaty 18s ease-in-out infinite; will-change: transform;
-    }
-    .blob.b1{left:-200px; top:-220px; background:rgba(23,224,193,.28); animation-duration: 22s;}
-    .blob.b2{right:-260px; top:-140px; background:rgba(255,90,60,.22); animation-duration: 26s;}
-    .blob.b3{left:18%; bottom:-330px; background:rgba(23,224,193,.18); animation-duration: 24s;}
-    .blob.b4{right:12%; bottom:-380px; background:rgba(120,140,255,.14); animation-duration: 28s;}
-    @keyframes floaty{
-      0%{ transform: translate3d(0,0,0) scale(1); }
-      25%{ transform: translate3d(60px, -40px, 0) scale(1.05); }
-      50%{ transform: translate3d(-40px, 70px, 0) scale(0.98); }
-      75%{ transform: translate3d(30px, 40px, 0) scale(1.04); }
-      100%{ transform: translate3d(0,0,0) scale(1); }
-    }
-    .vignette{
-      position:fixed; inset:0; z-index:-1; pointer-events:none;
-      background:
-        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.06), transparent 65%),
-        radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
-    }
+    a{text-decoration:none;color:inherit}
 
     .wrap{max-width:1100px;margin:0 auto;padding:22px}
+
+    /* ===== Header ===== */
     .topbar{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-      margin-top:10px;margin-bottom:18px;flex-wrap:wrap;
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      gap:14px;
+      margin-bottom:18px;
     }
-    .brand{display:flex;align-items:flex-start;gap:14px;min-width:0;}
+    .brand{display:flex;gap:14px;align-items:flex-start;min-width:0;}
     .logo{
-      width:52px;height:52px;border-radius:14px;object-fit:cover;
-      background:rgba(255,255,255,.06);
-      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      width:56px;height:56px;border-radius:14px;object-fit:cover;
       border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      flex:0 0 auto;
     }
-    .brand-text .name{font-size:18px;font-weight:900;letter-spacing:.2px;margin:0}
-    .brand-text .meta{margin:2px 0 0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .brand-text{min-width:0;}
+    .brand-text .name{font-weight:900;font-size:18px;margin:0;letter-spacing:.2px;}
+    .brand-text .meta{
+      font-size:13px;color:var(--muted);margin:4px 0 0;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
 
     .nav-links{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap}
     .navbtn{
       padding:8px 12px;border-radius:12px;border:1px solid var(--line);
       background:rgba(255,255,255,.05);
-      font-size:13px;font-weight:900;text-decoration:none;
+      font-size:13px;font-weight:900;
       transition:transform .08s ease, background .2s ease;
       display:inline-flex;align-items:center;gap:8px;
     }
     .navbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
 
-    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:10px 14px;border-radius:14px;border:1px solid var(--line);
+      padding:10px 14px;border-radius:14px;
+      font-weight:900;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.06);
-      text-decoration:none;font-weight:950;font-size:14px;
-      transition:transform .08s ease, background .2s ease;
-      cursor:pointer;color:var(--text);
+      cursor:pointer;
+      transition:transform .12s ease, background .2s ease;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
       backdrop-filter: blur(10px);
     }
-    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
-    .btn.primary{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.62));color:#001b17;border:none}
-    .btn.call{background:linear-gradient(135deg, rgba(255,90,60,1), rgba(255,90,60,.65));color:#170400;border:none}
+    .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.10)}
+    .btn.primary{
+      background:linear-gradient(135deg,#17e0c1,#0fd6b8);
+      color:#001b17;
+      border:none;
+    }
+    .btn.call{
+      background:linear-gradient(135deg,#ff5a3c,#ff784f);
+      border:none;
+      color:#150300;
+    }
 
+    /* ===== Hero ===== */
     .hero{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
       border:1px solid var(--line);
       border-radius:var(--radius);
+      padding:28px;
       box-shadow:var(--shadow);
-      padding:26px;
-      overflow:hidden;
       backdrop-filter: blur(10px);
     }
     .pill{
@@ -124,85 +113,97 @@
       color:var(--muted);
       font-size:13px;font-weight:950;
     }
-    .hero h1{margin:14px 0 10px;font-size:40px;line-height:1.05;letter-spacing:-.6px}
-    .hero p{margin:0;color:var(--muted);max-width:78ch;font-size:15px}
-    .hero-actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+    .hero h1{font-size:40px;margin:14px 0 10px;line-height:1.1;letter-spacing:-.5px}
+    .hero p{color:var(--muted);max-width:70ch;margin:0}
+    .hero-actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
 
-    .grid{margin-top:18px;display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .biz-status{
+      margin-top:16px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      font-weight:900;
+      background:rgba(255,255,255,.05);
+      flex-wrap:wrap;
+    }
+    .biz-status .dot{width:10px;height:10px;border-radius:50%;background:#ef4444}
+    .biz-status.open .dot{background:#22c55e}
+    .biz-status.closed .dot{background:#ef4444}
+
+    /* ===== Grid ===== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:20px;
+    }
     .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      grid-column:span 12;
+      background:rgba(255,255,255,.05);
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:18px;
-      box-shadow:0 10px 28px rgba(0,0,0,.35);
+      padding:20px;
+      box-shadow:var(--shadow);
       backdrop-filter: blur(10px);
     }
-    .card h2{margin:0 0 8px;font-size:18px}
-    .card p{margin:0;color:var(--muted);font-size:14px}
     .col-7{grid-column:span 7}
     .col-5{grid-column:span 5}
     .col-12{grid-column:span 12}
 
-    /* Open/Closed badge */
-    .biz-status{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:9px 12px;border-radius:999px;
+    .section-title{font-size:26px;margin:0 0 8px}
+    .subtle{color:var(--muted);font-size:14px;margin:0 0 16px}
+
+    @media(max-width:900px){
+      .hero h1{font-size:32px}
+      .col-7,.col-5{grid-column:span 12}
+    }
+
+    /* ===== Services Tabs ===== */
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 14px}
+    .tab{
+      padding:10px 14px;border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.06);
-      margin-top:12px;
-      font-weight:950;font-size:13px;
+      color:var(--text);
+      font-weight:950;
+      cursor:pointer;
+      transition:.2s ease;
+      user-select:none;
     }
-    .biz-status .dot{
-      width:10px;height:10px;border-radius:50%;
-      box-shadow:0 0 0 4px rgba(255,255,255,.07);
-      background:rgba(255,255,255,.25);
+    .tab:hover{transform:translateY(-2px);background:rgba(255,255,255,.10)}
+    .tab.active{
+      background:linear-gradient(135deg,rgba(23,224,193,.95),rgba(23,224,193,.55));
+      color:#001b17;
+      border:none;
     }
-    .biz-status.open .dot{background:#22c55e}
-    .biz-status.closed .dot{background:#ef4444}
-    .biz-status .sub{color:var(--muted);font-weight:900;margin-left:6px}
-
-    /* Offer */
-    .offer{
-      border:1px solid rgba(23,224,193,.35);
-      background:linear-gradient(135deg, rgba(23,224,193,.10), rgba(255,255,255,.02));
-    }
-    .offer-row{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:10px}
-    .codebox{
-      min-width:220px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(0,0,0,.20);
-    }
-    .code{font-size:22px;font-weight:1000;letter-spacing:2px;color:var(--accent);margin-top:6px;user-select:all}
-    .fineprint{font-size:11px;color:rgba(233,242,255,.65);line-height:1.35;margin-top:10px}
-
-    /* Services tabs */
-    .section-title{margin:0 0 8px;font-size:28px;letter-spacing:-.2px}
-    .subtle{color:var(--muted);margin:0 0 14px;font-size:14px}
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 14px}
-    .tab{
-      cursor:pointer;padding:10px 14px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(255,255,255,.06);color:var(--text);
-      font-weight:950;transition:transform .08s ease, background .2s ease;user-select:none;
-    }
-    .tab:hover{transform:translateY(-1px);background:rgba(255,255,255,.10)}
-    .tab.active{background:linear-gradient(135deg, rgba(23,224,193,.95), rgba(23,224,193,.55));color:#001b17;border:none}
     .panel{display:none}
     .panel.active{display:block}
 
-    .panel-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+    .panel-grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+      margin-top:10px;
+    }
     .mini{
       grid-column:span 6;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
       border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
       padding:14px;
     }
     .mini strong{display:block;margin-bottom:6px}
     .mini span{color:var(--muted);font-size:13px}
+
     details{
       grid-column:span 12;
-      background:rgba(0,0,0,.15);
-      border:1px solid var(--line);
       border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
       padding:12px 14px;
     }
     summary{cursor:pointer;font-weight:1000;list-style:none}
@@ -211,20 +212,97 @@
     details ul{padding-left:18px}
     details li{margin:6px 0}
 
-    /* Quote form */
-    form label{display:block;margin:10px 0 6px;font-weight:950}
-    input, select, textarea{
-      width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);
-      background:rgba(0,0,0,.25);color:var(--text);outline:none;
+    /* ===== Offer block ===== */
+    .offer{
+      border:1px solid rgba(23,224,193,.35);
+      background:linear-gradient(135deg, rgba(23,224,193,.10), rgba(255,255,255,.02));
+    }
+    .offer-row{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+      margin-top:10px;
+    }
+    .codebox{
+      min-width:220px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+    }
+    .code{
+      font-size:22px;
+      font-weight:1000;
+      letter-spacing:2px;
+      color:var(--accent);
+      margin-top:6px;
+      user-select:all;
+    }
+    .fineprint{
+      font-size:11px;
+      color:rgba(233,242,255,.70);
+      line-height:1.35;
+      margin-top:10px;
+    }
+
+    /* ===== Quote form ===== */
+    .row{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+    }
+    .half{grid-column:span 6}
+    .full{grid-column:span 12}
+    label{display:block;margin:10px 0 6px;font-weight:950}
+    input,select,textarea{
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      outline:none;
     }
     textarea{min-height:120px;resize:vertical}
-    .row{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-    .row .half{grid-column:span 6}
-    .row .full{grid-column:span 12}
     .small{font-size:12px;color:var(--muted)}
     .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
 
-    /* AI Robot Float (ONLY floating element) */
+    /* ===== Premium Animated Background ===== */
+    .bg-wrap{
+      position:fixed;inset:0;z-index:-2;overflow:hidden;
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(23,224,193,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 25%, rgba(255,90,60,.14), transparent 55%),
+        radial-gradient(900px 600px at 40% 90%, rgba(23,224,193,.10), transparent 60%),
+        linear-gradient(180deg, #070a10 0%, #0b0f14 35%, #070a10 100%);
+    }
+    .blob{
+      position:absolute;width:700px;height:700px;border-radius:50%;
+      filter:blur(70px);opacity:.55;mix-blend-mode:screen;
+      animation:floaty 18s ease-in-out infinite;
+    }
+    .blob.b1{left:-200px;top:-220px;background:rgba(23,224,193,.28);animation-duration:22s}
+    .blob.b2{right:-260px;top:-140px;background:rgba(255,90,60,.22);animation-duration:26s}
+    .blob.b3{left:18%;bottom:-330px;background:rgba(23,224,193,.18);animation-duration:24s}
+    .blob.b4{right:12%;bottom:-380px;background:rgba(120,140,255,.14);animation-duration:28s}
+    @keyframes floaty{
+      0%{transform:translate3d(0,0,0) scale(1)}
+      25%{transform:translate3d(60px,-40px,0) scale(1.05)}
+      50%{transform:translate3d(-40px,70px,0) scale(.98)}
+      75%{transform:translate3d(30px,40px,0) scale(1.04)}
+      100%{transform:translate3d(0,0,0) scale(1)}
+    }
+    .vignette{
+      position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:
+        radial-gradient(1200px 700px at 50% 10%, rgba(255,255,255,.06), transparent 65%),
+        radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
+    }
+
+    /* ===== AI Robot Float (ONLY floating element) ===== */
     .p3chat-launch{
       position:fixed;
       left:20px;
@@ -233,31 +311,25 @@
       background:linear-gradient(145deg,#0e141c,#131c27);
       display:flex;align-items:center;justify-content:center;
       cursor:pointer;z-index:9999;
-      box-shadow:
-        0 0 0 2px rgba(23,224,193,.25),
-        0 0 25px rgba(23,224,193,.35),
-        0 18px 55px rgba(0,0,0,.70);
+      box-shadow:0 0 0 2px rgba(23,224,193,.25),0 0 25px rgba(23,224,193,.35),0 18px 55px rgba(0,0,0,.70);
       transition:all .25s ease;
-      animation: aiPulse 3s infinite ease-in-out;
+      animation:aiPulse 3s infinite ease-in-out;
     }
     .p3chat-launch:hover{
       transform:translateY(-4px) scale(1.05);
-      box-shadow:
-        0 0 0 2px rgba(23,224,193,.45),
-        0 0 44px rgba(23,224,193,.55),
-        0 22px 70px rgba(0,0,0,.78);
+      box-shadow:0 0 0 2px rgba(23,224,193,.45),0 0 44px rgba(23,224,193,.55),0 22px 70px rgba(0,0,0,.78);
     }
     .p3chat-launch svg{
       width:36px;height:36px;fill:#17e0c1;
       filter:drop-shadow(0 0 10px rgba(23,224,193,.65));
     }
     @keyframes aiPulse{
-      0%{ box-shadow:0 0 0 2px rgba(23,224,193,.22), 0 0 15px rgba(23,224,193,.22), 0 18px 55px rgba(0,0,0,.70); }
-      50%{ box-shadow:0 0 0 4px rgba(23,224,193,.35), 0 0 38px rgba(23,224,193,.48), 0 18px 55px rgba(0,0,0,.70); }
-      100%{ box-shadow:0 0 0 2px rgba(23,224,193,.22), 0 0 15px rgba(23,224,193,.22), 0 18px 55px rgba(0,0,0,.70); }
+      0%{box-shadow:0 0 0 2px rgba(23,224,193,.22),0 0 15px rgba(23,224,193,.22),0 18px 55px rgba(0,0,0,.70)}
+      50%{box-shadow:0 0 0 4px rgba(23,224,193,.35),0 0 38px rgba(23,224,193,.48),0 18px 55px rgba(0,0,0,.70)}
+      100%{box-shadow:0 0 0 2px rgba(23,224,193,.22),0 0 15px rgba(23,224,193,.22),0 18px 55px rgba(0,0,0,.70)}
     }
 
-    /* AI Chat panel */
+    /* ===== AI Chat Panel ===== */
     .p3chat{
       position:fixed;
       left:20px;
@@ -267,7 +339,7 @@
       border-radius:20px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(10,14,20,.78);
-      backdrop-filter: blur(14px);
+      backdrop-filter:blur(14px);
       box-shadow:0 18px 60px rgba(0,0,0,.62);
       overflow:hidden;
       display:none;
@@ -280,7 +352,7 @@
       padding:12px;border-bottom:1px solid rgba(255,255,255,.10);
       background:linear-gradient(135deg, rgba(23,224,193,.12), rgba(255,90,60,.08));
     }
-    .p3chat-title strong{font-size:13px;letter-spacing:.2px}
+    .p3chat-title strong{font-size:13px}
     .p3chat-title span{font-size:11px;color:rgba(233,242,255,.72)}
     .p3chat-close{
       border:1px solid rgba(255,255,255,.12);
@@ -317,20 +389,24 @@
     .p3chat-inputbar{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
     .p3chat-inputbar input{
       flex:1;border-radius:14px;border:1px solid rgba(255,255,255,.12);
-      background:rgba(0,0,0,.22);color:var(--text);padding:12px;outline:none;font-weight:900;
+      background:rgba(0,0,0,.22);color:var(--text);
+      padding:12px;outline:none;font-weight:900;
     }
     .p3chat-send{
       border-radius:14px;padding:12px 14px;font-weight:1000;border:none;cursor:pointer;
-      background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));color:#04110e;
+      background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));
+      color:#04110e;
     }
-    .p3chat-mini{font-size:11px;color:rgba(233,242,255,.72);padding:0 12px 12px;line-height:1.35}
+    .p3chat-mini{
+      font-size:11px;color:rgba(233,242,255,.72);
+      padding:0 12px 12px;line-height:1.35;
+    }
 
-    @media (max-width:900px){
-      .col-7,.col-5{grid-column:span 12}
+    @media(max-width:900px){
       .mini{grid-column:span 12}
-      .hero h1{font-size:34px}
+      .half{grid-column:span 12}
     }
-    @media (prefers-reduced-motion: reduce){
+    @media(prefers-reduced-motion:reduce){
       .blob{animation:none}
       .p3chat-launch{animation:none}
     }
@@ -338,8 +414,12 @@
 </head>
 
 <body>
+  <!-- Animated background -->
   <div class="bg-wrap" aria-hidden="true">
-    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
   </div>
   <div class="vignette" aria-hidden="true"></div>
 
@@ -355,6 +435,7 @@
 
           <nav class="nav-links" aria-label="Header links">
             <a class="navbtn" href="#services">🧰 Services</a>
+            <a class="navbtn" href="#offer">🎉 Offer</a>
             <a class="navbtn" href="#quote">🧾 Quote</a>
             <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
           </nav>
@@ -379,7 +460,9 @@
       <div id="bizStatus" class="biz-status" aria-live="polite">
         <span class="dot" aria-hidden="true"></span>
         <span class="text">Checking hours…</span>
-        <span class="sub">Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed</span>
+        <span class="sub" style="color:var(--muted);font-weight:900;margin-left:6px;">
+          Mon–Fri 8:00–5:30 • Sat 1:00–5:30 • Sun Closed
+        </span>
       </div>
 
       <div class="hero-actions">
@@ -406,7 +489,8 @@
               Apartment turns, interior/exterior painting, drywall repair, commercial scopes, and fireproofing support (as required).
             </p>
             <div class="fineprint">
-              *First-time clients only. Discount varies by scope/size; most residential up to 10%, larger scopes may qualify up to 20%. Min project. Not combinable.
+              *First-time clients only. Discount varies by scope/size; most residential up to 10%, larger scopes may qualify up to 20%.
+              Minimum project may apply. Not combinable.
             </div>
 
             <div style="margin-top:12px;">
@@ -420,15 +504,18 @@
     <!-- What you get / Serving area -->
     <div class="grid">
       <div class="card col-7">
-        <h2>What You Get</h2>
-        <p>
+        <h2 style="margin:0 0 8px;font-size:18px;">What You Get</h2>
+        <p style="margin:0;color:var(--muted);font-size:14px;">
           Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
           Apartment turnovers are handled with speed, consistency, and clean closeout.
         </p>
       </div>
+
       <div class="card col-5">
-        <h2>Serving Area</h2>
-        <p>Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard).</p>
+        <h2 style="margin:0 0 8px;font-size:18px;">Serving Area</h2>
+        <p style="margin:0;color:var(--muted);font-size:14px;">
+          Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard).
+        </p>
       </div>
     </div>
 
@@ -645,14 +732,20 @@
             </details>
           </div>
         </div>
+
       </section>
     </div>
+
+<!-- ===================== PART 2/2 (QUOTE + FOOTER + AI + SCRIPTS + CLOSE) ===================== -->
 
     <!-- Quote Form (Netlify Forms) -->
     <div class="grid" style="margin-top:16px">
       <section class="card col-12" id="quote">
         <h2 class="section-title">Request a Fast Quote</h2>
-        <p class="subtle">Upload photos + details. We’ll respond as soon as possible during business hours. (Incomplete submissions accepted.)</p>
+        <p class="subtle">
+          Upload photos + details. We’ll respond as soon as possible during business hours.
+          (Incomplete submissions accepted — qualified leads prioritized.)
+        </p>
 
         <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
           <input type="hidden" name="form-name" value="quote" />
@@ -718,7 +811,7 @@
               </button>
 
               <div class="small" style="margin-top:10px">
-                Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
+                Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
               </div>
 
               <div class="fineprint" style="margin-top:8px;">
@@ -730,19 +823,23 @@
         </form>
 
         <div class="small" style="margin-top:12px">
-          Prefer texting? <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a> •
-          Email: <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+          Prefer texting?
+          <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a>
+          • Email:
+          <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
         </div>
       </section>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
       © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
       <a href="tel:+16145853880">614-585-3880</a> •
       <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a><br>
-      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00 PM–5:30 PM • Closed Sun
+      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
     </div>
-  </div>
+
+  </div><!-- /.wrap -->
 
   <!-- Hidden Netlify form (AI can submit here for prioritized intake) -->
   <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-booking" style="display:none">
@@ -770,6 +867,7 @@
     </svg>
   </button>
 
+  <!-- AI Chat panel -->
   <div class="p3chat" id="p3chat" aria-label="P3Solutions AI Chat">
     <div class="p3chat-header">
       <div class="p3chat-title">
@@ -794,9 +892,12 @@
   </div>
 
   <script>
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // =========================
     // SERVICES TABS
+    // =========================
     document.addEventListener("DOMContentLoaded", () => {
       const tabButtons = document.querySelectorAll("[data-tab]");
       const tabPanels  = document.querySelectorAll("[data-tab-panel]");
@@ -805,33 +906,48 @@
       tabButtons.forEach(btn => {
         btn.addEventListener("click", () => {
           const target = btn.getAttribute("data-tab");
-          tabButtons.forEach(b => { b.classList.remove("active"); b.setAttribute("aria-selected", "false"); });
+
+          tabButtons.forEach(b => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+
           tabPanels.forEach(p => p.classList.remove("active"));
+
           btn.classList.add("active");
           btn.setAttribute("aria-selected", "true");
+
           const panel = document.querySelector(`[data-tab-panel="${target}"]`);
           if (panel) panel.classList.add("active");
         });
       });
     });
 
+    // =========================
     // OPEN / CLOSED BADGE
+    // =========================
     (function () {
       const el = document.getElementById("bizStatus");
       if (!el) return;
 
       function isOpen(now) {
-        const day = now.getDay();
+        const day = now.getDay(); // 0 Sun ... 6 Sat
         const mins = now.getHours() * 60 + now.getMinutes();
-        if (day >= 1 && day <= 5) return mins >= 8*60 && mins <= (17*60 + 30);
-        if (day === 6) return mins >= 13*60 && mins <= (17*60 + 30);
-        return false;
+
+        // Mon–Fri 8:00–17:30
+        if (day >= 1 && day <= 5) return mins >= 480 && mins <= 1050;
+
+        // Sat 13:00–17:30
+        if (day === 6) return mins >= 780 && mins <= 1050;
+
+        return false; // Sunday closed
       }
 
       function update() {
         const open = isOpen(new Date());
         el.classList.remove("open","closed");
         el.classList.add(open ? "open" : "closed");
+
         const text = el.querySelector(".text");
         if (text) text.textContent = open ? "Open Now" : "Closed";
       }
@@ -840,7 +956,9 @@
       setInterval(update, 60000);
     })();
 
-    // AI Intake (legal qualification questions + priority)
+    // =========================
+    // P3Solutions AI Intake
+    // =========================
     (function(){
       const launch = document.getElementById("p3chatLaunch");
       const chat = document.getElementById("p3chat");
@@ -849,6 +967,8 @@
       const actions = document.getElementById("p3chatActions");
       const input = document.getElementById("p3chatInput");
       const send = document.getElementById("p3chatSend");
+
+      // If any required nodes are missing, exit safely
       if (!launch || !chat || !close || !body || !actions || !input || !send) return;
 
       const state = {
@@ -871,41 +991,44 @@
       };
 
       const steps = [
-        { key:"property_type", q:"What type of project is this? (Apartment Turnover / Residential / Commercial / Industrial)", optional:false },
-        { key:"requester_role", q:"For legal/authorization purposes: are you the Owner, Property Manager, GC, or Tenant? (SKIP allowed)", optional:true },
-        { key:"authority_confirmed", q:"Do you have approval authority for scope/schedule? (Yes/No/Not sure — SKIP allowed)", optional:true },
-        { key:"location_zip", q:"What city + ZIP is the project located in? (SKIP allowed)", optional:true },
-        { key:"scope", q:"Scope summary (units/rooms/sqft + areas). (SKIP allowed)", optional:true },
-        { key:"occupied", q:"Will the area be occupied during work? (Yes/No — SKIP allowed)", optional:true },
-        { key:"pre1978", q:"Was the home/building built before 1978? (Yes/No/Unknown — SKIP allowed)", optional:true },
-        { key:"hazards", q:"Any known hazards (mold/asbestos/smoke/water damage)? Type NONE/UNKNOWN/SKIP.", optional:true },
-        { key:"timeline", q:"Timeline (ASAP / This week / Next month / Flexible). (SKIP allowed)", optional:true },
-        { key:"budget_range", q:"Budget range (optional): $2–5k, $5–15k, $15k+, Not sure, SKIP", optional:true },
-        { key:"contact", q:"Best contact (phone or email). SKIP allowed (missing contact = lower priority).", optional:true }
+        { key:"property_type", q:"Project type? (Apartment Turnover / Residential / Commercial / Industrial)", optional:false },
+        { key:"requester_role", q:"For legal purposes: Owner, Property Manager, GC, or Tenant? (type SKIP to skip)", optional:true },
+        { key:"authority_confirmed", q:"Do you have approval authority? (Yes/No/Not sure — type SKIP to skip)", optional:true },
+        { key:"location_zip", q:"City + ZIP? (type SKIP to skip)", optional:true },
+        { key:"scope", q:"Scope summary (units/rooms/sqft + areas). (type SKIP to skip)", optional:true },
+        { key:"occupied", q:"Occupied during work? (Yes/No — type SKIP to skip)", optional:true },
+        { key:"pre1978", q:"Built before 1978? (Yes/No/Unknown — type SKIP to skip)", optional:true },
+        { key:"hazards", q:"Any hazards? (Mold/Smoke/Water/None — type SKIP to skip)", optional:true },
+        { key:"timeline", q:"Timeline? (ASAP/This week/Next month/Flexible — type SKIP to skip)", optional:true },
+        { key:"budget_range", q:"Budget range? ($2–5k / $5–15k / $15k+ / Not sure — type SKIP to skip)", optional:true },
+        { key:"contact", q:"Best contact (phone/email). (type SKIP to skip — missing contact = lower priority)", optional:true }
       ];
 
       function addMsg(text, who="ai"){
         const div = document.createElement("div");
-        div.className = `msg ${who}`;
+        div.className = "msg " + who;
         div.textContent = text;
         body.appendChild(div);
         body.scrollTop = body.scrollHeight;
       }
-      function clearActions(){ actions.innerHTML = ""; }
+
       function addChip(label, fn, primary=false){
         const b = document.createElement("button");
-        b.type="button";
-        b.className="chip"+(primary ? " primary" : "");
-        b.textContent=label;
+        b.type = "button";
+        b.className = "chip" + (primary ? " primary" : "");
+        b.textContent = label;
         b.addEventListener("click", fn);
         actions.appendChild(b);
       }
+
+      function clearActions(){ actions.innerHTML = ""; }
       function norm(v){ return (v||"").toString().trim(); }
 
       function ask(){
+        if (state.step >= steps.length) return finalize();
+
         clearActions();
         const s = steps[state.step];
-        if (!s) return;
         addMsg(s.q, "ai");
 
         if (s.key === "property_type"){
@@ -936,52 +1059,47 @@
       }
 
       function scorePriority(){
-        const pt = (state.data.property_type || "").toLowerCase();
-        const isTurn = pt.includes("turn");
-        const isComm = pt.includes("commercial") || pt.includes("industrial");
+        const pt = (state.data.property_type||"").toLowerCase();
         const hasContact = !!(state.data.contact && state.data.contact.trim().length >= 5);
         const hasScope = !!(state.data.scope && state.data.scope.trim().length >= 6);
 
         let score = 0;
-        let reasons = [];
+        const reasons = [];
 
-        if (isTurn) { score += 3; reasons.push("Apartment turnover"); }
-        if (isComm) { score += 2; reasons.push("Commercial/industrial"); }
+        if (pt.includes("turn")) { score += 3; reasons.push("Apartment turnover"); }
+        if (pt.includes("commercial") || pt.includes("industrial")) { score += 2; reasons.push("Commercial/industrial"); }
         if (hasScope) { score += 2; reasons.push("Scope provided"); }
-        if (hasContact){ score += 3; reasons.push("Contact provided"); }
+        if (hasContact) { score += 3; reasons.push("Contact provided"); }
 
-        let priority = "C";
-        if (score >= 7) priority = "A";
-        else if (score >= 4) priority = "B";
-
-        state.data.priority = priority;
-        state.data.priority_reason = reasons.join(" | ");
+        state.data.priority = score >= 7 ? "A" : score >= 4 ? "B" : "C";
+        state.data.priority_reason = reasons.join(" | ") || "Auto scored";
       }
 
       async function submitBooking(){
         const fd = new FormData();
-        fd.append("form-name", "booking");
+        fd.append("form-name","booking");
         Object.entries(state.data).forEach(([k,v])=>fd.append(k, v || ""));
         await fetch("/", { method:"POST", body: fd });
       }
 
       async function finalize(){
         scorePriority();
-        addMsg("Received. We’ll respond during business hours. Fastest estimate: submit the quote form and upload photos.", "ai");
-        addMsg("Pricing policy: range only until walkthrough or photo-verified scope. Exact pricing requires verification.", "ai");
+
+        addMsg("Thank you. We’ll respond during business hours.", "ai");
+        addMsg("Pricing is range-only until walkthrough or photo-verified scope.", "ai");
 
         const pre = (state.data.pre1978 || "").toLowerCase();
         if (pre === "yes"){
           addMsg("Compliance note: pre-1978 properties may require additional lead-safe procedures.", "ai");
         }
 
-        addMsg(`Priority status: ${state.data.priority}.`, "ai");
+        addMsg("Priority level: " + state.data.priority, "ai");
 
         try{
           await submitBooking();
-          addMsg("Saved. If you want the fastest turnaround, include photos + scope in the quote form.", "ai");
-        } catch(e){
-          addMsg("Submission issue detected. Please submit the quote form or contact us directly.", "ai");
+          addMsg("Submission saved.", "ai");
+        } catch (e){
+          addMsg("Submission error — please use the quote form.", "ai");
         }
 
         clearActions();
@@ -991,38 +1109,33 @@
       }
 
       function submitText(){
+        if (state.step >= steps.length) return;
+
         const s = steps[state.step];
-        if (!s) return;
         const val = norm(input.value);
+
+        if (!val && !s.optional) return;
 
         if (s.optional && /^skip$/i.test(val)){
           state.data[s.key] = "";
           addMsg("(skipped)", "user");
           input.value = "";
           state.step++;
-          if (state.step >= steps.length) finalize();
-          else ask();
-          return;
+          return ask();
         }
 
-        if (!val){
-          if (s.optional){ input.value="SKIP"; return submitText(); }
-          return;
-        }
-
-        state.data[s.key] = val;
-        addMsg(val, "user");
+        state.data[s.key] = val || "";
+        addMsg(val || "(skipped)", "user");
         input.value = "";
         state.step++;
-        if (state.step >= steps.length) finalize();
-        else ask();
+        ask();
       }
 
       function openChat(){
         chat.classList.add("open");
         if (!body.childElementCount){
-          addMsg("Hi — I’m P3Solutions AI. I can take your details in 60 seconds.", "ai");
-          addMsg("Apartment turnovers and residential projects are welcomed. Commercial/industrial supported by scope.", "ai");
+          addMsg("Hi — I’m P3Solutions AI. I’ll collect your details quickly.", "ai");
+          addMsg("Apartment turnovers prioritized. Residential welcomed.", "ai");
           addMsg("You can type SKIP at any step.", "ai");
           ask();
         }
@@ -1033,8 +1146,11 @@
       launch.addEventListener("click", openChat);
       close.addEventListener("click", closeChat);
       send.addEventListener("click", submitText);
-      input.addEventListener("keydown", (e)=>{ if (e.key === "Enter"){ e.preventDefault(); submitText(); }});
+      input.addEventListener("keydown", (e)=>{
+        if(e.key==="Enter"){ e.preventDefault(); submitText(); }
+      });
     })();
   </script>
+
 </body>
 </html>
