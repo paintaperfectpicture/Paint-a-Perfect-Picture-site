@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="format-detection" content="telephone=no" />
 
   <title>Paint a Perfect Picture LLC | Apartment Turnovers & Painting | Columbus, OH</title>
@@ -23,6 +23,11 @@
   <meta name="theme-color" content="#0b0f14" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- (Optional) Favicons -->
+  <!-- <link rel="icon" href="/favicon.ico"> -->
+  <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
 
   <!-- LocalBusiness Schema -->
   <script type="application/ld+json">
@@ -51,6 +56,7 @@
       --accent2:#ff5a3c;
       --good:#22c55e;
       --bad:#ef4444;
+      --warn:#f59e0b;
       --radius:18px;
       --shadow:0 20px 60px rgba(0,0,0,.55);
       --shadow2:0 10px 30px rgba(0,0,0,.45);
@@ -59,10 +65,21 @@
       --max:1140px;
       --focus: 0 0 0 4px rgba(23,224,193,.16);
       --focus2: 0 0 0 4px rgba(255,90,60,.16);
+
+      /* VisualViewport keyboard lift (set by JS) */
+      --vv-offset: 0px;
+
+      /* Anchor offset for fixed UI */
+      --anchor-offset: 18px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+    }
+
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
@@ -107,6 +124,7 @@
       position:absolute;width:720px;height:720px;border-radius:50%;
       filter:blur(70px);opacity:.55;mix-blend-mode:screen;
       animation:floaty 18s ease-in-out infinite;
+      transform: translateZ(0);
     }
     .blob.b1{left:-220px;top:-240px;background:rgba(23,224,193,.28);animation-duration:22s}
     .blob.b2{right:-280px;top:-160px;background:rgba(255,90,60,.22);animation-duration:26s}
@@ -126,7 +144,9 @@
         radial-gradient(1200px 900px at 50% 80%, rgba(0,0,0,.45), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
     }
-    @media(prefers-reduced-motion:reduce){ .blob{animation:none} }
+    @media(prefers-reduced-motion:reduce){
+      .blob{animation:none}
+    }
 
     /* ===== Header / Topbar ===== */
     .topbar{
@@ -226,6 +246,7 @@
       backdrop-filter: blur(10px);
       box-shadow:0 10px 24px rgba(0,0,0,.18);
       text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
     }
     .btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.10);text-decoration:none}
     .btn:active{transform:translateY(0)}
@@ -244,6 +265,11 @@
     }
     .btn.call:focus-visible{box-shadow:var(--focus2)}
     .btn.ghost{background:rgba(255,255,255,.05)}
+
+    /* Anchor spacing so headers don’t hide behind fixed UI */
+    section[id], .card[id], header[id]{
+      scroll-margin-top: calc(var(--anchor-offset) + 14px);
+    }
 
     /* ===== Hero ===== */
     .hero{
@@ -366,10 +392,11 @@
     }
     .col-7{grid-column:span 7}
     .col-5{grid-column:span 5}
+    .col-4{grid-column:span 4}
     .col-12{grid-column:span 12}
     .section-title{font-size:26px;margin:0 0 8px}
     .subtle{color:var(--muted);font-size:14px;margin:0 0 16px}
-    @media(max-width:900px){ .col-7,.col-5{grid-column:span 12} }
+    @media(max-width:900px){ .col-7,.col-5,.col-4{grid-column:span 12} }
 
     /* ===== Offer ===== */
     .offer{
@@ -388,7 +415,7 @@
       min-width:220px;
       padding:12px 14px;
       border-radius:14px;
-      border:1px solid var(--line); /* FIXED */
+      border:1px solid var(--line);
       background:rgba(0,0,0,.20);
     }
     .code{
@@ -418,8 +445,14 @@
     .copybtn:hover{background:rgba(255,255,255,.10)}
     .copybtn:focus-visible{box-shadow:var(--focus)}
 
-    /* ===== Services Tabs ===== */
-    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 14px}
+    /* ===== Services Tabs (mobile + a11y) ===== */
+    .tabs{
+      display:flex;
+      gap:10px;
+      margin:12px 0 14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
     .tab{
       padding:10px 14px;
       border-radius:14px;
@@ -430,6 +463,7 @@
       cursor:pointer;
       transition:.2s ease;
       user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
     .tab:hover{transform:translateY(-2px);background:rgba(255,255,255,.10)}
     .tab.active{
@@ -437,6 +471,19 @@
       color:#001b17;
       border:none;
     }
+    @media(max-width:760px){
+      .tabs{
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        padding:0 0 8px 0;
+        scroll-snap-type:x mandatory;
+        overscroll-behavior-x:contain;
+      }
+      .tabs::-webkit-scrollbar{height:0}
+      .tab{flex:0 0 auto;white-space:nowrap;scroll-snap-align:start}
+    }
+
     .panel{display:none}
     .panel.active{display:block}
 
@@ -446,11 +493,6 @@
       gap:12px;
       margin-top:10px;
     }
-    .mini{
-      grid-column:span 6;
-      border-radius:16px;
-      border:1px solid var(--
-
     .mini{
       grid-column:span 6;
       border-radius:16px;
@@ -490,9 +532,27 @@
     }
     .proof .k{font-weight:1000;margin:0 0 6px}
     .proof .v{margin:0;color:var(--muted);font-size:13px}
+
+    /* ===== Testimonials ===== */
+    .quote-grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .tcard{
+      grid-column:span 4;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      padding:14px;
+    }
+    .tcard p{margin:0;color:var(--muted);font-size:13px}
+    .tcard .by{margin-top:10px;color:rgba(233,242,255,.78);font-size:12px;font-weight:1000}
     @media(max-width:900px){
       .mini{grid-column:span 12}
       .proof{grid-column:span 12}
+      .tcard{grid-column:span 12}
     }
 
     /* ===== Quote form ===== */
@@ -521,6 +581,9 @@
     textarea{min-height:120px;resize:vertical}
     .small{font-size:12px;color:var(--muted)}
     .footer{margin:26px 0 10px;color:var(--muted);font-size:12px;text-align:center}
+    @media(max-width:760px){
+      .half{grid-column:span 12}
+    }
 
     /* ===== Sticky Mobile CTA ===== */
     .sticky-cta{
@@ -532,6 +595,7 @@
       border-top:1px solid rgba(255,255,255,.10);
       display:none;
       z-index:9990;
+      transform: translateY(calc(var(--vv-offset) * -1));
     }
     .sticky-cta .row2{
       max-width:var(--max);
@@ -543,29 +607,34 @@
     @media(max-width:760px){
       .sticky-cta{display:block}
       body{padding-bottom:92px}
+      :root{--anchor-offset: 92px}
     }
 
-    /* ===== AI Robot Float (RIGHT bottom) ===== */
+    /* ===== AI Floating Bubble (robot icon) ===== */
     .p3chat-launch{
       position:fixed;
-      right:20px;
-      left:auto;
-      bottom:calc(20px + env(safe-area-inset-bottom, 0px));
-      width:68px;height:68px;border-radius:20px;border:none;
+      right:16px;
+      bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+      width:64px;height:64px;border-radius:999px;border:none;
       background:linear-gradient(145deg,#0e141c,#131c27);
       display:flex;align-items:center;justify-content:center;
-      cursor:pointer;z-index:9999;
+      cursor:pointer;
+      z-index:10050;
       box-shadow:0 0 0 2px rgba(23,224,193,.25),0 0 25px rgba(23,224,193,.35),0 18px 55px rgba(0,0,0,.70);
-      transition:all .25s ease;
+      transition:transform .2s ease, box-shadow .25s ease;
       animation:aiPulse 3s infinite ease-in-out;
+      transform: translateY(calc(var(--vv-offset) * -1));
+      -webkit-tap-highlight-color: transparent;
     }
     .p3chat-launch:hover{
-      transform:translateY(-4px) scale(1.05);
+      transform:translateY(calc(var(--vv-offset) * -1 - 4px)) scale(1.05);
       box-shadow:0 0 0 2px rgba(23,224,193,.45),0 0 44px rgba(23,224,193,.55),0 22px 70px rgba(0,0,0,.78);
     }
-    .p3chat-launch:focus-visible{box-shadow:0 0 0 4px rgba(23,224,193,.24), 0 0 44px rgba(23,224,193,.55),0 22px 70px rgba(0,0,0,.78)}
+    .p3chat-launch:focus-visible{
+      box-shadow:0 0 0 4px rgba(23,224,193,.24), 0 0 44px rgba(23,224,193,.55),0 22px 70px rgba(0,0,0,.78)
+    }
     .p3chat-launch svg{
-      width:36px;height:36px;fill:#17e0c1;
+      width:34px;height:34px;fill:#17e0c1;
       filter:drop-shadow(0 0 10px rgba(23,224,193,.65));
     }
     @keyframes aiPulse{
@@ -575,14 +644,21 @@
     }
     @media(prefers-reduced-motion:reduce){ .p3chat-launch{animation:none} }
 
-    /* ===== AI Chat Panel (right aligned) ===== */
+    /* Mobile: lift bubble above sticky CTA */
+    @media(max-width:760px){
+      .p3chat-launch{
+        bottom:calc(102px + env(safe-area-inset-bottom, 0px));
+        right:14px;
+      }
+    }
+
+    /* ===== AI Chat Panel ===== */
     .p3chat{
       position:fixed;
-      right:20px;
-      left:auto;
+      right:16px;
       bottom:calc(96px + env(safe-area-inset-bottom, 0px));
-      width:min(440px, calc(100vw - 40px));
-      max-height:74vh;
+      width:min(440px, calc(100vw - 32px));
+      max-height:min(74vh, calc(100vh - 140px));
       border-radius:20px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(10,14,20,.78);
@@ -591,9 +667,11 @@
       overflow:hidden;
       display:none;
       flex-direction:column;
-      z-index:9999;
+      z-index:10040;
+      transform: translateY(calc(var(--vv-offset) * -1));
     }
     .p3chat.open{display:flex}
+
     .p3chat-header{
       display:flex;align-items:center;justify-content:space-between;gap:10px;
       padding:12px;border-bottom:1px solid rgba(255,255,255,.10);
@@ -609,6 +687,7 @@
       padding:8px 10px;
       font-weight:1000;
       cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
     }
     .p3chat-close:focus-visible{box-shadow:var(--focus)}
     .p3chat-body{padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px}
@@ -619,9 +698,12 @@
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.06);
       font-size:13px;
+      white-space:pre-wrap;
+      word-break:break-word;
     }
     .msg.ai{align-self:flex-start;background:rgba(23,224,193,.08);border-color:rgba(23,224,193,.18)}
     .msg.user{align-self:flex-end;background:rgba(255,90,60,.07);border-color:rgba(255,90,60,.18)}
+
     .p3chat-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
     .chip{
       border:1px solid rgba(255,255,255,.12);
@@ -632,25 +714,43 @@
       font-size:12px;
       font-weight:1000;
       cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
     }
     .chip:hover{background:rgba(255,255,255,.10)}
     .chip.primary{border:none;background:linear-gradient(135deg, rgba(23,224,193,1), rgba(23,224,193,.60));color:#001b17}
-    .p3chat-inputbar{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)}
+
+    .p3chat-inputbar{
+      display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.10);background:rgba(0,0,0,.18)
+    }
     .p3chat-inputbar input{
       flex:1;border-radius:14px;border:1px solid rgba(255,255,255,.12);
       background:rgba(0,0,0,.22);color:var(--text);
       padding:12px;outline:none;font-weight:1000;
+      min-width:0;
     }
     .p3chat-inputbar input:focus{box-shadow:0 0 0 3px rgba(23,224,193,.12); border-color:rgba(23,224,193,.40)}
     .p3chat-send{
       border-radius:14px;padding:12px 14px;font-weight:1000;border:none;cursor:pointer;
       background:linear-gradient(135deg, rgba(23,224,193,1), rgba(255,90,60,.70));
       color:#04110e;
+      -webkit-tap-highlight-color: transparent;
+      flex:0 0 auto;
     }
     .p3chat-send:focus-visible{box-shadow:var(--focus)}
     .p3chat-mini{
       font-size:11px;color:rgba(233,242,255,.72);
       padding:0 12px 12px;line-height:1.35;
+    }
+
+    /* Mobile: make chat feel native */
+    @media(max-width:760px){
+      .p3chat{
+        left:16px;
+        right:16px;
+        width:auto;
+        bottom:calc(108px + env(safe-area-inset-bottom, 0px));
+        max-height:min(70vh, calc(100vh - 180px));
+      }
     }
   </style>
 </head>
@@ -683,6 +783,7 @@
             <a class="navbtn" href="#services">🧰 Services</a>
             <a class="navbtn" href="#offer">🏷️ Incentive</a>
             <a class="navbtn" href="#proof">🛡️ Standards</a>
+            <a class="navbtn" href="#reviews">⭐ Reviews</a>
             <a class="navbtn" href="#quote">🧾 Quote</a>
             <a class="navbtn" href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture">✉️ Email</a>
           </nav>
@@ -741,732 +842,806 @@
       </div>
     </section>
 
-    <!-- Offer -->
-    <div class="grid" style="margin-top:16px">
-      <section class="card col-12 offer" id="offer" aria-label="Incentive section">
-        <h2 class="section-title" style="font-size:24px;margin-bottom:6px;">🏷️ First-Time Project Incentive (Up To 20%)</h2>
-        <p class="subtle" style="margin-bottom:10px;">Use the code below when you request your scope review.</p>
+    <!-- =========================
+     CONTINUATION (REST OF FILE)
+     Paste this right after your last line:
+     <!-- 
+========================= -->
 
-        <div class="offer-row">
-          <div class="codebox" aria-label="Coupon code">
-            <div style="font-weight:1000;color:var(--muted);font-size:12px;">COUPON CODE</div>
-            <div class="code" id="couponText">FIRST20</div>
-            <div class="small" style="margin-top:8px;color:rgba(233,242,255,.65)">Tap to select/copy on most devices.</div>
-            <button class="copybtn" type="button" id="copyCouponBtn">📋 Copy Code</button>
-          </div>
+<!-- Offer -->
+<div class="grid" style="margin-top:16px">
+  <section class="card col-12 offer" id="offer" aria-label="Incentive section">
+    <h2 class="section-title" style="font-size:24px;margin-bottom:6px;">🏷️ First-Time Project Incentive (Up To 20%)</h2>
+    <p class="subtle" style="margin-bottom:10px;">Use the code below when you request your scope review.</p>
 
-          <div style="flex:1;min-width:240px">
-            <p style="margin:0;color:var(--muted);font-size:14px;">
-              Apartment turns, interior/exterior painting, drywall repair, commercial scopes, and fireproofing support (as required).
-            </p>
+    <div class="offer-row">
+      <div class="codebox" aria-label="Coupon code">
+        <div style="font-weight:1000;color:var(--muted);font-size:12px;">COUPON CODE</div>
+        <div class="code" id="couponText">FIRST20</div>
+        <div class="small" style="margin-top:8px;color:rgba(233,242,255,.65)">Tap to select/copy on most devices.</div>
+        <button class="copybtn" type="button" id="copyCouponBtn">📋 Copy Code</button>
+      </div>
 
-            <div class="fineprint">
-              First-time clients only. Discount varies by scope/size; most residential up to 10%, larger scopes may qualify up to 20%.
-              Minimum project may apply. Not combinable. Eligibility confirmed after scope review.
-            </div>
-
-            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="#quote">Claim Incentive &amp; Request Quote</a>
-              <a class="btn ghost" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%27d%20like%20a%20quote.%20Coupon%3A%20FIRST20%20%7C%20Project%3A%20____%20%7C%20ZIP%3A%20____%20%7C%20Timeline%3A%20____.">Text With Code</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- What you get / Serving area -->
-    <div class="grid" aria-label="Highlights">
-      <div class="card col-7">
-        <h2 style="margin:0 0 8px;font-size:18px;">What You Get</h2>
+      <div style="flex:1;min-width:240px">
         <p style="margin:0;color:var(--muted);font-size:14px;">
-          Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
-          Apartment turnovers are handled with speed, consistency, and closeout-ready cleanup.
-        </p>
-      </div>
-
-      <div class="card col-5">
-        <h2 style="margin:0 0 8px;font-size:18px;">Serving Area</h2>
-        <p style="margin:0;color:var(--muted);font-size:14px;">
-          Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard, New Albany, Upper Arlington).
-        </p>
-      </div>
-    </div>
-
-    <!-- Standards / Proof -->
-    <div class="grid" style="margin-top:16px">
-      <section class="card col-12" id="proof" aria-label="Standards section">
-        <h2 class="section-title">Standards &amp; Documentation</h2>
-        <p class="subtle">Built for property managers and homeowners who want clean execution and clear communication.</p>
-
-        <div class="proof-grid">
-          <div class="proof">
-            <p class="k">🧼 Clean Prep</p>
-            <p class="v">Floor protection, masking, patching, sanding, caulk lines, and spot-priming where needed.</p>
-          </div>
-          <div class="proof">
-            <p class="k">🧾 Clear Scope</p>
-            <p class="v">Photo-based estimating + written scope so expectations match the final results.</p>
-          </div>
-          <div class="proof">
-            <p class="k">✅ Closeout Ready</p>
-            <p class="v">Touch-up pass, cleanup, and walkthrough-ready finish for inspections or move-in.</p>
-          </div>
-        </div>
-
-        <details style="margin-top:12px">
-          <summary>What affects pricing?</summary>
-          <ul>
-            <li>Surface condition (patching, stains, smoke/water, texture match).</li>
-            <li>Access (occupied vs vacant, furniture moving, height/ladder work).</li>
-            <li>Scope size (units/rooms/sqft), finish level, and timeline urgency.</li>
-            <li>Materials (brand/line requested, color changes, primer needs).</li>
-          </ul>
-          <p>We provide a price <strong>range</strong> up front. Exact pricing requires walkthrough or photo-verified scope.</p>
-        </details>
-      </section>
-    </div>
-
-    <!-- Services (Tabs) -->
-    <div class="grid" style="margin-top:16px">
-      <section class="card col-12" id="services" aria-label="Services section">
-        <h2 class="section-title">Services</h2>
-        <p class="subtle">Apartment turnovers are a core focus. Residential is welcomed. Commercial/industrial available by scope.</p>
-
-        <div class="tabs" role="tablist" aria-label="Services tabs">
-          <button class="tab active" type="button" data-tab="turnovers" aria-selected="true">Apartment Turnovers</button>
-          <button class="tab" type="button" data-tab="interior" aria-selected="false">Residential Interior</button>
-          <button class="tab" type="button" data-tab="exterior" aria-selected="false">Residential Exterior</button>
-          <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial</button>
-          <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall</button>
-          <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
-        </div>
-
-        <div class="panel active" data-tab-panel="turnovers" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Built for leasing schedules</strong>
-              <span>Fast resets, clean protection, consistent finish standards unit-to-unit.</span>
-            </div>
-            <div class="mini">
-              <strong>Repeatable scope</strong>
-              <span>Walls/ceilings/trim/doors touchups or full repaint as scoped. Punch-list friendly.</span>
-            </div>
-
-            <details open>
-              <summary>Turnover workflow (how we run it)</summary>
-              <ul>
-                <li>Quick scope confirmation (photos or walkthrough) + schedule window.</li>
-                <li>Protect floors, hardware, and fixtures; prep repairs; spot-prime.</li>
-                <li>Fast application with consistent coverage and clean edges.</li>
-                <li>Touch-up pass + cleanup + ready-for-inspection closeout.</li>
-              </ul>
-              <p>Ideal for: unit turns, hallway refresh, common areas, maintenance repaint programs.</p>
-            </details>
-
-            <details>
-              <summary>What we need from you (fastest way)</summary>
-              <ul>
-                <li>Unit count / sqft, access window, preferred paint brand (if any).</li>
-                <li>Any repairs needed (holes, water stains, smoke, etc.).</li>
-                <li>Color specs or “match existing” instructions.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-        <div class="panel" data-tab-panel="interior" role="tabpanel">
-          <div class="panel-grid">
-            <!-- FIXED: removed stray "<" and added real content -->
-            <div class="mini">
-              <strong>What we paint</strong>
-              <span>Walls, ceilings, trim, doors, baseboards, cabinets (as scoped), and touch-ups.</span>
-            </div>
-
-            <div class="mini">
-              <strong>Clean execution</strong>
-              <span>Floor protection, patching, sanding, caulk lines, sharp cut-ins, prime where needed.</span>
-            </div>
-
-            <details>
-              <summary>Interior process (step-by-step)</summary>
-              <ul>
-                <li>Protect floors and furniture; mask edges and fixtures.</li>
-                <li>Repair: patch nail holes/cracks; sand smooth; spot-prime repairs.</li>
-                <li>Apply finish coats with consistent coverage and clean edges.</li>
-                <li>Final walkthrough + touchups + cleanup (leave it jobsite-clean).</li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Common interior upgrades</summary>
-              <ul>
-                <li>Trim and doors for a “new build” look.</li>
-                <li>Ceiling repaint to brighten rooms.</li>
-                <li>Drywall touchups before paint for clean walls.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-        <!-- Residential Exterior -->
-        <div class="panel" data-tab-panel="exterior" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Durable exterior coatings</strong>
-              <span>Prep-first approach built for Ohio weather—scrape, sand, prime, paint.</span>
-            </div>
-            <div class="mini">
-              <strong>Curb appeal upgrades</strong>
-              <span>Siding, trim, doors, shutters, garages, fences &amp; decks (as scoped).</span>
-            </div>
-
-            <details>
-              <summary>Exterior process (step-by-step)</summary>
-              <ul>
-                <li>Inspect surfaces; identify peeling, rot, chalking, and adhesion risks.</li>
-                <li>Clean/prep; scrape and sand; caulk/seal gaps where appropriate.</li>
-                <li>Prime bare areas and stains; apply weather-appropriate finish coats.</li>
-                <li>Detail work + cleanup + protect landscaping and walkways.</li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>What customers should know</summary>
-              <ul>
-                <li>Weather affects scheduling—quality requires proper dry/cure windows.</li>
-                <li>Prep determines longevity more than the paint brand alone.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-        <!-- Commercial -->
-        <div class="panel" data-tab-panel="commercial" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Professional &amp; organized</strong>
-              <span>Offices, small retail, common areas, and property painting with clean standards.</span>
-            </div>
-            <div class="mini">
-              <strong>Scheduling options</strong>
-              <span>Phased work, off-hours, or weekend options depending on scope and access.</span>
-            </div>
-
-            <details>
-              <summary>Commercial scope examples</summary>
-              <ul>
-                <li>Common areas, hallways, stairwells, offices.</li>
-                <li>Touch-up plans for high-traffic areas.</li>
-                <li>Maintenance repaint programs for property managers.</li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Jobsite standards</summary>
-              <ul>
-                <li>Clean containment and daily cleanup.</li>
-                <li>Clear communication: scope, schedule, and completion confirmation.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-        <!-- Drywall -->
-        <div class="panel" data-tab-panel="drywall" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Repair &amp; patch</strong>
-              <span>Patching holes, fixing cracks, tape/mud, sanding, texture match (as needed).</span>
-            </div>
-            <div class="mini">
-              <strong>Paint-ready finish</strong>
-              <span>Smooth blend and proper priming to prevent flashing.</span>
-            </div>
-
-            <details>
-              <summary>Drywall process (step-by-step)</summary>
-              <ul>
-                <li>Assess damage and choose patch method (mesh, backing, or replacement section).</li>
-                <li>Apply compound in layers; feather edges; sand smooth.</li>
-                <li>Prime repaired areas; paint to match or repaint surface for uniform finish.</li>
-              </ul>
-            </details>
-
-            <details>
-              <summary>Best results</summary>
-              <ul>
-                <li>Photos help estimate repair scope quickly.</li>
-                <li>Repainting full wall/ceiling is often best for perfect blending.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-        <!-- Industrial & Fireproofing -->
-        <div class="panel" data-tab-panel="industrial" role="tabpanel">
-          <div class="panel-grid">
-            <div class="mini">
-              <strong>Industrial coatings support</strong>
-              <span>Durable coatings support (as specified) for industrial environments.</span>
-            </div>
-            <div class="mini">
-              <strong>Fireproofing systems</strong>
-              <span>Multiple systems depending on spec—SFRM, intumescent, cementitious, firestopping.</span>
-            </div>
-
-            <details open>
-              <summary>Fireproofing levels (multiple options)</summary>
-              <ul>
-                <li><strong>Level 1 — Firestopping:</strong> Sealants/collars/putty/pillows for penetrations and rated assemblies.</li>
-                <li><strong>Level 2 — SFRM:</strong> Spray-applied fire-resistive material for structural steel/decks where specified.</li>
-                <li><strong>Level 3 — Intumescent:</strong> Thin-film coating that expands under heat (appearance-sensitive areas).</li>
-                <li><strong>Level 4 — Cementitious:</strong> Durable fireproofing systems for industrial/structural protection.</li>
-                <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
-              </ul>
-              <p>Final system selection depends on building requirements/specs and inspection criteria.</p>
-            </details>
-
-            <details>
-              <summary>Industrial coating scope examples</summary>
-              <ul>
-                <li>Surface prep planning (cleaning, abrasion, spot repairs).</li>
-                <li>Primer/topcoat systems for durability and chemical resistance (as specified).</li>
-                <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-
-      </section>
-    </div>
-
-    <!-- Sticky mobile CTA -->
-    <div class="sticky-cta" aria-label="Mobile quick actions">
-      <div class="row2">
-        <a class="btn primary" href="#quote">🧾 Quote</a>
-        <a class="btn call" href="tel:+16145853880">📞 Call</a>
-      </div>
-    </div>
-
-    <!-- Quote Form (Netlify Forms) -->
-    <div class="grid" style="margin-top:16px">
-      <section class="card col-12" id="quote" aria-label="Quote form section">
-        <h2 class="section-title">Request a Fast Quote</h2>
-        <p class="subtle">
-          Upload photos + details. We’ll respond as soon as possible during business hours.
-          (Incomplete submissions accepted — qualified leads prioritized.)
+          Apartment turns, interior/exterior painting, drywall repair, commercial scopes, and fireproofing support (as required).
         </p>
 
-        <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
-          <input type="hidden" name="form-name" value="quote" />
-          <p style="display:none">
-            <label>Don’t fill this out: <input name="bot-field" /></label>
-          </p>
-
-          <div class="row">
-            <div class="half">
-              <label for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name" required />
-            </div>
-
-            <div class="half">
-              <label for="contact">Phone or Email</label>
-              <input id="contact" name="contact" placeholder="Phone number or email address" required />
-            </div>
-
-            <div class="half">
-              <label for="project">Project Type</label>
-              <select id="project" name="project" required>
-                <option value="" disabled selected>Select one</option>
-                <option>Apartment Turnover</option>
-                <option>Interior Painting</option>
-                <option>Exterior Painting</option>
-                <option>Commercial Painting</option>
-                <option>Drywall Repair</option>
-                <option>Industrial Coating</option>
-                <option>Fireproofing / Firestopping</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="half">
-              <label for="coupon">Coupon Code (optional)</label>
-              <input id="coupon" name="coupon" placeholder="e.g., FIRST20" />
-            </div>
-
-            <div class="half">
-              <label for="address">Job Address / ZIP (optional)</label>
-              <input id="address" name="address" placeholder="Street / City / ZIP" />
-            </div>
-
-            <div class="half">
-              <label for="timeline">Preferred Timeline (optional)</label>
-              <input id="timeline" name="timeline" placeholder="e.g., ASAP / This week / Next month" />
-            </div>
-
-            <div class="full">
-              <label for="details">Details</label>
-              <textarea id="details" name="details" placeholder="Rooms/units, surfaces, condition, timeline, access window, etc." required></textarea>
-            </div>
-
-            <div class="full">
-              <label for="photos">Upload Photos (optional)</label>
-              <input id="photos" name="photos" type="file" accept="image/*" multiple />
-              <div class="small">Clear pics = faster &amp; more accurate quote.</div>
-            </div>
-
-            <div class="full" style="margin-top:10px">
-              <button class="btn primary" type="submit" style="width:100%;padding:14px 16px;border-radius:16px;font-size:15px">
-                Submit Quote Request
-              </button>
-
-              <div class="small" style="margin-top:10px">
-                Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
-              </div>
-
-              <div class="fineprint" style="margin-top:8px;">
-                Pricing policy: we provide a <strong>range</strong> prior to walkthrough or photo-verified scope. Exact pricing requires verification.
-                Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%). Coupon eligibility confirmed after scope review.
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <div class="small" style="margin-top:12px">
-          Prefer texting?
-          <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a>
-          • Email:
-          <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+        <div class="fineprint">
+          First-time clients only. Discount varies by scope/size; most residential up to 10%, larger scopes may qualify up to 20%.
+          Minimum project may apply. Not combinable. Eligibility confirmed after scope review.
         </div>
-      </section>
-    </div>
 
-    <!-- Footer -->
-    <footer class="footer" aria-label="Site footer">
-      © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
-      <a href="tel:+16145853880">614-585-3880</a> •
-      <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a>
-      <br>
-      Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
-    </footer>
-
-  </div><!-- /.wrap -->
-
-  <!-- Hidden Netlify form for AI intake -->
-  <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-booking" style="display:none">
-    <input type="hidden" name="form-name" value="booking" />
-    <input name="bot-booking" />
-    <input name="property_type" />
-    <input name="requester_role" />
-    <input name="authority_confirmed" />
-    <input name="location_zip" />
-    <input name="scope" />
-    <input name="occupied" />
-    <input name="hazards" />
-    <input name="pre1978" />
-    <input name="timeline" />
-    <input name="budget_range" />
-    <input name="contact" />
-    <input name="priority" />
-    <input name="priority_reason" />
-  </form>
-
-  <!-- AI Robot -->
-  <button class="p3chat-launch" id="p3chatLaunch" aria-label="Open AI assistant">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M11 2h2v2h3a4 4 0 0 1 4 4v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8a4 4 0 0 1 4-4h3V2Zm-3 6a2 2 0 0 0-2 2v5a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V10a2 2 0 0 0-2-2H8Zm1 3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-    </svg>
-  </button>
-
-  <!-- AI Chat panel -->
-  <div class="p3chat" id="p3chat" aria-label="P3Solutions AI Chat">
-    <div class="p3chat-header">
-      <div class="p3chat-title">
-        <strong>P3Solutions AI — Quote Intake</strong><br/>
-        <span>Apartment turns + residential welcomed • Commercial/industrial by scope</span>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" href="#quote">Claim Incentive &amp; Request Quote</a>
+          <a class="btn ghost" href="sms:+16145853880?&body=Hi%20Paint%20a%20Perfect%20Picture%20LLC%2C%20I%27d%20like%20a%20quote.%20Coupon%3A%20FIRST20%20%7C%20Project%3A%20____%20%7C%20ZIP%3A%20____%20%7C%20Timeline%3A%20____.">Text With Code</a>
+        </div>
       </div>
-      <button class="p3chat-close" id="p3chatClose" type="button">Close</button>
     </div>
+  </section>
+</div>
 
-    <div class="p3chat-body" id="p3chatBody"></div>
-    <div class="p3chat-actions" id="p3chatActions"></div>
-
-    <div class="p3chat-inputbar">
-      <input id="p3chatInput" placeholder="Type your answer… (SKIP allowed)" autocomplete="off" />
-      <button class="p3chat-send" id="p3chatSend" type="button">Send</button>
-    </div>
-
-    <div class="p3chat-mini">
-      Range pricing until walkthrough or photo-verified scope. Pre-1978 homes may require additional compliance.
-      Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%).
-    </div>
+<!-- What you get / Serving area -->
+<div class="grid" aria-label="Highlights">
+  <div class="card col-7">
+    <h2 style="margin:0 0 8px;font-size:18px;">What You Get</h2>
+    <p style="margin:0;color:var(--muted);font-size:14px;">
+      Clear scope + timeline, clean prep, sharp lines, durable finish—and an estimate that matches the photos you upload.
+      Apartment turnovers are handled with speed, consistency, and closeout-ready cleanup.
+    </p>
   </div>
 
-  <script>
-    // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <div class="card col-5">
+    <h2 style="margin:0 0 8px;font-size:18px;">Serving Area</h2>
+    <p style="margin:0;color:var(--muted);font-size:14px;">
+      Columbus, OH + surrounding areas (Dublin, Westerville, Gahanna, Reynoldsburg, Grove City, Hilliard, New Albany, Upper Arlington).
+    </p>
+  </div>
+</div>
 
-    // Copy coupon
-    (function(){
-      const btn = document.getElementById("copyCouponBtn");
-      const txt = document.getElementById("couponText");
-      if(!btn || !txt) return;
-      btn.addEventListener("click", async () => {
-        const code = (txt.textContent || "FIRST20").trim();
-        try{
-          await navigator.clipboard.writeText(code);
-          btn.textContent = "✅ Copied!";
-          setTimeout(()=> btn.textContent = "📋 Copy Code", 1200);
-        }catch(e){
-          const sel = window.getSelection();
-          const range = document.createRange();
-          range.selectNodeContents(txt);
-          sel.removeAllRanges();
-          sel.addRange(range);
-          btn.textContent = "Select + Copy";
-          setTimeout(()=> btn.textContent = "📋 Copy Code", 1400);
-        }
+<!-- Standards / Proof -->
+<div class="grid" style="margin-top:16px">
+  <section class="card col-12" id="proof" aria-label="Standards section">
+    <h2 class="section-title">Standards &amp; Documentation</h2>
+    <p class="subtle">Built for property managers and homeowners who want clean execution and clear communication.</p>
+
+    <div class="proof-grid">
+      <div class="proof">
+        <p class="k">🧼 Clean Prep</p>
+        <p class="v">Floor protection, masking, patching, sanding, caulk lines, and spot-priming where needed.</p>
+      </div>
+      <div class="proof">
+        <p class="k">🧾 Clear Scope</p>
+        <p class="v">Photo-based estimating + written scope so expectations match the final results.</p>
+      </div>
+      <div class="proof">
+        <p class="k">✅ Closeout Ready</p>
+        <p class="v">Touch-up pass, cleanup, and walkthrough-ready finish for inspections or move-in.</p>
+      </div>
+    </div>
+
+    <details style="margin-top:12px">
+      <summary>What affects pricing?</summary>
+      <ul>
+        <li>Surface condition (patching, stains, smoke/water, texture match).</li>
+        <li>Access (occupied vs vacant, furniture moving, height/ladder work).</li>
+        <li>Scope size (units/rooms/sqft), finish level, and timeline urgency.</li>
+        <li>Materials (brand/line requested, color changes, primer needs).</li>
+      </ul>
+      <p>We provide a price <strong>range</strong> up front. Exact pricing requires walkthrough or photo-verified scope.</p>
+    </details>
+  </section>
+</div>
+
+<!-- Reviews -->
+<div class="grid" style="margin-top:16px">
+  <section class="card col-12" id="reviews" aria-label="Reviews section">
+    <h2 class="section-title">⭐ Reviews</h2>
+    <p class="subtle">Swap these with real client feedback as you collect it (Google / email / text screenshots).</p>
+
+    <div class="quote-grid" role="list">
+      <div class="tcard" role="listitem">
+        <p>“Fast turnaround, clean lines, and the unit was move-in ready on schedule.”</p>
+        <div class="by">— Property Manager (Columbus)</div>
+      </div>
+      <div class="tcard" role="listitem">
+        <p>“Professional prep. The finish looks brand new and they cleaned up everything.”</p>
+        <div class="by">— Homeowner (Westerville)</div>
+      </div>
+      <div class="tcard" role="listitem">
+        <p>“Great communication, clear scope, and no surprises. Would hire again.”</p>
+        <div class="by">— Small Business Owner (Gahanna)</div>
+      </div>
+    </div>
+
+    <div class="fineprint" style="margin-top:12px;">
+      Pro tip: add a Google reviews link when you have it (search “Paint a Perfect Picture LLC” on Google → share reviews link).
+    </div>
+  </section>
+</div>
+
+<!-- Services (Tabs) -->
+<div class="grid" style="margin-top:16px">
+  <section class="card col-12" id="services" aria-label="Services section">
+    <h2 class="section-title">Services</h2>
+    <p class="subtle">Apartment turnovers are a core focus. Residential is welcomed. Commercial/industrial available by scope.</p>
+
+    <div class="tabs" role="tablist" aria-label="Services tabs">
+      <button class="tab active" type="button" data-tab="turnovers" aria-selected="true">Apartment Turnovers</button>
+      <button class="tab" type="button" data-tab="interior" aria-selected="false">Residential Interior</button>
+      <button class="tab" type="button" data-tab="exterior" aria-selected="false">Residential Exterior</button>
+      <button class="tab" type="button" data-tab="commercial" aria-selected="false">Commercial</button>
+      <button class="tab" type="button" data-tab="drywall" aria-selected="false">Drywall</button>
+      <button class="tab" type="button" data-tab="industrial" aria-selected="false">Industrial & Fireproofing</button>
+    </div>
+
+    <div class="panel active" data-tab-panel="turnovers" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>Built for leasing schedules</strong>
+          <span>Fast resets, clean protection, consistent finish standards unit-to-unit.</span>
+        </div>
+        <div class="mini">
+          <strong>Repeatable scope</strong>
+          <span>Walls/ceilings/trim/doors touchups or full repaint as scoped. Punch-list friendly.</span>
+        </div>
+
+        <details open>
+          <summary>Turnover workflow (how we run it)</summary>
+          <ul>
+            <li>Quick scope confirmation (photos or walkthrough) + schedule window.</li>
+            <li>Protect floors, hardware, and fixtures; prep repairs; spot-prime.</li>
+            <li>Fast application with consistent coverage and clean edges.</li>
+            <li>Touch-up pass + cleanup + ready-for-inspection closeout.</li>
+          </ul>
+          <p>Ideal for: unit turns, hallway refresh, common areas, maintenance repaint programs.</p>
+        </details>
+
+        <details>
+          <summary>What we need from you (fastest way)</summary>
+          <ul>
+            <li>Unit count / sqft, access window, preferred paint brand (if any).</li>
+            <li>Any repairs needed (holes, water stains, smoke, etc.).</li>
+            <li>Color specs or “match existing” instructions.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="panel" data-tab-panel="interior" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>What we paint</strong>
+          <span>Walls, ceilings, trim, doors, baseboards, cabinets (as scoped), and touch-ups.</span>
+        </div>
+
+        <div class="mini">
+          <strong>Clean execution</strong>
+          <span>Floor protection, patching, sanding, caulk lines, sharp cut-ins, prime where needed.</span>
+        </div>
+
+        <details>
+          <summary>Interior process (step-by-step)</summary>
+          <ul>
+            <li>Protect floors and furniture; mask edges and fixtures.</li>
+            <li>Repair: patch nail holes/cracks; sand smooth; spot-prime repairs.</li>
+            <li>Apply finish coats with consistent coverage and clean edges.</li>
+            <li>Final walkthrough + touchups + cleanup (leave it jobsite-clean).</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Common interior upgrades</summary>
+          <ul>
+            <li>Trim and doors for a “new build” look.</li>
+            <li>Ceiling repaint to brighten rooms.</li>
+            <li>Drywall touchups before paint for clean walls.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="panel" data-tab-panel="exterior" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>Durable exterior coatings</strong>
+          <span>Prep-first approach built for Ohio weather—scrape, sand, prime, paint.</span>
+        </div>
+        <div class="mini">
+          <strong>Curb appeal upgrades</strong>
+          <span>Siding, trim, doors, shutters, garages, fences &amp; decks (as scoped).</span>
+        </div>
+
+        <details>
+          <summary>Exterior process (step-by-step)</summary>
+          <ul>
+            <li>Inspect surfaces; identify peeling, rot, chalking, and adhesion risks.</li>
+            <li>Clean/prep; scrape and sand; caulk/seal gaps where appropriate.</li>
+            <li>Prime bare areas and stains; apply weather-appropriate finish coats.</li>
+            <li>Detail work + cleanup + protect landscaping and walkways.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>What customers should know</summary>
+          <ul>
+            <li>Weather affects scheduling—quality requires proper dry/cure windows.</li>
+            <li>Prep determines longevity more than the paint brand alone.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="panel" data-tab-panel="commercial" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>Professional &amp; organized</strong>
+          <span>Offices, small retail, common areas, and property painting with clean standards.</span>
+        </div>
+        <div class="mini">
+          <strong>Scheduling options</strong>
+          <span>Phased work, off-hours, or weekend options depending on scope and access.</span>
+        </div>
+
+        <details>
+          <summary>Commercial scope examples</summary>
+          <ul>
+            <li>Common areas, hallways, stairwells, offices.</li>
+            <li>Touch-up plans for high-traffic areas.</li>
+            <li>Maintenance repaint programs for property managers.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Jobsite standards</summary>
+          <ul>
+            <li>Clean containment and daily cleanup.</li>
+            <li>Clear communication: scope, schedule, and completion confirmation.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="panel" data-tab-panel="drywall" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>Repair &amp; patch</strong>
+          <span>Patching holes, fixing cracks, tape/mud, sanding, texture match (as needed).</span>
+        </div>
+        <div class="mini">
+          <strong>Paint-ready finish</strong>
+          <span>Smooth blend and proper priming to prevent flashing.</span>
+        </div>
+
+        <details>
+          <summary>Drywall process (step-by-step)</summary>
+          <ul>
+            <li>Assess damage and choose patch method (mesh, backing, or replacement section).</li>
+            <li>Apply compound in layers; feather edges; sand smooth.</li>
+            <li>Prime repaired areas; paint to match or repaint surface for uniform finish.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Best results</summary>
+          <ul>
+            <li>Photos help estimate repair scope quickly.</li>
+            <li>Repainting full wall/ceiling is often best for perfect blending.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div class="panel" data-tab-panel="industrial" role="tabpanel">
+      <div class="panel-grid">
+        <div class="mini">
+          <strong>Industrial coatings support</strong>
+          <span>Durable coatings support (as specified) for industrial environments.</span>
+        </div>
+        <div class="mini">
+          <strong>Fireproofing systems</strong>
+          <span>Multiple systems depending on spec—SFRM, intumescent, cementitious, firestopping.</span>
+        </div>
+
+        <details open>
+          <summary>Fireproofing levels (multiple options)</summary>
+          <ul>
+            <li><strong>Level 1 — Firestopping:</strong> Sealants/collars/putty/pillows for penetrations and rated assemblies.</li>
+            <li><strong>Level 2 — SFRM:</strong> Spray-applied fire-resistive material for structural steel/decks where specified.</li>
+            <li><strong>Level 3 — Intumescent:</strong> Thin-film coating that expands under heat (appearance-sensitive areas).</li>
+            <li><strong>Level 4 — Cementitious:</strong> Durable fireproofing systems for industrial/structural protection.</li>
+            <li><strong>Level 5 — Documentation support:</strong> Photo records and closeout support for inspection readiness (as requested).</li>
+          </ul>
+          <p>Final system selection depends on building requirements/specs and inspection criteria.</p>
+        </details>
+
+        <details>
+          <summary>Industrial coating scope examples</summary>
+          <ul>
+            <li>Surface prep planning (cleaning, abrasion, spot repairs).</li>
+            <li>Primer/topcoat systems for durability and chemical resistance (as specified).</li>
+            <li>Safety-minded approach: containment, ventilation awareness, cleanup.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta" aria-label="Mobile quick actions">
+  <div class="row2">
+    <a class="btn primary" href="#quote">🧾 Quote</a>
+    <a class="btn call" href="tel:+16145853880">📞 Call</a>
+  </div>
+</div>
+
+<!-- Quote Form (Netlify Forms) -->
+<div class="grid" style="margin-top:16px">
+  <section class="card col-12" id="quote" aria-label="Quote form section">
+    <h2 class="section-title">Request a Fast Quote</h2>
+    <p class="subtle">
+      Upload photos + details. We’ll respond as soon as possible during business hours.
+      (Incomplete submissions accepted — qualified leads prioritized.)
+    </p>
+
+    <form name="quote" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="quote" />
+      <p style="display:none">
+        <label>Don’t fill this out: <input name="bot-field" /></label>
+      </p>
+
+      <div class="row">
+        <div class="half">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+        </div>
+
+        <div class="half">
+          <label for="contact">Phone or Email</label>
+          <input id="contact" name="contact" placeholder="Phone number or email address" required />
+        </div>
+
+        <div class="half">
+          <label for="project">Project Type</label>
+          <select id="project" name="project" required>
+            <option value="" disabled selected>Select one</option>
+            <option>Apartment Turnover</option>
+            <option>Interior Painting</option>
+            <option>Exterior Painting</option>
+            <option>Commercial Painting</option>
+            <option>Drywall Repair</option>
+            <option>Industrial Coating</option>
+            <option>Fireproofing / Firestopping</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="half">
+          <label for="coupon">Coupon Code (optional)</label>
+          <input id="coupon" name="coupon" placeholder="e.g., FIRST20" />
+        </div>
+
+        <div class="half">
+          <label for="address">Job Address / ZIP (optional)</label>
+          <input id="address" name="address" placeholder="Street / City / ZIP" />
+        </div>
+
+        <div class="half">
+          <label for="timeline">Preferred Timeline (optional)</label>
+          <input id="timeline" name="timeline" placeholder="e.g., ASAP / This week / Next month" />
+        </div>
+
+        <div class="full">
+          <label for="details">Details</label>
+          <textarea id="details" name="details" placeholder="Rooms/units, surfaces, condition, timeline, access window, etc." required></textarea>
+        </div>
+
+        <div class="full">
+          <label for="photos">Upload Photos (optional)</label>
+          <input id="photos" name="photos" type="file" accept="image/*" multiple />
+          <div class="small">Clear pics = faster &amp; more accurate quote.</div>
+        </div>
+
+        <div class="full" style="margin-top:10px">
+          <button class="btn primary" type="submit" style="width:100%;padding:14px 16px;border-radius:16px;font-size:15px">
+            Submit Quote Request
+          </button>
+
+          <div class="small" style="margin-top:10px">
+            Business hours: Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
+          </div>
+
+          <div class="fineprint" style="margin-top:8px;">
+            Pricing policy: we provide a <strong>range</strong> prior to walkthrough or photo-verified scope. Exact pricing requires verification.
+            Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%). Coupon eligibility confirmed after scope review.
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="small" style="margin-top:12px">
+      Prefer texting?
+      <a href="sms:+16145853880" style="text-decoration:underline;">Text (614) 585-3880</a>
+      • Email:
+      <a href="mailto:p3solutions@paintaperfectpicture.com" style="text-decoration:underline;">p3solutions@paintaperfectpicture.com</a>
+    </div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="footer" aria-label="Site footer">
+  © <span id="year"></span> Paint a Perfect Picture LLC • Columbus, Ohio •
+  <a href="tel:+16145853880">614-585-3880</a> •
+  <a href="mailto:p3solutions@paintaperfectpicture.com">p3solutions@paintaperfectpicture.com</a>
+  <br>
+  Mon–Fri 8:00 AM–5:30 PM • Sat 1:00–5:30 PM • Closed Sun
+</footer>
+
+</div><!-- /.wrap -->
+
+<!-- Hidden Netlify form for AI intake -->
+<form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-booking" style="display:none">
+  <input type="hidden" name="form-name" value="booking" />
+  <input name="bot-booking" />
+  <input name="property_type" />
+  <input name="requester_role" />
+  <input name="authority_confirmed" />
+  <input name="location_zip" />
+  <input name="scope" />
+  <input name="occupied" />
+  <input name="hazards" />
+  <input name="pre1978" />
+  <input name="timeline" />
+  <input name="budget_range" />
+  <input name="contact" />
+  <input name="priority" />
+  <input name="priority_reason" />
+</form>
+
+<!-- AI Floating Bubble (robot) -->
+<button class="p3chat-launch" id="p3chatLaunch" aria-label="Open P3Solutions AI">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M11 2h2v2h3a4 4 0 0 1 4 4v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8a4 4 0 0 1 4-4h3V2Zm-3 6a2 2 0 0 0-2 2v5a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V10a2 2 0 0 0-2-2H8Zm1 3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+  </svg>
+</button>
+
+<!-- AI Chat panel -->
+<div class="p3chat" id="p3chat" aria-label="P3Solutions AI Chat">
+  <div class="p3chat-header">
+    <div class="p3chat-title">
+      <strong>P3Solutions AI — Quote Intake</strong><br/>
+      <span>Apartment turns + residential welcomed • Commercial/industrial by scope</span>
+    </div>
+    <button class="p3chat-close" id="p3chatClose" type="button" aria-label="Close chat">Close</button>
+  </div>
+
+  <div class="p3chat-body" id="p3chatBody"></div>
+  <div class="p3chat-actions" id="p3chatActions"></div>
+
+  <div class="p3chat-inputbar">
+    <input id="p3chatInput" placeholder="Type your answer… (SKIP allowed)" autocomplete="off" />
+    <button class="p3chat-send" id="p3chatSend" type="button">Send</button>
+  </div>
+
+  <div class="p3chat-mini">
+    Range pricing until walkthrough or photo-verified scope. Pre-1978 homes may require additional compliance.
+    Projects may qualify for up to 20% savings based on size/scope (most residential up to 10%).
+  </div>
+</div>
+
+<script>
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // iOS keyboard fix: lift floating UI using VisualViewport
+  (function(){
+    const root = document.documentElement;
+    if (!window.visualViewport) return;
+
+    function updateVV(){
+      const vv = window.visualViewport;
+      const layoutH = window.innerHeight;
+      const vvH = vv.height;
+      const offset = Math.max(0, layoutH - vvH - (vv.offsetTop || 0));
+      root.style.setProperty("--vv-offset", offset + "px");
+    }
+
+    window.visualViewport.addEventListener("resize", updateVV);
+    window.visualViewport.addEventListener("scroll", updateVV);
+    updateVV();
+  })();
+
+  // Copy coupon
+  (function(){
+    const btn = document.getElementById("copyCouponBtn");
+    const txt = document.getElementById("couponText");
+    if(!btn || !txt) return;
+    btn.addEventListener("click", async () => {
+      const code = (txt.textContent || "FIRST20").trim();
+      try{
+        await navigator.clipboard.writeText(code);
+        btn.textContent = "✅ Copied!";
+        setTimeout(()=> btn.textContent = "📋 Copy Code", 1200);
+      }catch(e){
+        const sel = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(txt);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = "Select + Copy";
+        setTimeout(()=> btn.textContent = "📋 Copy Code", 1400);
+      }
+    });
+  })();
+
+  // SERVICES TABS
+  (function(){
+    const tabButtons = document.querySelectorAll(".tab[data-tab]");
+    const tabPanels  = document.querySelectorAll(".panel[data-tab-panel]");
+    if (!tabButtons.length || !tabPanels.length) return;
+
+    function activate(tabName, focusBtn){
+      tabButtons.forEach(b=>{
+        const active = b.getAttribute("data-tab") === tabName;
+        b.classList.toggle("active", active);
+        b.setAttribute("aria-selected", active ? "true" : "false");
       });
-    })();
+      tabPanels.forEach(p=>{
+        const active = p.getAttribute("data-tab-panel") === tabName;
+        p.classList.toggle("active", active);
+      });
 
-    // SERVICES TABS
-    document.addEventListener("DOMContentLoaded", () => {
-      const tabButtons = document.querySelectorAll("[data-tab]");
-      const tabPanels  = document.querySelectorAll("[data-tab-panel]");
-      if (!tabButtons.length || !tabPanels.length) return;
+      const btn = Array.from(tabButtons).find(b => b.getAttribute("data-tab") === tabName);
+      if (btn){
+        btn.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+        if (focusBtn) btn.focus({preventScroll:true});
+      }
+    }
 
-      tabButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const target = btn.getAttribute("data-tab");
-
-          tabButtons.forEach(b => {
-            b.classList.remove("active");
-            b.setAttribute("aria-selected", "false");
-          });
-          tabPanels.forEach(p => p.classList.remove("active"));
-
-          btn.classList.add("active");
-          btn.setAttribute("aria-selected", "true");
-
-          const panel = document.querySelector(`[data-tab-panel="${target}"]`);
-          if (panel) panel.classList.add("active");
-        });
+    tabButtons.forEach(btn=>{
+      btn.addEventListener("click", ()=> activate(btn.getAttribute("data-tab")));
+      btn.addEventListener("keydown", (e)=>{
+        const idx = Array.from(tabButtons).indexOf(btn);
+        if (e.key === "ArrowRight"){
+          e.preventDefault();
+          const next = tabButtons[Math.min(tabButtons.length-1, idx+1)];
+          activate(next.getAttribute("data-tab"), true);
+        }
+        if (e.key === "ArrowLeft"){
+          e.preventDefault();
+          const prev = tabButtons[Math.max(0, idx-1)];
+          activate(prev.getAttribute("data-tab"), true);
+        }
       });
     });
 
-    // OPEN / CLOSED BADGE
-    (function () {
-      const el = document.getElementById("bizStatus");
-      if (!el) return;
+    const defaultTab = document.querySelector(".tab.active")?.getAttribute("data-tab") || tabButtons[0].getAttribute("data-tab");
+    activate(defaultTab);
+  })();
 
-      function isOpen(now) {
-        const day = now.getDay(); // 0 Sun ... 6 Sat
-        const mins = now.getHours() * 60 + now.getMinutes();
+  // OPEN / CLOSED BADGE
+  (function () {
+    const el = document.getElementById("bizStatus");
+    if (!el) return;
 
-        // Mon–Fri 8:00–17:30
-        if (day >= 1 && day <= 5) return mins >= 480 && mins <= 1050;
-        // Sat 13:00–17:30
-        if (day === 6) return mins >= 780 && mins <= 1050;
-        return false; // Sunday closed
+    function isOpen(now) {
+      const day = now.getDay();
+      const mins = now.getHours() * 60 + now.getMinutes();
+
+      if (day >= 1 && day <= 5) return mins >= 480 && mins <= 1050; // Mon–Fri 8:00–17:30
+      if (day === 6) return mins >= 780 && mins <= 1050;           // Sat 13:00–17:30
+      return false; // Sun
+    }
+
+    function update() {
+      const open = isOpen(new Date());
+      el.classList.remove("open","closed");
+      el.classList.add(open ? "open" : "closed");
+      const text = el.querySelector(".text");
+      if (text) text.textContent = open ? "Open Now" : "Closed";
+    }
+
+    update();
+    setInterval(update, 60000);
+  })();
+
+  // P3Solutions AI Intake
+  (function(){
+    const launch = document.getElementById("p3chatLaunch");
+    const chat = document.getElementById("p3chat");
+    const close = document.getElementById("p3chatClose");
+    const body = document.getElementById("p3chatBody");
+    const actions = document.getElementById("p3chatActions");
+    const input = document.getElementById("p3chatInput");
+    const send = document.getElementById("p3chatSend");
+
+    if (!launch || !chat || !close || !body || !actions || !input || !send) return;
+
+    const state = {
+      step: 0,
+      data: {
+        property_type: "",
+        requester_role: "",
+        authority_confirmed: "",
+        location_zip: "",
+        scope: "",
+        occupied: "",
+        hazards: "",
+        pre1978: "",
+        timeline: "",
+        budget_range: "",
+        contact: "",
+        priority: "",
+        priority_reason: ""
+      }
+    };
+
+    const steps = [
+      { key:"property_type", q:"Project type? (Apartment Turnover / Residential / Commercial / Industrial)", optional:false },
+      { key:"requester_role", q:"For admin purposes: Owner, Property Manager, GC, or Tenant? (type SKIP to skip)", optional:true },
+      { key:"authority_confirmed", q:"Do you have approval authority? (Yes/No/Not sure — type SKIP to skip)", optional:true },
+      { key:"location_zip", q:"City + ZIP? (type SKIP to skip)", optional:true },
+      { key:"scope", q:"Scope summary (units/rooms/sqft + areas). (type SKIP to skip)", optional:true },
+      { key:"occupied", q:"Occupied during work? (Yes/No — type SKIP to skip)", optional:true },
+      { key:"pre1978", q:"Built before 1978? (Yes/No/Unknown — type SKIP to skip)", optional:true },
+      { key:"hazards", q:"Any hazards? (Mold/Smoke/Water/None — type SKIP to skip)", optional:true },
+      { key:"timeline", q:"Timeline? (ASAP/This week/Next month/Flexible — type SKIP to skip)", optional:true },
+      { key:"budget_range", q:"Budget range? ($2–5k / $5–15k / $15k+ / Not sure — type SKIP to skip)", optional:true },
+      { key:"contact", q:"Best contact (phone/email). (type SKIP to skip — missing contact = lower priority)", optional:true }
+    ];
+
+    function addMsg(text, who="ai"){
+      const div = document.createElement("div");
+      div.className = "msg " + who;
+      div.textContent = text;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+    function addChip(label, fn, primary=false){
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (primary ? " primary" : "");
+      b.textContent = label;
+      b.addEventListener("click", fn);
+      actions.appendChild(b);
+    }
+    function clearActions(){ actions.innerHTML = ""; }
+    function norm(v){ return (v||"").toString().trim(); }
+
+    function ask(){
+      if (state.step >= steps.length) return finalize();
+      clearActions();
+      const s = steps[state.step];
+      addMsg(s.q, "ai");
+
+      if (s.key === "property_type"){
+        addChip("Apartment Turnover", ()=>{ input.value="Apartment Turnover"; submitText(); }, true);
+        addChip("Residential", ()=>{ input.value="Residential"; submitText(); }, true);
+        addChip("Commercial", ()=>{ input.value="Commercial"; submitText(); });
+        addChip("Industrial", ()=>{ input.value="Industrial"; submitText(); });
+        addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+      }
+      if (s.key === "timeline"){
+        addChip("ASAP", ()=>{ input.value="ASAP"; submitText(); }, true);
+        addChip("This week", ()=>{ input.value="This week"; submitText(); });
+        addChip("Next month", ()=>{ input.value="Next month"; submitText(); });
+        addChip("Flexible", ()=>{ input.value="Flexible"; submitText(); });
+        addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+      }
+      if (s.key === "budget_range"){
+        addChip("$2–5k", ()=>{ input.value="$2–5k"; submitText(); });
+        addChip("$5–15k", ()=>{ input.value="$5–15k"; submitText(); }, true);
+        addChip("$15k+", ()=>{ input.value="$15k+"; submitText(); });
+        addChip("Not sure", ()=>{ input.value="Not sure"; submitText(); });
+        addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+      }
+      if (s.optional) addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
+    }
+
+    function scorePriority(){
+      const pt = (state.data.property_type||"").toLowerCase();
+      const hasContact = !!(state.data.contact && state.data.contact.trim().length >= 5);
+      const hasScope = !!(state.data.scope && state.data.scope.trim().length >= 6);
+
+      let score = 0;
+      const reasons = [];
+
+      if (pt.includes("turn")) { score += 3; reasons.push("Apartment turnover"); }
+      if (pt.includes("commercial") || pt.includes("industrial")) { score += 2; reasons.push("Commercial/industrial"); }
+      if (hasScope) { score += 2; reasons.push("Scope provided"); }
+      if (hasContact) { score += 3; reasons.push("Contact provided"); }
+
+      state.data.priority = score >= 7 ? "A" : score >= 4 ? "B" : "C";
+      state.data.priority_reason = reasons.join(" | ") || "Auto scored";
+    }
+
+    async function submitBooking(){
+      const fd = new FormData();
+      fd.append("form-name","booking");
+      Object.entries(state.data).forEach(([k,v])=>fd.append(k, v || ""));
+      await fetch("/", { method:"POST", body: fd });
+    }
+
+    async function finalize(){
+      scorePriority();
+      addMsg("Thank you. We’ll respond during business hours.", "ai");
+      addMsg("Pricing is range-only until walkthrough or photo-verified scope.", "ai");
+
+      const pre = (state.data.pre1978 || "").toLowerCase();
+      if (pre === "yes"){
+        addMsg("Compliance note: pre-1978 properties may require additional lead-safe procedures.", "ai");
       }
 
-      function update() {
-        const open = isOpen(new Date());
-        el.classList.remove("open","closed");
-        el.classList.add(open ? "open" : "closed");
+      addMsg("Priority level: " + state.data.priority, "ai");
 
-        const text = el.querySelector(".text");
-        if (text) text.textContent = open ? "Open Now" : "Closed";
+      try{
+        await submitBooking();
+        addMsg("Submission saved.", "ai");
+      } catch (e){
+        addMsg("Submission error — please use the quote form.", "ai");
       }
 
-      update();
-      setInterval(update, 60000);
-    })();
+      clearActions();
+      addChip("Open Quote Form", ()=>{ window.location.hash="#quote"; closeChat(); }, true);
+      addChip("Call", ()=>{ window.location.href="tel:+16145853880"; });
+      addChip("Email", ()=>{ window.location.href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture"; });
+    }
 
-    // P3Solutions AI Intake
-    (function(){
-      const launch = document.getElementById("p3chatLaunch");
-      const chat = document.getElementById("p3chat");
-      const close = document.getElementById("p3chatClose");
-      const body = document.getElementById("p3chatBody");
-      const actions = document.getElementById("p3chatActions");
-      const input = document.getElementById("p3chatInput");
-      const send = document.getElementById("p3chatSend");
+    function submitText(){
+      if (state.step >= steps.length) return;
+      const s = steps[state.step];
+      const val = norm(input.value);
 
-      if (!launch || !chat || !close || !body || !actions || !input || !send) return;
+      if (!val && !s.optional) return;
 
-      const state = {
-        step: 0,
-        data: {
-          property_type: "",
-          requester_role: "",
-          authority_confirmed: "",
-          location_zip: "",
-          scope: "",
-          occupied: "",
-          hazards: "",
-          pre1978: "",
-          timeline: "",
-          budget_range: "",
-          contact: "",
-          priority: "",
-          priority_reason: ""
-        }
-      };
-
-      const steps = [
-        { key:"property_type", q:"Project type? (Apartment Turnover / Residential / Commercial / Industrial)", optional:false },
-        { key:"requester_role", q:"For admin purposes: Owner, Property Manager, GC, or Tenant? (type SKIP to skip)", optional:true },
-        { key:"authority_confirmed", q:"Do you have approval authority? (Yes/No/Not sure — type SKIP to skip)", optional:true },
-        { key:"location_zip", q:"City + ZIP? (type SKIP to skip)", optional:true },
-        { key:"scope", q:"Scope summary (units/rooms/sqft + areas). (type SKIP to skip)", optional:true },
-        { key:"occupied", q:"Occupied during work? (Yes/No — type SKIP to skip)", optional:true },
-        { key:"pre1978", q:"Built before 1978? (Yes/No/Unknown — type SKIP to skip)", optional:true },
-        { key:"hazards", q:"Any hazards? (Mold/Smoke/Water/None — type SKIP to skip)", optional:true },
-        { key:"timeline", q:"Timeline? (ASAP/This week/Next month/Flexible — type SKIP to skip)", optional:true },
-        { key:"budget_range", q:"Budget range? ($2–5k / $5–15k / $15k+ / Not sure — type SKIP to skip)", optional:true },
-        { key:"contact", q:"Best contact (phone/email). (type SKIP to skip — missing contact = lower priority)", optional:true }
-      ];
-
-      function addMsg(text, who="ai"){
-        const div = document.createElement("div");
-        div.className = "msg " + who;
-        div.textContent = text;
-        body.appendChild(div);
-        body.scrollTop = body.scrollHeight;
-      }
-      function addChip(label, fn, primary=false){
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "chip" + (primary ? " primary" : "");
-        b.textContent = label;
-        b.addEventListener("click", fn);
-        actions.appendChild(b);
-      }
-      function clearActions(){ actions.innerHTML = ""; }
-      function norm(v){ return (v||"").toString().trim(); }
-
-      function ask(){
-        if (state.step >= steps.length) return finalize();
-        clearActions();
-        const s = steps[state.step];
-        addMsg(s.q, "ai");
-
-        if (s.key === "property_type"){
-          addChip("Apartment Turnover", ()=>{ input.value="Apartment Turnover"; submitText(); }, true);
-          addChip("Residential", ()=>{ input.value="Residential"; submitText(); }, true);
-          addChip("Commercial", ()=>{ input.value="Commercial"; submitText(); });
-          addChip("Industrial", ()=>{ input.value="Industrial"; submitText(); });
-          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
-        }
-        if (s.key === "timeline"){
-          addChip("ASAP", ()=>{ input.value="ASAP"; submitText(); }, true);
-          addChip("This week", ()=>{ input.value="This week"; submitText(); });
-          addChip("Next month", ()=>{ input.value="Next month"; submitText(); });
-          addChip("Flexible", ()=>{ input.value="Flexible"; submitText(); });
-          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
-        }
-        if (s.key === "budget_range"){
-          addChip("$2–5k", ()=>{ input.value="$2–5k"; submitText(); });
-          addChip("$5–15k", ()=>{ input.value="$5–15k"; submitText(); }, true);
-          addChip("$15k+", ()=>{ input.value="$15k+"; submitText(); });
-          addChip("Not sure", ()=>{ input.value="Not sure"; submitText(); });
-          addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
-        }
-        if (s.optional) addChip("SKIP", ()=>{ input.value="SKIP"; submitText(); });
-      }
-
-      function scorePriority(){
-        const pt = (state.data.property_type||"").toLowerCase();
-        const hasContact = !!(state.data.contact && state.data.contact.trim().length >= 5);
-        const hasScope = !!(state.data.scope && state.data.scope.trim().length >= 6);
-
-        let score = 0;
-        const reasons = [];
-
-        if (pt.includes("turn")) { score += 3; reasons.push("Apartment turnover"); }
-        if (pt.includes("commercial") || pt.includes("industrial")) { score += 2; reasons.push("Commercial/industrial"); }
-        if (hasScope) { score += 2; reasons.push("Scope provided"); }
-        if (hasContact) { score += 3; reasons.push("Contact provided"); }
-
-        state.data.priority = score >= 7 ? "A" : score >= 4 ? "B" : "C";
-        state.data.priority_reason = reasons.join(" | ") || "Auto scored";
-      }
-
-      async function submitBooking(){
-        const fd = new FormData();
-        fd.append("form-name","booking");
-        Object.entries(state.data).forEach(([k,v])=>fd.append(k, v || ""));
-        await fetch("/", { method:"POST", body: fd });
-      }
-
-      async function finalize(){
-        scorePriority();
-        addMsg("Thank you. We’ll respond during business hours.", "ai");
-        addMsg("Pricing is range-only until walkthrough or photo-verified scope.", "ai");
-
-        const pre = (state.data.pre1978 || "").toLowerCase();
-        if (pre === "yes"){
-          addMsg("Compliance note: pre-1978 properties may require additional lead-safe procedures.", "ai");
-        }
-
-        addMsg("Priority level: " + state.data.priority, "ai");
-
-        try{
-          await submitBooking();
-          addMsg("Submission saved.", "ai");
-        } catch (e){
-          addMsg("Submission error — please use the quote form.", "ai");
-        }
-
-        clearActions();
-        addChip("Open Quote Form", ()=>{ window.location.hash="#quote"; }, true);
-        addChip("Call", ()=>{ window.location.href="tel:+16145853880"; });
-        addChip("Email", ()=>{ window.location.href="mailto:p3solutions@paintaperfectpicture.com?subject=Quote%20Request%20-%20Paint%20a%20Perfect%20Picture"; });
-      }
-
-      function submitText(){
-        if (state.step >= steps.length) return;
-        const s = steps[state.step];
-        const val = norm(input.value);
-
-        if (!val && !s.optional) return;
-
-        if (s.optional && /^skip$/i.test(val)){
-          state.data[s.key] = "";
-          addMsg("(skipped)", "user");
-          input.value = "";
-          state.step++;
-          return ask();
-        }
-
-        state.data[s.key] = val || "";
-        addMsg(val || "(skipped)", "user");
+      if (s.optional && /^skip$/i.test(val)){
+        state.data[s.key] = "";
+        addMsg("(skipped)", "user");
         input.value = "";
         state.step++;
+        return ask();
+      }
+
+      state.data[s.key] = val || "";
+      addMsg(val || "(skipped)", "user");
+      input.value = "";
+      state.step++;
+      ask();
+    }
+
+    function openChat(){
+      chat.classList.add("open");
+      launch.setAttribute("aria-expanded","true");
+      if (!body.childElementCount){
+        addMsg("Hi — I’m P3Solutions AI. I’ll collect your details quickly.", "ai");
+        addMsg("Apartment turnovers prioritized. Residential welcomed.", "ai");
+        addMsg("You can type SKIP at any step.", "ai");
         ask();
       }
+      setTimeout(()=>input.focus(), 50);
+    }
+    function closeChat(){
+      chat.classList.remove("open");
+      launch.setAttribute("aria-expanded","false");
+    }
 
-      function openChat(){
-        chat.classList.add("open");
-        if (!body.childElementCount){
-          addMsg("Hi — I’m P3Solutions AI. I’ll collect your details quickly.", "ai");
-          addMsg("Apartment turnovers prioritized. Residential welcomed.", "ai");
-          addMsg("You can type SKIP at any step.", "ai");
-          ask();
-        }
-        setTimeout(()=>input.focus(), 50);
-      }
-      function closeChat(){ chat.classList.remove("open"); }
+    launch.addEventListener("click", openChat);
+    close.addEventListener("click", closeChat);
+    send.addEventListener("click", submitText);
+    input.addEventListener("keydown", (e)=>{
+      if(e.key==="Enter"){ e.preventDefault(); submitText(); }
+      if(e.key==="Escape"){ e.preventDefault(); closeChat(); }
+    });
 
-      launch.addEventListener("click", openChat);
-      close.addEventListener("click", closeChat);
-      send.addEventListener("click", submitText);
-      input.addEventListener("keydown", (e)=>{
-        if(e.key==="Enter"){ e.preventDefault(); submitText(); }
-      });
-    })();
-  </script>
+    document.addEventListener("click", (e)=>{
+      if(!chat.classList.contains("open")) return;
+      const inside = chat.contains(e.target) || launch.contains(e.target);
+      if(!inside) closeChat();
+    }, {capture:true});
+  })();
+</script>
 
 </body>
 </html>
